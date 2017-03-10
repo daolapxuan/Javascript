@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 36: Thao tác với Đối tượng (Object) trong JavaScript</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			code {
+				color: grey;
+			}
+			
+			.code-style {
+				border: 1px solid red;
+				padding-left: 15px;
+			}
+			
+			.code-comment {
+				color: green;
+			}
+			
+			.code-name {
+				color: white;
+				background-color: grey;
+			}
+			
+			.tab-first {
+				padding-left: 20px;
+			}
+			
+			.tab-second {
+				padding-left: 40px;
+			}
+			
+			.tab-third {
+				padding-left: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<h2>Thao tác với đối tượng</h2>
+				<p><strong>Đề bài:</strong> Viết chương trình quản lý sinh viên đơn giản, gồm các thao tác chính như sau:</p>
+				<ul>
+					<li>Xem danh sách sinh viên</li>
+					<li>Thêm sinh viên</li>
+					<li>Xóa sinh viên khỏi danh sách</li>
+					<li>Sửa thông tin sinh viên</li>
+				</ul>
+				<p>Với mỗi sinh viên cần lưu trữ các thông tin sau:</p>
+				<ul>
+					<li>Mã sinh viên</li>
+					<li>Tên sinh viên</li>
+					<li>Số điện thoại</li>
+					<li>Địa chỉ</li>
+				</ul>
+				<p><strong>Gợi ý:</strong> Trước hết ta nên xác định danh sách các thuộc tính của đối tượng (đây là thông tin lưu trữ của sinh viên). Vì ta cần danh sách nhiều đối tượng (nhiều sinh viên, mỗi sinh viên có mỗi giá trị các thuộc tính khác nhau) nên ta sẽ cần có thêm một mảng lưu trữ danh sách sinh viên đó. Và cuối cùng là các phương thức xử lý trên đối tượng sinh viên theo yêu cầu.</p>
+				<div class="code-style">
+					<code>
+						var Student = {<br/>
+							<span class="tab-first">dataStudents : []</span>,<br/>
+							<span class="tab-first"><span class="code-comment">// Xem danh sách sinh viên</span></span><br/>
+							<span class="tab-first">viewStudent : function() {</span><br/>
+								<span class="tab-first"><span class="code-comment">// Xem danh sách sinh viên</span></span><br/>
+							<span class="tab-first">},</span><br/>
+							<span class="tab-first"><span class="code-comment">// Thêm sinh viên</span></span><br/>
+							<span class="tab-first">addStudent : function() {<br/>
+								<span class="tab-second"><span class="code-comment">// Thêm sinh viên</span></span><br/>
+							<span class="tab-first">},</span><br/>
+							<span class="tab-first"><span class="code-comment">// Xóa sinh viên</span></span><br/>
+							<span class="tab-first">deleteStudent : function() {</span><br/>
+								<span class="tab-second"><span class="code-comment">// Xóa sinh viên</span></span><br/>
+							<span class="tab-first">}</span><br/>
+							<span class="tab-first"><span class="code-comment">// Chỉnh sửa thông tin sinh viên</span></span><br/>
+							<span class="tab-first">editStudent : function() {</span><br/>
+								<span class="tab-second"><span class="code-comment">// Chỉnh sửa thông tin sinh viên</span></span><br/>
+							<span class="tab-first">}</span><br/>
+						};<br/>
+					</code>
+				</div>
+				<p>Tiếp theo ta sẽ viết chi tiết vào các phương thức xử lý.</p>
+				<h3>Hàm xem các đối tượng sinh viên</h3>
+				<p><strong>Gợi ý:</strong> Để xem danh sách các sinh viên thì ta chỉ cần lặp qua hết đối tượng và dùng hàm <span class="code-name">document.write</span> để hiển thị thông tin lên web.</p>
+				<div class="code-style">
+					<code>
+						viewStudent : function() {<br/>
+							<span class="tab-first"><span class="code-comment">// Lấy danh sách sinh viên</span><br/>
+							<span class="tab-first">var listStudent = this.date;</span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Sử dụng vòng lặp để hiển thị danh sách sinh viên</span></span><br/>
+							<span class="tab-first">for (var i = 0; i < listStudent.length; i++) {<br/>
+								<span class="tab-second">document.write(listStudent[i].id + " | " + listStudent[i].name + " | " + listStudent[i].phone + " | " + listStudent[0].address);</span><br/>
+							<span class="tab-first">}</span><br/>
+						}<br/>
+					</code>
+				</div>
+
+				<h3>Hàm thêm một Sinh viên</h3>
+				<p><strong>Gợi ý:</strong> Để thêm một đối tượng, ta cần 4 tham số truyền vào, tương ứng với các thuộc tính của một đối tượng sinh viên (thông tin của một sinh viên). Sau đó ta dùng hàm <span class="code-name">push()</span> để thêm sinh viên vừa mới tạo vào danh sách.</p>
+				<div class="code-style">
+					<code>
+						addStudent : function(_id, _name, _fone, _address) {<br/>
+							<span class="tab-first"><span class="code-comment">// Tạo thông tin sinh viên</span></span><br/>
+							<span class="tab-first">var infoAStudent = {<br/>
+								<span class="tab-second">id : _id, </span><br/>
+								<span class="tab-second">name : _name, </span><br/>
+								<span class="tab-second">fone : _fone, </span><br/>
+								<span class="tab-second">address : _address</span><br/>
+							<span class="tab-first">};</span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Thêm sinh viên vào danh sách</span></span><br/>
+							<span class="tab-first">this.data.push(infoAStudent);</span><br/>
+						}<br/>
+					</code>
+				</div>
+
+				<h3>Hàm Xóa một Sinh viên bất kỳ</h3>
+				<p><strong>Gợi ý:</strong> Để xóa một sinh viên nào đó, ta cần phải biết ID của sinh viên đó. Sau đó ta sử dụng hàm <span class="code-name">spice()</span> để xóa phần tử của mảng.</p>
+				<div class="code-style">
+					<code>
+						removeStudent : function(_id) {<br/>
+							<span class="tab-first"><span class="code-comment">// Lặp qua tất cả các sinh viên, tìm id cần xóa</span></span><br/>
+							<span class="tab-first">for (var i = 0; i < this.data.length; i++) {</span><br/>
+								<span class="tab-second"><span class="code-comment">// Xác định ID cần xóa</span></span><br/>
+								<span class="tab-second">if (this.data[i].id == _id) {</span><br/>
+									<span class="tab-third"><span class="code-comment">// Xóa sinh viên đã xác định được</span></span><br/>
+									<span class="tab-third">this.data.splice(i, 1);</span><br/>
+								<span class="tab-second">}</span><br/>
+							<span class="tab-first">}</span><br/>
+						}<br/>
+					</code>
+				</div>
+
+				<h3>Hàm sửa thông tin của một sinh viên</h3>
+				<p><strong>Gợi ý:</strong> Hàm này tương tự hàm thêm sinh viên, cũng cần 4 tham số truyền vào. Ta sẽ dựa vào ID để tìm ra sinh viên cần sửa đổi.</p>
+				<div class="code-style">
+					<code>
+						editStudent : function(_id, _name, _fone, _address) {<br/>
+							<span class="tab-first"><span class="code-comment">// Dùng biến tempID để thay thế ID ban đầu, nếu có sửa ID đó</span></span><br/>
+							<span class="tab-first">var tempID = _id;</span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Dùng vòng lặp để tìm sinh viên cần chỉnh sửa</span></span><br/>
+							<span class="tab-first">for (var i = 0; i < this.date.length; i++) {</span><br/>
+								<span class="tab-second"><span class="code-comment">// Xác định ID và chỉnh sửa</span></span><br/>
+								<span class="tab-second">if (this.data[i].id == tempID) {</span><br/>
+									<span class="tab-third">this.date[i].id = _id;</span><br/>
+									<span class="tab-third">this.date[i].name = _name;</span><br/>
+									<span class="tab-third">this.date[i].fone = _fone;</span><br/>
+									<span class="tab-third">this.date[i].address = _address;</span><br/>
+								<span class="tab-second">}</span><br/>
+							<span class="tab-first">}</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Trên đây là toàn bộ các hàm cần dùng để xử lý đối tượng sinh viên theo yêu cầu đề bài. Sau đây ta sẽ sử dụng các hàm này để thao tác với đối tượng bằng JavaScript.</p>
+
+				<h2>Chạy thử ứng dụng đơn giản trên</h2>
+				<p><strong>Danh sách Sinh viên ban đầu: </strong></p>
+				<div id="view-first"><input type="button" value="Click View" onclick="View()"/></p>
+				<p><strong>Thêm hai sinh viên sau và xuất ra danh sách sinh viên:</strong></p>
+				<ul>
+					<li><strong>Sinh viên 1:</strong> "001", "Đào Lập Xuân", "01699320315", "Quận Phú Nhuận, Tp.HCM"</li>
+					<li><strong>Sinh viên 2:</strong> "002", "Mai Cẩm Tú", "0969224322", "Hooc Môn, Tp.HCM"</li>
+				</ul>
+
+				<p>Thêm sinh viên: <input type="button" value="Click Add" id="btn-add"/></p>
+				<p>Xem danh sách sinh viên: <input type="button" value="Click View" id="btn-view-second"></p>
+				<div id="view-second"></div>
+
+				<p><strong>Xóa sinh viên thứ hai và xuất ra danh sách sinh viên.</strong></p>
+				<p>Xóa sinh viên: <input type="button" value="Click Remove" id="btn-remove"/></p>
+				<p>Xem danh sách sinh viên: <input type="button" value="Click View" id="btn-view-third"></p>
+				<div id="view-third"></div>
+
+				<p><strong>Đổi thông tin sinh viên thứ nhất thành "Thái Thị Ngọc Diễm", "0964263956", "Chi Lăng, An Giang"</strong></p>
+				<p>Đổi thông tin sinh viên: <input type="button" value="Click Edit" id="btn-edit"/></p>
+				<p>Xem danh sách sinh viên: <input type="button" value="Click View" id="btn-view-fourth"></p>
+				<div id="view-fourth"></div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			// Khai báo và khởi tạo đối tượng Sinh viên
+			var Student = {
+				data : [],
+				// Phương thức xem danh sách Sinh viên
+				viewStudent : function() {
+					// Lấy danh sách sinh viên
+					var listStudent = this.data;
+
+					// Lặp qua danh sách và xuất ra màn hình
+					for (var i = 0; i < listStudent.length; i++) {
+						document.write("<div>Sinh viên " + [i + 1] + ": " + listStudent[i].id + " | " + listStudent[i].name + " | " + listStudent[i].fone + " | " + listStudent[i].address + " </div>");
+					}
+				},
+				// Phương thức thêm một Sinh viên
+				addStudent : function(_id, _name, _fone, _address) {
+					// Tạo thông tin cho Sinh viên mới
+					var newStudent = {
+						id : _id,
+						name : _name,
+						fone : _fone,
+						address : _address
+					};
+
+					// Thêm Sinh viên mới tạo vào danh sách
+					this.data.push(newStudent);
+				},
+				// Phương thức xóa một Sinh viên bất kỳ
+				removeStudent : function(_id) {
+					// Lặp qua danh sách Sinh viên để tìm Sinh viên cần xóa
+					for (var i = 0; i < this.data.length; i++) {
+						// Xác định ID Sinh viên cần xóa
+						if (this.date[i].id === _id) {
+							// Xóa Sinh viên đã xác định được
+							this.data.splice(i, 1);
+						}
+					}
+				},
+				// Phương thức chỉnh sửa thông tin một Sinh viên
+				editStudent : function(_id, _name, _fone, _address) {
+					// Lặp qua danh sách Sinh viên để tìm Sinh viên cần chỉnh sửa thông tin
+					for (var i = 0; i < this.data.length; i++) {
+						// Xác định ID Sinh viên cần sửa
+						if (this.data[i].id === _id) {
+							this.data[i].name = _name;
+							this.data[i].fone = _fone;
+							this.data[i].address = _address;
+						}
+					}
+				}
+			};
+
+			// Tạo một mảng dùng để lưu lại danh sách Sinh viên hiện tại
+			var listStudent = [];
+
+			// LẤY ID CÁC THẺ HTML
+			// ID yêu cầu 2:
+			var addAStudent = document.getElementById('btn-add');
+			var viewSecond = document.getElementById('btn-view-second');
+			
+			// ID yêu cầu 3:
+			var removeAStudent = document.getElementById('btn-remove');
+			var viewThird = document.getElementById('btn-view-third');
+
+			// ID yêu cầu 4:
+			var editAStudent = document.getElementById('btn-edit');
+			var viewFourth = document.getElementById('btn-view-fourth');
+
+			// =*= PHẦN HÀM =*=
+			// Xử lý yêu cầu 1.
+			function View() {
+				if (Student.data.length == 0) {
+					document.write("Danh sách chưa có dữ liệu.");
+				}
+				else {
+					document.write("<h4> Danh sách Sinh viên: </h4>");
+					Student.viewStudent();
+				}
+			}
+			
+			// =*= PHẦN DOM GỌI HÀM
+			// Xử lý xự kiện thêm sinh viên
+			addAStudent.onclick = function() {
+				Student.addStudent("001", 'Đào Lập Xuân', "01699320315", 'Q.Phú Nhuận, Tp.HCM');
+				Student.addStudent("002", 'Mai Cẩm Tú', "0969224322", 'H.Hooc Môn, Tp.HCM');
+				
+				// Lưu danh sách lại để in ra
+				listStudent = Student.data;
+
+				alert('Bạn đã thêm vào danh sách 2 sinh viên!');
+			};
+			
+			// Xuất danh sách yêu cầu 2
+			viewSecond.onclick = function() {
+				View();
+			}
+
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			// Xử lý event yêu cầu 3
+			removeAStudent.addEventListener('click', function() {
+				Student.addStudent("001", 'Đào Lập Xuân', "01699320315", 'Q.Phú Nhuận, Tp.HCM');
+				Student.addStudent("002", 'Mai Cẩm Tú', "0969224322", 'H.Hooc Môn, Tp.HCM');
+
+				if (Student.data.length == 0) {
+					alert('Bạn chưa thêm sinh viên vào, danh sách hiện tại chưa có dữ liệu!');
+				}
+				else {
+					Student.removeStudent('002');
+
+					// Lưu lại danh sách
+					listStudent = Student.data;
+
+					alert("Bạn đã xóa Sinh viên thứ hai ra khỏi danh sách!");
+				}
+			});
+			// Xuất ra danh sách yêu cầu 3
+			viewThird.addEventListener('click', function() {
+				View();
+			});
+
+			// Xử lý event yêu cầu 4
+			editAStudent.addEventListener('click', function() {
+				if (Student.data.length == 0) {
+					alert('Bạn chưa thêm sinh viên vào, danh sách hiện tại chưa có dữ liệu!');
+				}
+				else {
+					Student.editStudent("001", 'Thái Thị Ngọc Diễm', "0964263956", 'Chi Lăng, An Giang');
+
+					// Lưu lại danh sách
+					listStudent = Student.data;
+
+					alert("Bạn đã sửa Sinh viên thứ nhất từ danh sách!");
+				}
+			});
+			// Xuất ra danh sách yêu cầu 4
+			viewFourth.addEventListener('click', function() {
+				View();
+			});
+
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

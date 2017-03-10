@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<div class="container">
+			<div class="row">
+			</div>
+		</div>
+		<!-- Phần Javascript -->
+		<script language="javascript">
+		</script>
+	</body>
+</html>

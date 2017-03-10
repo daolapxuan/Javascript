@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 28: Chuỗi (String)</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			code {
+				color: grey;
+			}
+			
+			.table {
+				margin: 0 auto;
+				width: 50%;
+				display: table;
+			}
+			
+			.row-table {
+				display: table-row;
+			}
+			
+			.col-table {
+				display: table-cell;
+				border: 1px solid grey;
+			}
+			
+			#top-table {
+				font-weight: bold;
+				text-align: center;	
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>1. Chuỗi (String)</h2>
+				<p>Chuỗi là một đoạn text có thể có một hoặc nhiều ký tự và thông thường chúng ta sẽ lưu trữ nó vào một biến, biến này ta sẽ gọi là biên có kiểu dữ liệu String (chuỗi). Tất cả các chuỗi đều phải được bao quanh bởi dấu nháy đơn '<chuỗi>' hoặc dấu nháy kép "<chuỗi>".</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var name = "Đào Lập Xuân";<br/>
+					var email = 'daolapxuan@gmail.com';
+				</code>
+				<p>Trường hợp trong chuỗi cũng có xuất hiện dấu nháy đơn hoặc dấu nháy đôi thì bắt buộc phải thêm ký tự \ đằng trước dấu nháy đó nếu ko sẽ bị lỗi cú pháp.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var name = "Đào \"Lập Xuân";<br/>
+					var email = 'daolapxuan@\'gmail.com';
+				</code>
+				<p>Ngoài ra còn có các kí hiệu kết hợp với dấu \:</p>
+				
+				<div class="table">
+					<div class="row-table" id="top-table">
+						<div class="col-table">Code</div>
+						<div class="col-table">Kết quả</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table">\'</div>
+						<div class="col-table">single quote</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table">\"</div>
+						<div class="col-table">double quote</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table">\\</div>
+						<div class="col-table">backslash</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table">\n</div>
+						<div class="col-table">new line</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table">\r</div>
+						<div class="col-table">carriage return</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table">\t</div>
+						<div class="col-table">tab</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table">\b</div>
+						<div class="col-table">backspace</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table">\f</div>
+						<div class="col-table">form feed</div>
+					</div>
+				</div><!-- .table -->
+				
+				<!-- PHẦN 2 -->
+				<h2>2. Nối chuỗi</h2>
+				<p>Để nối chuỗi ta sử dụng dấu + để ghép 2 chuỗi (hoặc biến) với nhau.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>var message = "Toi ten la" + " Dao Lap Xuan!";</code>
+				<p><strong>Hoặc:</strong></p>
+				<code>
+					var message1 = "Toi ten la";<br/>
+					var message2 = "Dao Lap Xuan!";<br/>
+					<br/>
+					var message = message1 + message2;<br/>
+				</code>
+				<p><strong>Note: khi xuống hàng</strong></p>
+				<p>Ta phải sử dụng dấu + để nối chuỗi khi ta enter, nếu ko bị lỗi cú pháp.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					// Đúng<br/>
+					var message1 = "My name is"<br/>
+									+ "Dao Lap Xuan";</br>
+					// Sai<br/>
+					var message2 = "My birthday is"<br/>
+										February 4th, 1993";
+				</code>
+				<p>Hoặc nếu muốn viết gọn hơn thì sử dụng dấu \ để báo cho trình duyệt biết là có xuống hàng.
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var message = "I'm from VietNam \<br/>
+									I'm Vietnamese!";<br/>
+				</code>
+				
+				<!-- PHẦN 3 -->
+				<h2>3. Ép sang kiểu chuỗi String</h2>
+				<p>Nếu muốn ép một giá trị nào đó sang kiểu string, thì có thể sử dụng cú pháp: <span style="color: white; background-color: grey;">string.toString()</span>.</p>
+				<p><strong>Ví dụ:</strong> Tạo một nút thông báo ra kiểu String từ kiểu Number trước đó.</p>
+				<p>Số number = 10 là kiểu: <input type="button" value="Click Number" onclick="Number()"/></p>
+				<p>Sau khi chuyển sang String, số number là kiểu: <input type="button" value="Click String" id="to-string"/></p>
+				<p>Từ khóa <span style="color: white; background-color: grey;">typeof vars</span> sẽ trả về kiểu dữ liệu của biến vars.</p>
+				<p>Ngoài cách trên bạn có thể sử dụng đối tượng String để tạo mới chuỗi và vì là <strong>đối tượng</strong> nên nó phải có từ khóa <span style="color: white; background-color: grey;">new</span> đặt đằng trước.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>var message = new String("Hello everybody! Nice to meet you :)");</code>
+				<p>Lúc này dù ta truyền vào kiểu nào đi nữa thì kết quả nó vẫn trả về kiểu string, tuy nhiên người ta khuyến khích không nên sử dụng cách này vì làm chậm chương trình hơn.</p>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			var number = 10;
+			var testString = document.getElementById('to-string');
+			
+			// =*= PHẦN HÀM =*=
+			function Number() {
+				alert("Kiểu: " + typeof number);
+			}
+			testString.onclick = function() {
+				// Chuyển sang string
+				number = number.toString();
+				alert("Kiểu: " + typeof number);
+			}
+			
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

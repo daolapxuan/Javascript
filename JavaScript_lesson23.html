@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 23: BOM - Location điều hướng và xử lý URL</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>	
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- Phần 1 -->
+				<h2>1. Location trong Javascript</h2>
+				<p><strong>Location</strong> là một thuộc tính của đối tượng window, nên khi sử dụng bạn phải thông qua đối tượng window và đối tượng window luôn tồn tại trong các trình duyệt hiện nay nên ta hoàn toàn yên tâm khi sử dụng mà KHÔNG CẦN KHAI BÁO.</p>
+				<code>window.location</code>
+				<!-- Phần 2 -->
+				<h2>Các phương thức của Location</h2>
+				<h3>window.location.reload(url) - tải lại trang</h3>
+				<p>Thông thường để tải lại trang, ta sẽ nhấn phím <strong>F5</strong>, hay click chuột phải chọn <strong>Refresh page</strong>, hoặc click vào <strong>icon reload</strong> trên thanh trình duyệt. Tuy nhiên, nếu ta <strong>refresh bằng Javascript</strong> thì vẫn được, bằng cách sử dụng phương thức <strong>reload().</strong></p>
+				<p><input type="button" value="Reload" onclick="ReFreshPage()"/></p>
+				<h3>window.location.replace(url) - ghi đè trang web</h3>
+				<p>Phương thức này ít khi sử dụng, thay vào đó họ hay sử dụng cú pháp <span style="color: white; background-color: grey;">window.location.href="url"</span>. Tuy nhiên, hai cách này vẫn có sự khác biệt:</p>
+				<ul>
+					<li>Đối với <strong>replace()</strong> thì trình duyệt KHÔNG đưa page hiện tại vào lịch sử.</li>
+					<li>Đối với <strong>location.href</strong> thì trình duyệt CÓ lưu page hiện tại vào lịch sử. Ta có thể back quay lại trang trước đó.</li>
+				</ul>
+				<p>Chọn một trong 2 nút và bấm <strong>Ctrl + H</strong> để xem kết quả:</p>
+				<button onclick="ReplacePage()">Replace</button>
+				<button onclick="HrefPage()">Href</button>
+				<h3>window.location.assign(url) - tải trang mới</h3>
+				<p>Phương thức này có công dụng giống như hai phương thức trên, và có đặc điểm giống với location.href</p>
+				<button onclick="AssignPage()">Assign</button>
+				<!-- Phần 3 -->
+				<h2>Các thuộc tính của Location</h2>	
+				<p>Ngoài các phương thức trên, ta có thể sử dụng <strong>Location</strong> để xử lý các thành phần liên quan đến URL như lấy phần <strong>hash, search</strong>,...</p>
+				<p>Danh sách các thuộc tính đầy đủ cho đối tượng <strong>Location</strong>:
+				<ul>
+					<li><strong>hash:</strong> Thiết lập hoặc lấy phần sau dấu # của URL.</li>
+					<li><strong>host:</strong> Thiết lập hoặc lấy hostname và port number của URL.</li>
+					<li><strong>hostname:</strong> thiết lập hoặc lấy hostname.</li>
+					<li><strong>href:</strong> thiết lập hoặc lấy URL.</li>
+					<li><strong>origin:</strong> trả về protocal, hostname và port number của URL.</li>
+					<li><strong>pathname:</strong> thiết lập hoặc lấy pathname của URL.</li>
+					<li><strong>port:</strong> thiết lập hoặc lấy port của URL</li>
+					<li><strong>search:</strong> lấy phần query string của URL</li>
+				</ul>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			// Reload website
+			function ReFreshPage() {
+				window.location.reload();
+			}
+			// Replace website
+			function ReplacePage() {
+				window.location.replace('http://www.vnexpress.net');
+			}
+			// Href website
+			function HrefPage() {
+				window.location.href = 'http://www.tuoitre.vn';
+			}
+			// Assign website
+			function AssignPage() {
+				window.location.assign('http://freetuts.net');
+			}
+			
+			// =*= PHẦN DOM GỌI SỰ KIỆN =*=
+			
+			// =*= PHẦN SỬ DỤNG ADDEVENTLISTENER ĐỂ XỬ LÝ DOM
+			
+			// =*= PHẦN DOCUMENT =*=
+			document.write("hash: " + window.location.hash + "<br/>");
+			document.write("host: " + window.location.host + "<br/>");
+			document.write("host name: " + window.location.hostname + "<br/>");
+			document.write("href: " + window.location.href + "<br/>");
+			document.write("origin: " + window.location.origin + "<br/>");
+			document.write("pathname: " + window.location.pathname + "<br/>");
+			document.write("port: " + window.location.port + "<br/>");
+			document.write("search: " + window.location.search + "<br/>");
+		</script>
+	</body>
+</html>

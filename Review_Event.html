@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Training and Review for Event in Javascript</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				margin: 0 auto;
+				text-align: center;
+			}
+			#result {
+				color: white;
+				background-color: grey;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<div class="container">
+			<div class="row">
+				<h2>Review 1</h2>
+				<p style="font-size: 20px;"><strong>Bài 1.</strong> Tính +, -, *, /, % hai số có sẵn.</p>
+				<p><i>Ý tưởng 1:</i> In thẳng ra kết quả bằng sự kiện "onclick" với hàm alert():</p>
+				<p>10 + 5 = <input type="button" onclick="alert(15)" value="Xem"/></p>
+				<p><i>Ý tưởng 2:</i> Gọi hàm khác thông qua sự kiện onclick:</p>
+				<p>10 - 5 = <input type="button" value="Xem" onclick="Show()"/></p>
+				<p><i>Ý tưởng 3:</i> Dùng DOM gọi hàm addEventListener():</p>
+				<p>10 * 5 = <input type="button" value="Xem" id="multi-1"/></p>
+				<p><i>Ý tưởng 4:</i> Dùng DOM thêm sự kiện cho thẻ HTML:</p>
+				<p>10 / 5 = <input type="button" value="Xem" id="divi-1"/></p>
+				<hr>
+				<p style="font-size: 20px;"><strong>Bài 2.</strong> Tính +, -, *, /, % hai số a và b nhập từ bàn phím trong hai trường hợp: Nhập bằng <strong>text box</strong> và nhập bằng <strong>button</strong>.</p>
+				<p><strong>Trường hợp 1:</strong> Nhập bằng <strong>text box</strong>:</p>
+				<p>a: <input type="text" id="a-2" value=""/></p>
+				<p>b: <input type="text" id="b-2" value=""/></p>
+				<p><i>Ý tưởng 1:</i> Dùng sự kiện <strong>"onclick"</strong> để gọi hàm:</p>
+				<div>a + b = <input type="button" value="Xem" onclick="Sum2()"/></div>
+				<p><i>Ý tưởng 2:</i> Dùng DOM thêm sự kiện cho thẻ HTML:</p>
+				<div>a - b = <input type="button" value="Xem" id="sub-2"/></div>
+				<p><i>Ý tưởng 3:</i> Dùng DOM gọi hàm addEventListener():</p>
+				<div>a % b = <input type="button" value="Xem" id="balance-2"</div>
+				<p><strong>Trường hợp 2:</strong> Nhập bằng <strong>button</strong>:
+				<p><i>Bonus: in ra hai số a, b (sau khi nhập) bằng thẻ div</i></p>
+				<p>a: <input type="button" id="a-2-1" value="Click nhập"/></p>
+				<p>b: <input type="button" id="b-2-1" value="Click nhập" onmouseleave="MultiTwo()"/></p>
+				<i>Hai số đã nhập là:</i> <div id="result" ></div>
+				<p><strong>Hướng giải quyết: </strong></p>
+				<ol>
+					<li>Để nhập a, b bằng button, ta có 3 cách nhập tương tự như làm ở TH1 trên. Ở đây sẽ dùng hàm addEventListener().</li>
+					<li>Để lấy giá trị hai số đã nhập để in ra thẻ div, ta dùng sự kiện <strong>onmouseleave</strong> vì đây là button.</li>
+				</ol>
+				<div>a * b = <input type="text" value="?" id="multi-2-2" /></div>
+				<div>a / b = <input type="text" value=""/></div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			// =*= Khai báo biến =*=
+			// Bài 1.
+			var exerciseOne = document.getElementById('multi-1'); // Ý tưởng 3.
+			var exerciseOne1 = document.getElementById('divi-1'); // Ý tưởng 4.
+			// Bài 2.1
+			var exerciseTwoA = document.getElementById('a-2');
+			var exerciseTwoB = document.getElementById('b-2');
+			// Hiệu hai số
+			var exerciseTwoSub = document.getElementById('sub-2');
+			// Chia lấy dư
+			var exerciseTwoBalance = document.getElementById('balance-2');
+			// Bài 2.2
+			var exerciseTwoAOne = document.getElementById('a-2-1');
+			var exerciseTwoBOne = document.getElementById('b-2-1');
+			var exerciseResult = document.getElementById('result');
+			var exerciseTwoMulti = document.getElementById('multi-2-2');
+			
+			
+			// =*= Hàm xử lý =*=
+			// Hàm Show() in ra kết quả bài 1.
+			function Show() {
+				// Cách 1: xài alert() in thằng ra luôn
+				alert(5);
+				
+				// Cách 2: nếu số khó tính quá, hoặc lười nhẩm, hoặc dốt toán, bla bla. Ta gán giá trị cho nó tự tính
+				var a = 10;
+				var b = 5;
+				var c = a - b;
+				
+				alert(c);
+			}
+			// Hàm in ra kết quả bài 2.
+			function Sum2() {
+				var a = parseInt(exerciseTwoA.value);
+				var b = parseInt(exerciseTwoB.value);
+				
+				alert(a + b);
+			}
+			// Bài 2.2. Hàm nhập.
+			function Import(number) {
+				number = prompt("Nhập: ", '');
+				// Nhớ trả về giá trị đã nhập.
+				return number;
+			}
+			// Bài 2.2. Tích hai số
+			function MultiTwo() {
+				var a = parseInt(exerciseTwoAOne);
+				var b = parseInt(exerciseTwoBOne);
+				
+				if (!isNaN(exerciseTwoAOne)) {
+					if (!isNaN(exerciseTwoBOne)) {
+						exerciseTwoMulti.value = a * b;
+					}
+				}
+			}
+			
+			// =*= Thêm sự kiện cho đối tượng =*=
+			// Bài 1.
+			exerciseOne1.onclick = function() {
+				alert('2'); // Cách 1
+				
+				alert(10 / 5); // Cách 2
+				
+				// Cách 3
+				var a = 10;
+				var b = 5;
+				var c = a / b;
+				
+				alert(c);
+			};
+			// Bài 2.
+			exerciseTwoSub.onclick = function() {
+				var sub = parseInt(exerciseTwoA.value) - parseInt(exerciseTwoB.value);
+				
+				alert(sub);
+			};
+			// Bài 2.2. Xuất hai số a, b ra thẻ div. Vì thẻ b nhập sau cùng, nên ta sẽ dùng event onmouseout lên obj b để xuất ra thẻ div
+			exerciseTwoBOne.onmouseout = function() {
+				if (!isNaN(exerciseTwoAOne) && !isNaN(exerciseTwoBOne)) {
+					exerciseResult.innerHTML = "a = " + exerciseTwoAOne + " và b = " + exerciseTwoBOne;
+				}
+			}
+			
+			
+			// =*= Các sự kiện xử lý bằng hàm addEventListener()=*=
+			// Sự kiện nút xem bài 1.
+			exerciseOne.addEventListener('click', function(){
+				// Cách 1: alert()
+				alert(50);
+				// alert(10 * 5);
+				
+				// Cách 2: Gán giá trị cho tự tính.
+				var a = 10;
+				var b = 5;
+				
+				alert(a * b);
+			});
+			
+			// Bài 2.1. Chia lấy dư
+			exerciseTwoBalance.addEventListener('click', function(){
+				// Chỗ này nếu là một đoạn code dài thì ta có thể tự tạo một hàm bên ngoài và gọi nó trong này.
+				var balance = parseInt(exerciseTwoA.value) % parseInt(exerciseTwoB.value);
+				
+				alert(balance);
+			});
+			// Bài 2.2. Nhập a 
+			exerciseTwoAOne.addEventListener('click', function(){
+				exerciseTwoAOne = Import(exerciseTwoAOne);
+			});
+			// Bài 2.2. Nhập b 
+			exerciseTwoBOne.addEventListener('click', function(){
+				exerciseTwoBOne = Import(exerciseTwoBOne);
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Khai báo biến:
+- Cách khai báo: var <username>;
+- Quy tắt đặt tên biến:
+	Tên biến phải là các chữ cái không dấu, viết hoa hoặc thường, các chữ số 0-9 và dấu gạch dưới "_"
+	Tên biến phải bắt đầu bằng chữ cái hoặc dấu gạch dưới
+	Tên biến có thể dài hay ngắn tùy người đặt
+- Ngoài ra ta còn có thể khai báo nhiều biến cùng một lúc, bằng cách thêm dấu phẩy "," vào giữa các biến
+	var username, _username, __username, username93;
+
+Gán giá trị cho biến:
+- Để gán giá trị chọ biến, ta dùng dấu bằng "=".
+	VD: var username = 'dlx'; or var username; username = "dlx";
+
+Gán kiểu giá trị cho biến: Biến sẽ tự phân biệt kiểu giá trị khi ta gán giá trị cho nó. VD:
+	var dlx = 'daolapxuan'; // string
+	dlx = 23; // int
+	dlx = 1.81; // float
+Các kiểu dữ liệu thông dụng trong javascript: chuỗi (String), số (Number), mảng (Array), đối tượng (Object)	
+-->
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 2: Biến và khai báo biến</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<script language="javascript">
+			// In giá trị của biến ra trình duyệt.
+			// Để in giá trị của biến hoặc một chuỗi nào đó ra trình duyệt,
+			// ta dùng hàm document.write(value).
+			var dlx = 'daolapxuan';
+			document.write(dlx);
+			document.write('<br/>');
+			dlx = 23;
+			document.write(dlx);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 10: Mảng và các hàm xử lý thông dụng</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				margin: 0 auto;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần xử lý HTML -->
+		<h2>Mảng và Các hàm xử lý thông dụng</h2>
+		<hr>
+		<p>Nhập mảng gồm các từ riêng biệt, sau đó thực hiện các hàm</p>
+		<p>Nhập mảng: <input type="button" id="array" value="Click nhập"/></p>
+		<p><strong>Test thử các hàm thông dụng:</strong></p>
+		<p>
+			Hàm array.valueOf(): <input type="button" id="value-of" value="Click to test"/><br>
+			<i>Hàm này có tác dụng tương tự hàm array.join(), nghĩa là nó sẽ nối các phần tử với nhau vào một chuỗi cách nhau vào một chuỗi cách nhau bởi dấu phẩy ",".</i>
+		</p>
+		<p>
+			Hàm array.push(): <input type="button" id="push" value="Click to test"/><br>
+			<i>Hàm này thêm một phần tử vào cuối mảng.</i>
+		</p>
+		<p>
+			Hàm array.pop(): <input type="button" id="pop" value="Click to test"/><br>
+			<i>Hàm này xóa đi một phần tử ở cuối mảng.</i>
+		</p>
+		<p>
+			Hàm array.shift(): <input type="button" id="shift" value="Click to test"/><br>
+			<i>Hàm này xóa pt đầu tiên của mảng, sau đó dồn các pt còn lại xuống một bậc.</i>
+		</p>
+		<p>
+			Hàm array.unshift(): <input type="button" id="unshift" value="Click to test"/><br>
+			<i>Hàm này thêm một phần tử vào đầu mảng, đẩy các phần tử còn lại lên một bậc.</i>
+		</p>
+		<p>
+			Hàm array.splice(): <input type="button" id="splice" value="Click to test"/><br>
+			<i>
+				Hàm này có 3 tham số truyền vào: splice(position_add, num_element_remove, value1, value2,...).<br>
+				Trong đó:
+				<ul>
+					<li>position_add: vị trí sẽ thêm (vị trí đầu tiên là 0).</li>
+					<li>num_element_remove: số pt sẽ xóa (bắt đầu từ vị trí position_add).</li>
+					<li>value1, value2,...: là danh sách các phần tử sẽ được thêm vào bắt đầu tại vị trí position_add, sau khi remove num_element_remove phần tử chỉ định.</li>
+				</ul>
+			</i>
+		</p>
+		<p>
+			Hàm array.sort(): <input type="button" id="sort" value="Click to test"/><br>
+			<i>Hàm này sắp xếp các pt trong mảng theo thứ tự alpha.</i>
+		</p>
+		<p>
+			Hàm array.reverse(): <input type="button" id="reverse" value="Click to test"/><br>
+			<i>Hàm này đảo ngược các pt lại có đối xứng.</i>
+		</p>
+		<p>
+			Hàm array.concat(): <input type="button" id="concat" value="Click to test"/><br>
+			<i>Hàm này nối hai mảng với nhau và trả về một mảng gồm tổng số pt 2 mảng đó.</i>
+		</p>
+		<p>
+			Hàm array.slice(): <input type="button" id="slice" value="Click to test"/><br>
+			<i>Hàm này dùng để lấy một số phần tử trong mảng. Có 2 ts truyền vào: slice(start, end)</i>
+		</p>
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			//=====Phần khai báo=====
+			var array = [];
+			var value = '';
+			var length = 0;
+			// var i;
+			
+			var button_array = document.getElementById('array');
+			var button_array_value_of = document.getElementById('value-of');
+			var button_array_push = document.getElementById('push');
+			var button_array_pop = document.getElementById('pop');
+			var button_array_shift = document.getElementById('shift');
+			var button_array_unshift = document.getElementById('unshift');
+			var button_array_splice = document.getElementById('splice');
+			var button_array_sort = document.getElementById('sort');
+			var button_array_reverse = document.getElementById('reverse');
+			var button_array_concat = document.getElementById('concat');
+			var button_array_slice = document.getElementById('slice');
+			
+			//=====Phần xử lý hàm=====
+			// Hàm nhập mảng
+			function import_array(_array) {
+				var j = 0;
+				i = 0;
+				// Biến đếm số phần tử
+				var cout = 0;
+				// Nhập kết thúc khi phần tử value == null, nghĩa là bấm esc
+				while (value != null) {
+					value = prompt("Nhập phần tử array[" + j + "]: ", '');
+					// Nếu phần tử value == null thì ko thực hiện lệnh gì hết
+ 					if (value != null) {
+						// Gán giá trị cho từng pt mảng
+						_array[j] = value;
+						j++;
+						cout++;
+					}
+				}
+				// Lưu số lần lặp = chiều dài mảng.
+				length = cout;
+			}
+			//=====Phần xử lý button=====
+			// Nhập mảng
+			button_array.addEventListener('click', function(){
+				var j = 0;
+				var cout = 0;
+				while (value != null) {
+					value = prompt("Nhập phần tử array[" + j + "]: ", '');
+					if (value != null) {
+						array[j] = value;
+						j++;
+						cout++;
+					}
+				}
+				length = cout;
+			});
+			// Xuất mảng bằng hàm valueOf()
+			button_array_value_of.addEventListener('click', function(){
+				if (array.length == 0) {
+					alert('Bạn chưa nhập giá trị cho mảng.');
+				}
+				else {
+					document.write('Hàm valueOf(): ' + array.valueOf());
+					document.write('<br/>');
+				}
+			});
+			// push(): Thêm một phần tử vào cuối mảng.
+			button_array_push.addEventListener('click', function(){
+				if (array.length == 0) {
+					alert('Bạn chưa nhập giá trị cho mảng.');
+				}
+				else {
+					var text = prompt("Nhập giá trị muốn thêm:", '');
+					array.push(text);
+					alert('Hàm push(): ' + array.valueOf());
+				}
+			});
+			// pop(): Xóa phần tử cuối mảng
+			button_array_pop.addEventListener('click', function(){
+				if (array.length == 0) {
+					alert('Bạn chưa nhập giá trị cho mảng.');
+				}
+				else {
+					array.pop();
+					alert('Hàm pop(): ' + array.valueOf());
+				}
+			});
+			// shift(): Xóa pt đầu tiên của mảng, đẩy các pt còn lại xuống một bậc
+			button_array_shift.addEventListener('click', function(){
+				if (array.length == 0) {
+					alert('Bạn chưa nhập giá trị cho mảng.');
+				}
+				else {
+					array.shift();
+					alert('Hàm shift(): ' + array.valueOf());
+				}
+			});
+			// unshift(): Hàm này thêm một phần tử vào đầu mảng, đẩy các pt có sẵn lên một bậc
+			button_array_unshift.addEventListener('click', function(){
+				var text = prompt("Nhập pt muốn thêm: ", '');
+				array.unshift(text);
+				alert('Hàm unshift(): ' + array.valueOf());
+			});
+			// splice(): Hàm này hiểu đơn giản là, thay thế một hoặc nhiều phần tử đc chỉ định bằng một hoặc nhiều phần tử khác. Hoặc có thể bỏ trống phần tử thêm vào.
+			button_array_splice.addEventListener('click', function(){
+				var j = 0;
+				var value3 = '';
+				var array3 = [];
+				
+				do {
+					var pos = prompt("Nhập vị trí muốn thay thế: ", '');
+					var number = prompt("Nhập số phần tử muốn thay thế từ vị trí array[" + pos + "]:", '');
+					
+					if (pos >= 0 && pos <= array.length && number >= 1) {
+						alert('Bạn đã nhập đúng!, bạn hãy nhập các phần tử muốn thêm hoặc ko nhập thì bấm esc.');
+						
+						while (value3 != null) {
+							value3 = prompt("Phần tử " + j + ": ", '');
+							if (value3 != null) {
+								array3[j] = value3;
+								j++;
+							}
+						}
+					
+						if (array3.length == 0) {
+							alert('Bạn đã không nhập phần tử thay thế.');
+						}
+						else {
+							alert('Các phần tử thay thế là: ' + array3.valueOf());
+						}
+					}
+					
+					else {
+						alert('Bạn nhập sai rồi, nhập lại nhé!');
+						alert('0 <= pos <= array.length và number > 0');
+					}	
+				}while(pos < 0 || pos > array.length || number < 1 );
+				
+				array.splice(pos, number, array3.valueOf());
+				
+				alert('Hàm splice(): ' + array.valueOf());
+			});
+			
+			// sort(): Sắp xếp các pt theo thứ tự alpha
+			button_array_sort.addEventListener('click', function(){
+				array.sort();
+				alert('Hàm sort(): ' + array.valueOf());
+			});
+			// reverse(): Đổi vị trí các phần tử đối xứng nhau.
+			button_array_reverse.addEventListener('click', function(){
+				array.reverse();
+				alert('Hàm reverse(): ' + array.valueOf());
+			});
+			// concat(): Nối 2 mảng lại với nhau và trả về một mảng mới có tổng pt 2 mảng.
+			button_array_concat.addEventListener('click', function(){
+				var j = 0;
+				var value2 = '';
+				var array2 = [];
+				var newArray = [];
+				
+				alert("Nhập phần tử cho mảng muốn nối.");
+				while (value2 != null) {
+					value2 = prompt("Nhập phần tử array2[" + j + "]: ", '');
+					if (value2 != null) {
+						array2[j] = value2;
+						j++;
+					}
+				}
+				// Hàm concat()
+				newArray = array.concat(array2);
+				alert('Hàm concat(): ' + newArray.valueOf());
+			});
+			// Hàm slice(): Lấy ra một số phần tử từ một mảng nào đó
+			button_array_slice.addEventListener('click', function(){
+				do {
+					var start = prompt("Nhập vị trí bắt đầu lấy (min = 0)", '');
+					var end = prompt("Nhập vị trí dừng (max = array.length)", '');
+					
+					if (((start >= 0) && (start < array.length)) && ((end > start) && (end <= array.length))) {
+						alert('Bạn đã nhập đúng!');
+					}
+					else {
+						alert('Nhập sai rồi, nhập lại đi :D');
+						alert('0 < start < end <= array.length');
+					}
+				} while(((start < 0) || (start > array.length - 1)) || ((end <= start) || (end > array.length)));
+				
+				var _start = parseInt(start);
+				var _end = parseInt(end);
+				
+				var newArray = array.slice(_start, _end);
+				alert('Hàm slice(): ' + newArray.valueOf());
+			});
+		</script>
+		<!-- Phần này thuần js -->
+		<!--
+		<script language="javascript">
+			var array = [];
+			var j = 0; 
+			// Biến đếm số phần tử
+			var cout = 0;
+          	var value = '';
+          
+			// Nhập kết thúc khi phần tử value == null, nghĩa là bấm esc
+			while (value != null) {
+				value = prompt("Nhập phần tử array: ", '');
+				// Nếu phần tử value == null thì ko thực hiện lệnh gì hết
+ 				if (value != null) {
+					// Gán giá trị cho từng pt mảng
+					array[j] = value;
+					j++;
+					cout++;
+				}
+			}
+          	document.write('Hàm valueOf(): ' + array.valueOf());
+          	document.write('<br/>');
+          	
+          	// Hàm push() thêm một pt vào cuối mảng
+          	array.push("dep trai");
+          	document.write('Hàm push(): ' + array.valueOf());
+          	document.write('<br/>');
+          	
+          	// Hàm pop() xóa một pt cuối mảng
+          	array.pop();
+          	document.write('Hàm pop(): ' + array.valueOf());
+          	document.write('<br/>');
+
+          
+          	// Hàm shift() xóa pt đầu tiên, dồn các pt sau lên trước 1 bậc
+          	array.shift();
+          	document.write('Hàm shift(): ' + array.valueOf());
+          	document.write('<br/>');
+          
+          	// Hàm unshift() ngược lại với shift()
+          	array.unshift("Mr.");
+          	document.write('Hàm unshift(): ' + array.valueOf());
+          	document.write('<br/>');
+          
+          	// Hàm array.splice()
+          	array.splice(0, 1, 'Ngài', 'dao');
+          	document.write('Hàm splice(): ' + array.valueOf());
+          	document.write('<br/>');
+          
+          	// Hàm sort()
+          	array.sort();
+          	document.write('Hàm sort(): ' + array.valueOf());
+          	document.write('<br/>');
+          
+          	// Hàm reverse()
+          	array.reverse();
+          	document.write('Hàm reverse(): ' + array.valueOf());
+          	document.write('<br/>');
+          
+          	// Hàm concat()
+          	var array1 = ["one", "two", "three"];
+          	var array2 = array.concat(array1);
+          	document.write('Hàm concat(): ' + array2.valueOf());
+          	document.write('<br/>');
+          
+          	// array.slice()
+          	var array3 = array.slice(2, 5);
+          	document.write('Hàm slice(): ' + array3.valueOf());
+          	document.write('<br/>');
+		</script>
+		-->
+	</body>
+</html>

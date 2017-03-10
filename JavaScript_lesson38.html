@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 38: RegExp - Regular Expression</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<link rel="stylesheet" type="text/css" href="table-style.css"/>
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			code {
+				color: grey;
+			}
+			
+			.code-style {
+				border: 1px solid red;
+				padding-left: 15px;
+			}
+			
+			.code-comment {
+				color: green;
+			}
+			
+			.code-name {
+				color: white;
+				background-color: grey;
+			}
+			
+			.tab-first {
+				padding-left: 20px;
+			}
+			
+			.tab-second {
+				padding-left: 40px;
+			}
+			
+			.tab-third {
+				padding-left: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>1. Regular Expression trong JavaScript</h2>
+				<p><strong>Regular Expression</strong> được ghi tắt là <strong>RegExp</strong>, nó hoạt động theo nguyên tắc so khớp và lấy kết quả của sự so khớp đó thông qua những quy tắc mà nó đưa ra. Dựa vào những quy tắc này, lập trình viên sẽ viết thành những biểu thức và áp dụng vào bài toán của mình.</p>
+				<p>Trong JavaScript thì <strong>RegExp</strong> là một chuỗi nhưng nó KHÔNG được bao quanh bởi cặp dấu nháy đơn <span class=code-name>' '</span> hoặc nháy kép <span class=code-name>" "</span>, mà nó được bao quanh bởi cặp dấu <span class=code-name>/ /</span>.</p>
+				<p><strong>Cú pháp:</strong></p>
+				<div class="code-style"><code>/pattern/modifiers;</code></div>
+				<p><strong>Trong đó:</strong></p>
+				<ul>
+					<li><span class=code-name>pattern</span> là chuỗi Regular Expression</li>
+					<li>
+						<span class=code-name>modifiers</span> là thông số cấu hình cho chuỗi pattern và nó có giá trị:
+						<ul>
+							<li><strong>i</strong>: so khớp không quan tâm đến chữ hoa chữ thường</li>
+							<li><strong>g</strong>: so khớp toàn bộ chuỗi cần tìm</li>
+							<li><strong>m</strong>: so khớp luôn cả các dữ liệu xuống dòng (multiline)</li>
+						</ul>
+					</li>
+				</ul>
+				<p><strong>Ví dụ:</strong>Pattern kiểm tra chuỗi có tồn tại chữ "dlx" không, không phân biệt chữ hoa hay chữ thường và tìm toàn bộ dữ liệu:</p>
+				<div class="code-style"><code>/dlx/igm;</code></div>
+				<p><strong>Trong ví dụ này thì:</strong></p>
+				<ul>
+					<li>pattern là dlx</li>
+					<li>modifiers là igm</li>
+				</ul>
+
+				<!-- PHẦN 2 -->
+				<h2>2. Các quy tắc Regular Expression căn bản</h2>
+				<p>Sau đây là một số quy tắc căn bản thường hay sử dụng trong Regular Expression.</p>
+				<div class="table">
+					<div class="row-table" id="field-name">
+						<div class="col-table">Expression</div>
+						<div class="col-table">Description</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col1">[abc]</div>
+						<div class="col-table col2">Tìm các chữ cái a, b hoặc c</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col1">[0-9] hoặc [a-z]</div>
+						<div class="col-table col2">Tìm các kí tự từ 0-9 hoặc từ a-z</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col1">(x|y)</div>
+						<div class="col-table col2">Tìm kí tự x hoặc y</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col1">\d</div>
+						<div class="col-table col2">Tìm các chữ số</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col1">\s</div>
+						<div class="col-table col2">Tìm khoảng trắng</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col1">n+</div>
+						<div class="col-table col2">Tìm 1 hoặc nhiều chữ n liên tiếp nhau</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col1">n*</div>
+						<div class="col-table col2">Tìm 0 hoặc nhiều chữ n liên tiếp nhau</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col1">n?</div>
+						<div class="col-table col2">Tìm 0 hoặc 1 chữ n</div>
+					</div>
+				</div><!-- .table -->
+				<p>Để kiểm tra một chuỗi bằng pattern, ta dùng hàm <span class="code-name">test()</span>.</p>
+				<p><strong>Cú pháp:</strong> <span class="code-name">pattern.test(string)</span></p>
+				<p><strong>Trong đó:</strong>
+				<ul>
+					<li><strong>pattern </strong>là chuỗi pattern</li>
+					<li><strong>string</strong> là chuỗi cần kiểm tra</li>
+				</ul>
+				<p><strong>Kết quả trả về:</strong> TRUE, nếu khớp và FALSE, nếu không khớp.</p>
+				<p><strong>Ví dụ:</strong> Kiểm tra trong chuỗi có xuất hiện chữ "bé Vi" hay ko? Ví dụ này ta chỉ cần truyền nguyên chuỗi "bé Vi" vào pattern là xử lý được.</p>
+				<div class="code-style">
+					<code>
+						var myPattern = /bé Vi/;<br/>
+						if (myPattern.test("DLX đã thích bé Vi mất rồi, sao giờ đây?")) {<br/>
+							<span class="tab-first">document.write('Trong chuỗi có chữ bé Vi');</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">document.write('Trong chuỗi KHÔNG có chữ bé Vi');</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Với ví dụ trên, ta có thể sử dụng trực tiếp hàm <span class="code-name">test()</span> cũng được.</p>
+				<div class="code-style"><code>var myPattern = /bé Vi/.test("DLX đã thích bé Vi mất rồi, sao giờ đây?");</code></div>
+				<p><strong>Ví dụ:</strong> Kiểm tra chuỗi có ít nhất một chử x. Ví dụ này hơi đặc biệt nên ta sử dụng dấu <span class="code-name">+</span> trong bảng RegEx căn bản trên, nó có tác dụng kiểm tra một chuỗi có ít nhất 1 ký tự cần tìm.</p>
+				<div class="code-style">
+					<code>
+						if (/x+/.test("Look at me!")) {<br/>
+							<span class="tab-first">document.write("Trong chuỗi có chữ x.");</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">document.write("Trong chuỗi KHÔNG có chữ x.");</span><br/>
+						}
+					</code>
+				</div>
+				<p><strong>Ví dụ:</strong> Kiểm tra chuỗi có xuất hiện số hay không? Bài này ta có 2 cách làm, một là dùng dấu ngoặc <span class="code-name">[0-9]</span> và hai là dùng ký hiệu <span class="code-name">\d</span>.</p>
+				<p>Cách 1:</p>
+				<div class="code-style">
+					<code>
+						if (/[0-9]/.test("Tôi năm nay đã 23 tuổi!")) {<br/>
+							<span class="tab-first">document.write("Trong chuỗi có số.");</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">document.write("Trong chuỗi KHÔNG có số.");</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Cách 2:</p>
+				<div class="code-style">
+					<code>
+						if (/\d/.test("Tôi năm nay đã 23 tuổi!")) {<br/>
+							<span class="tab-first">document.write("Trong chuỗi có số.");</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">document.write("Trong chuỗi KHÔNG có số.");</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p><strong>Ví dụ:</strong> Kiểm tra chuỗi có xuất hiện chữ <strong>x</strong> hay không? Bài này đơn giản, giống như bài tìm chữ <strong>"bé Vi"</strong> vậy.</p>
+				<div class="code-style">
+					<code>
+						if (/x/.test("Tôi tên là Đào Lập Xuân!")) {<br/>
+							<span class="tab-first">document.write("Trong chuỗi có chữ x.");</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">document.write("Trong chuỗi KHÔNG có chữ x.");</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Ví dụ trên, rõ ràng trong chuỗi có chữ <strong>X</strong> (Xuân), nhưng bài toán lại trả về FALSE và báo là không có chữ <strong>x</strong>? Đơn giản vì, trong pattern có phân biệt chữ <strong>HOA</strong> và chữ <strong>thường</strong>, chữ <strong>x</strong> ta cần tìm là viết <strong>thường</strong> nên kết quả trả về là FALSE. Để khắc phục điều này, ta thêm chữ <span class="code-name">i</span> vào trước hàm <span class="code-name">test()</span>. Chữ <span class="code-name">i</span> trong <strong>Modifiers</strong> có tác dụng so khớp không phân biệt giữa chữ <strong>HOA</strong> và <strong>thường</strong>.</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Thêm chữ i vào trước hàm test</span><br/>
+						if (/x/i.test("Tôi tên là Đào Lập Xuân!")) {<br/>
+							<span class="tab-first">document.write("Trong chuỗi có chữ x.");</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">document.write("Trong chuỗi KHÔNG có chữ x.");</span><br/>
+						}<br/>
+					</code>
+				</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

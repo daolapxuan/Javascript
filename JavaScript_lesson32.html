@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 32: Đối tượng Date</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			code {
+				color: grey;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>Đối tượng Date</h2>
+				<p>Tất cả các vấn đề liên quan đến thời gian đều nằm trong đối tượng Date, vì vậy để khởi tạo đối tượng Date, thì bạn sử dụng cú pháp:</p>
+				<code>var timeObj = new Date();</code>
+				<p>Đây là cách thông thường, khi dùng cách này nó sẽ lấy thời gian hiện tại trên máy của bạn (client), điều này có nghĩa mỗi Client sẽ có thời gian phụ thuộc vào máy tính của họ.</p>
+				<p><strong>Ví dụ:</strong> Lấy thời gian hiện tại của máy tính.</p>
+				<p>Thời gian máy tính: <input type="button" onclick="ShowTime()" value="Click"/></p>
+				<p>Dưới đây là bốn cách khởi tạo thông thường nhất:</p>
+				<code>
+					// Thời gian hiện tại<br/>
+					new Date(); <br/>
+					<br/>
+					// Tham số truyền vào mili giây<br/>
+					new Date(miliseconds);<br/>
+					<br/>
+					// Tham số truyền vào là chuỗi string ngày tháng<br/>
+					<br/>
+					new Date(dateString);<br/>
+					<br/>
+					// Tham số truyền vào bao gồm:<br/>
+					//	- year<br/>
+					// 	- month<br/>
+					// 	- day<br/>
+					//	- hours<br/>
+					//	- minutes<br/>
+					//	- seconds<br/>
+					// 	- miliseconds<br/>
+					new Date(year, month, day, hours, minutes, seconds, miliseconds);
+				</code>
+				<p>Khi bạn truyền vào tham số thì đối tượng đó sẽ tự nhận diện và chuyển đổi về đúng định dạng ngày tháng nên bạn hoàn toàn yên tâm sử dụng.</p>
+				<p><p><strong>Ví dụ:</strong></p>
+				<code>var dateObj = new Date(1993, 2, 4);	// February 4th, 1993</code>
+
+				<!-- PHẦN 2 -->
+				<h2>Định dạng (format)</h2>
+				<p>Có 3 định dạng chính:</p>
+				<ul>
+					<li>ISO</li>
+					<li>Long</li>
+					<li>Short</li>
+				</ul>
+				<h3>ISO</h3>
+				<p>Định dạng chuẩn của <strong>ISO 8601</strong> là <strong>(YYYY-MM-DD)</strong> hoặc <strong>(YYYY-MM)</strong> hoặc <strong>(YYYY)</strong>.</p>
+				<p>Nếu truyền ko đủ (ngày - tháng - năm - giờ - phút - giây) thì mặc định các tham số khác sẽ lấy minimum time.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var dateISO_1 = new Date("1993-2-4");	// Thu Feb 04 1993 00:00:00 GMT+0700 (SE Asia Standard Time)<br/>
+					var dateISO_2 = new Date("1993-2");	// Mon Feb 01 1993 00:00:00 GMT+0700 (SE Asia Standard Time)<br/>
+					var dateISO_3 = new Date("1993");	// Fri Jan 01 1993 07:00:00 GMT+0700 (SE Asia Standard Time)<br/>
+				</code>
+
+				<h3>Long</h3>
+				<p>Định dạng này nghĩa là bạn truyền vào với <strong>tên tháng</strong> là ba chữ cái đầu tiên ghi bằng <strong>tiếng Anh</strong>. Lúc này có thể tùy ý đặt ví trí vì đối tượng Date tự nhận diện.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var dateLong_1 = new Date("February 1993 4");<br/>
+					var dateLong_2 = new Date("4 February 1993");<br/>
+					var dateLong_3 = new Date("1993 4 February");<br/>
+				</code>
+				<p>Khi chạy code trên thì cho ra kết quả như nhau.</p>
+
+				<h3>Short</h3>
+				<p>Định dạng này đươc lưu trữ dưới dạng MM/DD/YYYY hoặc YYYY/MM/DD hoặc MM-DD-YYYY hoặc YYYY-MM-DD.</p>
+				<code>
+					var dateShort_1 = new Date("02/04/1993");<br/>
+					var dateShort_2 = new Date("1993/02/04");<br/>
+					var dateShort_3 = new Date("02-04-1993");<br/>
+					var dateShort_4 = new Date("1993-02-04");<br/>
+				</code>
+
+				<h3>Định dạng đầy đủ</h3>
+				<p>Trên là những định dạng ghi tắt, nếu truyền đầy đủ thì phải gõ <i>(ngày - tháng - năm - giờ - phút - giây - timezone)</i>:</p>
+				<code>var date = new Date("Thu Feb 04 1993 19:07:49 GMT+0700 (SE Asia Standard Time)");</code>
+			</div>
+		</div>
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			function ShowTime() {
+				var timeObj = new Date();
+
+				alert(timeObj);
+			}
+
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

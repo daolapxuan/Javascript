@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 16: Thêm sự kiện (Event) bằng Javascript</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				border-bottom: 1px solid green;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<div class="container">
+			<div class="row">
+			<h2>Tình huống thêm sự kiện trong HTML không tốt</h2>
+			<p>Giả sử có một đoạn mã HTML đặt trong tag-ul, và trong đó có một 100 dòng lệnh tag-li với event <span style="color: red;">onclick</span>=<span style="color: purple;">"DoSomething()"</span>.<br>
+			Nếu có một ngày ta sửa <span style="color: purple;">"DoSomething()"</span> thành <span style="color: purple;">"Function()"</span> vì lí do nào đó, thì ta phải replace 100 lần.<br>
+			Điều này thật là bất tiện và mất thời gian, và sẽ làm cho SEO Onpage không tối ưu.
+			</p>
+			<p>Để giải quyết vấn đề này, ta sẽ sử dụng Javascript thêm sự kiện cho các thẻ (giống nhau) HTML đó.</p>
+			<hr>
+			<h2>Thêm sự kiện cho một thẻ HTML bằng javascript</h2>
+			<p>Để thêm sự kiện bằng Javascript, ta sử dụng cú pháp:</p>
+			<code style="color: blue;">elementObject.eventName = function() { <br/>
+				// Do something<br/>
+			};
+			</code>
+			<p><strong>Trong đó:</strong></p>
+			<ul>
+				<li><strong>elementObject:</strong> là đối tượng HTML mà chúng ta sử dụng DOM để lấy.</li>
+				<li><strong>eventName:</strong> là tên của even như onclick, onchange,...</li>
+			</ul>
+			<p><strong>Note: </strong><i>Nhớ có dấu kết thúc câu lệnh ";" nhé!</i></p>
+			<hr>
+			<h2>Thêm sự kiện cho nhiều thẻ HTML bằng Javascript</h2>
+			<p>Ở trên ta chỉ sử dụng phương thức <span style="background-color: grey;">document.getElementById()</span> nên kết quả trả về là <strong>một đối tượng</strong>, do đó có thể gán trực tiếp <span style="background-color: grey;">button.onclick = function(){}</span>. Nhưng nếu sử dụng DOM theo <strong>selector</strong> thì kết quả sẽ trả về một mảng các đối tượng, lúc này ta phải dùng <strong>vòng lặp</strong> để thiết lập sự kiện.</p>
+			<p><strong>Cú pháp như sau:</strong></p>
+			<code style="color: blue;">
+				// Lấy đối tượng html, ta hoàn toàn có thể sử dụng các DOM Element theo selector khác<br/>
+				var elementObjs = document.getElementsByTagName('element');<br/>
+				<br/>
+				// Lặp qua từng phần tử trong kết quả và gán sự kiện.<br/>
+				for (var i = 0; i < elementObjs.length; i++) {<br/>
+				 elementObjs[i].eventName = function() {<br/>
+				  // Do something<br/>
+				 };<br/>
+				}<br/>
+			</code>
+			<p><strong>Ví dụ:</strong> Thêm sự kiện click vào tất cả các thẻ a có class="hello" thì thông báo lên câu chào.</p>
+			<ul>
+				<li><a href="" class="hello">Trang chủ</a></li>
+				<li><a href="" >Không show</a></li>
+				<li><a href="" class="hello">Trang chủ</a></li>
+				<li><a href="" class="hello">Trang chủ</a></li>
+				<li><a href="" >Không show</a></li>
+			</ul>
+			</div>
+		</div>
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			var elementObjs = document.getElementsByClassName('hello');
+			
+			for (var i = 0; i < elementObjs.length; i++) {
+				elementObjs[i].onclick = function() {
+					alert('Hello, You have clicked Me!');
+					// return false để không bị reload trang
+					return false;
+				};
+			}
+		</script>
+	</body>
+</html>

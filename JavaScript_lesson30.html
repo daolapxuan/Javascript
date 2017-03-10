@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 30: Đối tượng Number</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			code {
+				color: grey;
+
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>Đối tượng Number</h2>
+				<p>Trong Javascript có hai giá trị lưu trữ trong <strong>Number</strong> đó là có dấu chấm động và không có dấu chấm động.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var x = 12; // Ko có dấu chấm động <br/>
+					var x = 11.5; // Có dấu chấm động
+				</code>
+				<p>Nếu một số quá lớn thì ta có thể dùng số mũ để biểu diễn:</p>
+				<code>
+					var x = 123e5 	// Là 123 x 10^5<br/>
+					var y = 123e-5 	// Là 123 x 10^-5
+				</code>
+				<p>Các số trong Js luôn luôn là 64 bít và kiểu float, vì vậy bạn không thể định nghĩa các kiểu dữ liệu như integer, shor, long, double,... hay nói cách khác, trong Js khi làm việc với chữ số thì chỉ có khái niệm Number.</p>
+				<p>Ngoài ra ta có thể biểu diện giá trị <strong>Number</strong> ở dạng nhị phân, thập phân, thập lục phân,...</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>var x = 0xFF;		// x có giá trị 255</code>
+				<p>Vì các dữ liệu liên qua đến chữ số đều có kiểu dữ liệu Number, nên khi dùng <strong>typeof</strong> sẽ trả về là 'number'.</p>
+
+				<!-- PHẦN 2 -->
+				<h2>Xử lý Number</h2>
+				<h3>Chuyển Number sang String</h3>
+				<p>Để chuyển một biến đang ở dạng <strong>Number</strong> sang kiểu <strong>String</strong> thì ta sử dụng phương thức <span style="color: white; background-color: grey;">number.toString(type)</span>, hàm này có một tham số truyền vào là <strong>type</strong> và đây chính là kiểu dữ liệu muốn chuyển về, mặc định là hệ thập phân (10).</p>
+				<p><strong>Ví dụ:</strong> Nhập một số từ bàn phím, kiểm tra số đó là kiểu gì bằng hàm typeof. Tiếp theo đổi số đó sang giá trị nhị phân, bát phân, thập phân và thập lục phân. </p>
+				<code>
+					var myNumber = 128;<br/>
+					var typeOf = typeof myNumber;
+					myNumber.toString();		// return 128<br/>
+					myNumber.toString(16);		// return 80<br/>
+					myNumber.toString(8);		// return 200<br/>
+					myNumber.toString(2);		// return 10000000
+				</code>
+				<p>Nhập một số bất kỳ: <input type="text" value="" id="import"/></p>
+				<p>Kiểm tra kiểu dữ liệu: <input type="button" value="Click to test" onclick="TestTypeOf()"/></p>
+				<p>Kiểu nhị phân: <input type="text" value="" id="binary" /></p>
+				<p>Kiểu bát phân: <input type="text" value="" id="octal" /></p>
+				<p>Kiểu thập lục phân: <input type="text" value="" id="hexadecimal" /></p>
+				<h3>Số Infinity</h3>
+				<p><strong>Infinity</strong> cũng là một kiểu dữ liệu <strong>Number</strong> và khi một biến có giá trị là <strong>Infinity</strong> thì tức là nó đã vượt mức lưu trữ cho phép nên theo mặc định nó sẽ chuyển về dạng đó. Vì nó cũng là một giá trị nên bạn có thể so sánh bình thường.</p>
+
+				<h3>NaN - Not a Number</h3>
+				<p>Nếu ta thực hiện một phép toán nào đó có liên quan kiểu Number, nhưng vi phạm quy tắc tính toán thì kết quả  sẽ trả về một giá trị gọi là NaN (Not a Number).</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>var x = 2 / "ABC"; // NaN</code>
+				<p>Tuy nhiên nếu mẫu số là một "chuỗi" <strong>Number</strong> thì kết quả nó vẫn hoạt động bình thường</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>var x = 2 / "2"; // = 1</code>
+				<p>Để kiểm tra một biến nào đó có phải là NaN hay không, ta sử dụng hàm isNaN().
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var x = 2 / "a";<br/>
+					if (isNaN(x)) {<br/>
+						document.write("NaN");<br/>
+					}
+				</code>
+
+				<h3>Numbers - Objects</h3>
+				<p>Ngoài cách tạo một biến <strong>Number</strong> thông thường như trên, ta còn cách tạo bằng đối tượng <strong>Number</strong> (như String). Và hai cách này sẽ có kiểu dữ liệu khác nhau.</p>
+			</div>
+		</div>
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			var importNumber = document.getElementById('import');
+			var exportBinary = document.getElementById('binary');
+			var exportOctal = document.getElementById('octal');
+			var exportHexadecimal = document.getElementById('hexadecimal');
+			
+			var myNumber = importNumber.value;
+
+			// =*= PHẦN HÀM =*=
+			// Kiểm tra typeof
+			function TestTypeOf() {
+				alert('Số đã nhập có kiểu: ' + typeof myNumber);
+			}
+
+
+			// =*= PHẦN DOM GỌI HÀM
+			// Number sang string
+			importNumber.onkeyup = function() {
+				// Kiểu nhị phân
+				var binary = myNumber;
+
+				alert(binary.Number(16)); 
+			};
+
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

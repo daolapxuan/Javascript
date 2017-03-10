@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 39: Bảng biểu thức Regular Expression trong JavaScript</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<link rel="stylesheet" type="text/css" href="table-style-1.css">
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			code {
+				color: grey;
+			}
+			
+			.code-style {
+				border: 1px solid red;
+				padding-left: 15px;
+			}
+			
+			.code-comment {
+				color: green;
+			}
+			
+			.code-name {
+				color: #0066cc;
+				background-color: #ffffb3;
+				border: 1px solid #ffffb3;
+				border-radius: 2px;
+			}
+			
+			.tab-first {
+				padding-left: 20px;
+			}
+			
+			.tab-second {
+				padding-left: 40px;
+			}
+			
+			.tab-third {
+				padding-left: 60px;
+			}
+
+			.example {
+				border: 1px solid grey;
+				background: #ccff33;			
+				line-height: 2rem;
+				padding-left: 10px;
+			}
+
+			.result {
+				background: #66ff33;
+				border: 1px solid #66ff33;
+				border-radius: 3px;
+				color: #660066;
+				line-height: 1.5rem;
+				padding-left: 5px;
+			}
+
+			.btn {
+				background: #3399ff;
+				color: #cc0066;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>1. Bảng quy tắc Regular Expression</h2>
+				<h3><u>Modifiers</u></h3>
+				<div class="table">
+					<div class="row-table field-table">
+						<div class="col-table col-1">Modifier</div>
+						<div class="col-table col-2">Description</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">i</div>
+						<div class="col-table col-2">So sánh không phân biệt chữ HOA và thường (case-insensitive)</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">g</div>
+						<div class="col-table col-2">So sánh toàn bộ chuỗi dù trong chuỗi có xuống hàng (global)</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">m</div>
+						<div class="col-table col-2">So sánh nhiều dòng (multiline)</div>
+					</div>
+				</div><!-- .table -->
+
+				<h3><u>Brackets</u></h3>
+				<div class="table">
+					<div class="row-table field-table">
+						<div class="col-table col-1">Expression</div>
+						<div class="col-table col-2">Description</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">[abc]</div>
+						<div class="col-table col-2">Tìm các ký tự a, hoặc b, hoặc c</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">[^abc]</div>
+						<div class="col-table col-2">Tìm các ký tự KHÔNG phải a, và b, và c</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">[0-9]</div>
+						<div class="col-table col-2">Tìm các ký tự số từ 0-9</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">[^0-9]</div>
+						<div class="col-table col-2">Tìm các ký tự KHÔNG phải chữ số từ 0-9</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">(x|y)</div>
+						<div class="col-table col-2">Tìm ký tự x hoặc y</div>
+					</div>
+				</div><!-- .table -->
+
+				<h3><u>Brackets</u></h3>
+				<div class="table">
+					<div class="row-table field-table">
+						<div class="col-table col-1">Expression</div>
+						<div class="col-table col-2">Description</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">.</div>
+						<div class="col-table col-2">Tìm ký tự bất kỳ</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\w</div>
+						<div class="col-table col-2">Tìm ký tự chữ cái</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\W</div>
+						<div class="col-table col-2">Tìm các ký KHÔNG phải là chữ cái</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\d</div>
+						<div class="col-table col-2">Tìm ký tự là chữ số</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\D</div>
+						<div class="col-table col-2">Tìm ký tự KHÔNG phải là chữ số</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\s</div>
+						<div class="col-table col-2">Tìm ký tự là khoảng trằng (space)</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\S</div>
+						<div class="col-table col-2">Tìm ký tự KHÔNG phải khoảng trắng (space)</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\b</div>
+						<div class="col-table col-2">Tìm so khớp bắt đầu hoặc kết thúc chuỗi</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\B</div>
+						<div class="col-table col-2">Tìm so khớp KHÔNG bắt đầu hoặc kết thúc chuỗi</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\0</div>
+						<div class="col-table col-2">Tìm ký tự NULL</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\n</div>
+						<div class="col-table col-2">Tìm ký tự xuống hàng (enter)</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">\t</div>
+						<div class="col-table col-2">Tìm ký tự TAB</div>
+					</div>
+				</div><!-- .table -->
+
+				<h3><u>Quantifiers</u></h3>
+				<div class="table">
+					<div class="row-table field-table">
+						<div class="col-table col-1">Expression</div>
+						<div class="col-table col-2">Description</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">+</div>
+						<div class="col-table col-2">Kiểm tra ký tự xuất hiện MỘT hoặc NHIỀU lần</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">*</div>
+						<div class="col-table col-2">Kiểm tra ký tự xuất hiện KHÔNG hoặc NHIỀU lần</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">?</div>
+						<div class="col-table col-2">Kiểm tra ký tự xuất hiện KHÔNG hoặc MỘT lần</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">{X}</div>
+						<div class="col-table col-2">Kiểm tra ký tự xuất hiện ĐÚNG X lần</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">{X,Y}</div>
+						<div class="col-table col-2">Kiểm tra ký tự xuất hiện tối thiểu X lần và tối đa Y lần</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">{X,}</div>
+						<div class="col-table col-2">Kiểm tra ký tự xuất hiện ÍT NHẤT X lần</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">^</div>
+						<div class="col-table col-2">Kiểm tra ký tự bắt đầu chuỗi</div>
+					</div>
+					<div class="row-table">
+						<div class="col-table col-1">$</div>
+						<div class="col-table col-2">Kiểm tra ký tự kết thúc chuỗi</div>
+					</div>
+				</div><!-- .table -->
+
+				<!-- PHẦN 2-->
+				<h2>Các ví dụ thực hành với biểu thức RegExp</h2>
+				<div class="example"><strong>Bài 1:</strong> Kiểm tra chuỗi xuất hiện ít nhất 10 chữ N liên tiếp và không phân biệt chữ HOA hay thường</div>
+				<p><strong>Gợi ý:</strong> Ta sẽ dùng pattern <span class="code-name">{X,}</span> và modifiers là <strong>i</strong>:</p>
+				<div class="code-style">
+					<code>
+						if (/N{10,}/i.test("10 chữ N là nnnnnnnnnnnnn")) {<br/>
+							<span class="tab-first">document.write("Chuỗi có ít nhất 10 chữ N liên tiếp");</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">document.write("Chuỗi KHÔNG có ít nhất 10 chữ N liên tiếp");</span><br/>
+						}
+					</code>
+				</div>
+				<p>Import a Text: <input type="text" value="" id="text-one" /> <input type="button" value="Click to Test" id="test-one" class="btn"/></p>
+				<div id="result-one" class="result"></div>
+				<br/>
+				<div class="example"><strong>Bài 2:</strong> Kiểm tra chuỗi có phải là 'daolapxuan.vi' hay không?</div>
+				<p><strong>Gợi ý:</strong> Để kiểm tra chính xác chuỗi <i>'daolapxuan.vi'</i> thì bắt buộc phải thêm ký tự bắt đầu <span class="code-name">^</span> và kết thúc <span class="code-name">$</span> để khóa chuỗi lại. Và lưu ý rằng, ký tự <span class="code-name">.</span> trong chuỗi <i>'daolapxuan.vi'</i> là ký tự đặc biệt, vì nó có trong sách các biểu thức Regular Expression nên bắt buộc ta phải thêm dấu <span class="code-name">\</span> đằng trước nó.</p>
+				<div class="code-style">
+					<code>
+						var pattern = /^daolapxuan\.vi$/i;
+
+						if (pattern.test('daolapxuan.vi')) {<br/>
+							<span class="tab-first"> document.write('Đúng là chuỗi daolapxuan.vi');</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">document.write('Không phải là chuỗi daolapxuan.vi');</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Import a Text: <input type="text" value="" id="text-two"/> <input type="button" value="Click to Test" id="test-two" class="btn"></p>
+				<div id="result-two" class="result"></div>
+				<br/>
+				<div class="example"><strong>Bài 3:</strong> Kiểm tra chuỗi có phải là chữ số và độ dài 7 ý tự?</div>
+				<p><strong>Gợi ý:</strong> Ta dùng pattern <span class="code-name">[0-9]</span> kết hợp với <span class="code-name">{X}</span>. Lưu ý là phải thêm ký tự <span class="code-name">^</span> và <span class="code-name">$</span> để biết điểm bắt đầu và kết thúc của chuỗi</p>
+				<div class="code-style">
+					<code>
+						var pattern = /^[0-9]{7}$/;<br/>
+						<br/>
+						if (patter.test('1234567')) {<br/>
+							<span class="tab-first"> document.write('Chuỗi chữ số dài đúng 7 ký tự');</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first"> document.write('Không phải chuỗi chữ số hoặc dài đúng 7 ký tự');</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Import a Text: <input type="text" value="" id="text-three"/> <input type="button" value="Click to Test" id="test-three" class="btn"></p>
+				<div id="result-three" class="result"></div>
+				<br/>
+				<div class="example"><strong>Bài 4:</strong> Kiểm tra chuỗi định dạng mã thẻ cào xxxx-xxxx-xxxx-xxxx và x chính là các chữ số.</div>
+				<p><strong>Gợi ý:</strong> Ta dùng pattern <span class="code-name">[0-9]</span> để kiểm tra chữ số và kết hợp với <span class="code-name">{X}</span> để kiểm tra độ dài, ở đây là 4.</p>
+				<div class="code-style">
+					<code>
+						var pattern = /^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/;<br/>
+						<br/>
+						if (pattern.test('1234-5678-9012-3456')) {<br/>
+							<span class="tab-first"> document.write('Mã thẻ hợp lệ');</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first"> document.write('Mã thẻ KHÔNG hợp lệ');</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Import a Text: <input type="text" value="" id="text-four"/> <input type="button" value="Click to Test" id="test-four" class="btn"></p>
+				<div id="result-four" class="result"></div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			// ID bài 1.
+			var textOne = document.getElementById('text-one');
+			var testOne = document.getElementById('test-one');
+			var resultOne = document.getElementById('result-one');
+			// Xử lý bài 1
+			var patternOne = /N{10,}/i;
+			
+			// ID bài 2
+			var textTwo = document.getElementById('text-two');
+			var testTwo = document.getElementById('test-two');
+			var resultTwo = document.getElementById('result-two');
+			// Xử lý bài 2
+			var patternTwo = /^daolapxuan\.vi$/i;
+
+			// ID bài 3
+			var textThree = document.getElementById('text-three');
+			var testThree = document.getElementById('test-three');
+			var resultThree = document.getElementById('result-three');
+			// Xử lý bài 3
+			var patternThree = /^[0-9]{7}$/;
+
+			// ID bài 4
+			var textFour = document.getElementById('text-four');
+			var testFour = document.getElementById('test-four');
+			var resultFour = document.getElementById('result-four');
+			// Xử lý bài 4
+			var patternFour = /^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/;
+
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI HÀM
+			// Bài 1.
+			testOne.onclick = function() {
+				if (patternOne.test(textOne.value)) {
+					resultOne.innerHTML = 'Trong chuỗi có ít nhất 10 kí tự N không phân biệt HOA hay thường';
+				}
+				else {
+					resultOne.innerHTML = 'Trong chuỗi KHÔNG có ít nhất 10 kí tự N không phân biệt HOA hoặc thường';
+				}
+			};
+
+			// Bài 3.
+			testThree.onclick = function() {
+				if (patternThree.test(textThree.value)) {
+					resultThree.innerHTML = 'Chuỗi đã nhập là chữ số <strong>và</strong> có đúng 7 ký tự';
+				}
+				else {
+					resultThree.innerHTML = 'Chuỗi đã nhập KHÔNG phải là chữ số <strong>hoặc</strong> KHÔNG có đúng 7 ký tự';
+				}
+			};
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			// Bài 2.
+			testTwo.addEventListener('click', function() {
+				if(patternTwo.test(textTwo.value)) {
+					resultTwo.innerHTML = 'Chuỗi nhập chính là chuỗi daolapxuan.vi';
+				}
+				else {
+					resultTwo.innerHTML = "Chuỗi vừa nhập KHÔNG phải chuỗi daolapxuan.vi";
+				}
+			});
+
+			// Bài 4.
+			testFour.addEventListener('click', function() {
+				if (patternFour.test(textFour.value)) {
+					resultFour.innerHTML = 'Mã nhập hợp lệ';
+				}
+				else {
+					resultFour.innerHTML = 'Mã nhập KHÔNG hợp lệ';
+				}
+			});
+
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

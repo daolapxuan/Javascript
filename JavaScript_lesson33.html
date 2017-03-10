@@ -1,0 +1,166 @@
+<!DOCTYPE>
+<html lang="vi/VI">
+	<head>
+		<title>Lesson 33: Hàm xử lý ngày tháng (Date)</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+
+			code {
+				color: grey;
+			}
+
+			#not-exist {
+				text-decoration: line-through;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- GET -->
+				<h2>1. Các hàm nhóm Date GET</h2>
+				<p>Trong Javascript có tổng cộng 10 hàm thiết lập thời gian thông dụng:</p>
+				<ul>
+					<li><strong>getDate()</strong> lấy ngày (1 - 31)</li>
+					<li><strong>getDay()</strong> lấy ngày trong tuần (0 - 6)</li>
+					<li><strong>getYear()</strong> lấy năm 2 số cuối (YY)</li>
+					<li><strong>getFullYear()</strong> lấy năm đầy đủ 4 số (YYYY)</li>
+					<li><strong>getHours()</strong> lấy số giờ (0 - 23)</li>
+					<li><strong>getMiliSeconds()</strong> lấy số mili giây (0 - 999)</li>
+					<li><strong>getMinutes()</strong> lấy số phút (0 - 59)</li>
+					<li><strong>getMonth()</strong> lấy tháng (0 - 11)</li>
+					<li><strong>getSecond()</strong> lấy số giây (0 - 59)</li>
+					<li><strong>getTime()</strong>thời gian đã được convert sang dạng miliseconds.</li>
+				</ul>
+				<p>Cách sử dụng các hàm trên khá đơn giản, vì nó là "phương thức" của đối tượng Date() nên ta chỉ việc gọi ra và dùng:</p>
+				<code>
+					// Khởi tạo đối tượng Date<br/>
+					var date = new Date();<br/>
+					<br/>	
+					date.getDate();<br/>
+					date.getDay();<br/>
+					date.getMonth();<br/>
+					date.getYear();<br/>
+					date.getFullYear();<br/>
+					date.getHours();<br/>
+					date.getMinutes();<br/>
+					date.getSeconds();<br/>
+					date.getMiliSeconds();<br/>
+					date.getTime();<br/>
+				</code>
+				<p><strong>Lưu ý:</strong> với hàm lấy ngày trong tuần getDay() ta phải cộng thêm 1 thì mới có kết quả đúng vì nó tính từ 0 nhé.</p>
+				<hr>
+				<!-- SET -->
+				<h2>2. Các hàm nhóm Date SET</h2>
+				<p>Tương ứng với mỗi hàm Date Get thì sẽ có một hàm Date Set <i>(trừ hảm getDay())</i></p>
+				<ul>
+					<li><strong>setDate()</strong> thiết lập ngày (1 - 31)</li>
+					<li id="not-exist"><strong>setDay()</strong> thiết lập ngày trong tuần (0 - 6)</li>
+					<li><strong>setYear()</strong> thiết lập năm 2 số cuối (YY)</li>
+					<li><strong>setFullYear()</strong> thiết lập năm đầy đủ 4 số (YYYY)</li>
+					<li><strong>setHours()</strong> thiết lập số giờ (0 - 23)</li>
+					<li><strong>setMiliSeconds()</strong> thiết lập số mili giây (0 - 999)</li>
+					<li><strong>setMinutes()</strong> thiết lập số phút (0 - 59)</li>
+					<li><strong>setMonth()</strong> thiết lập tháng (0 - 11)</li>
+					<li><strong>setSecond()</strong> thiết lập số giây (0 - 59)</li>
+					<li><strong>setTime()</strong>thiết lập thời gian đã được convert sang dạng miliseconds.</li>
+				</ul>
+				<p><strong>Lưu ý:</strong></p>
+				<ul>
+					<li>Ví đây là hàm <strong>SET</strong> nên bạn phải truyền tham số vào nếu có sử dụng.</li>
+					<li>Các hàm có ảnh hưởng lẫn nhau nhé, nếu ta thiết lập ngày giờ không đúng (ví dụ tháng 2 có 30 ngày) thì nó sẽ lấy ngày giờ mặc định.</li>
+					<li>Nếu bạn dùng hàm <strong>setTime()</strong> để thiết lập thì nó ảnh hưởng tới tất cả các giá trị còn lại bởi vì <strong>setTime()</strong> là hàm thiết lập <strong>đầy đủ</strong> thời gian đã chuyển sang dạng mileseconds.</li>
+				</ul>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					// Đối tượng thời gian hiện tại<br/>
+					var date = new Date();<br/>
+					<br/>
+					date.setDate(4);<br/>
+					date.setMonth(2);<br/>
+					date.setYear(93);<br/>
+					date.setHours(7);<br/>
+					date.setMinutes(14);<br/>
+					date.setSeconds(21);<br/>
+					date.setMiliSeconds(49);<br/>
+				</code>
+				<hr>
+				<!-- TẠO ĐỒNG HỒ -->
+				<h2>3. Tạo đồng hồ online</h2>
+				<p>Ví dụ này sẽ tạo một đồng hồ online với thời gian thực lấy từ Client. Khi ta click vào nút Show Time thì đồng hồ sẽ hiện ra thời gian.</p> 
+				<p><input type="button" value="Show Your Time" id="show-btn" /></p>
+				<div id="show-time"></div>
+			</div> <!-- .row -->
+		</div><!-- .container -->
+
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO, KHỞI TẠO & LẤY ID =*=
+			var showButton = document.getElementById('show-btn');
+			var showTime = document.getElementById('show-time');
+			var timeClient = new Date();
+			var d, m, y, h, mi, s;
+
+			// =*= PHẦN TẠO HÀM XỬ LÝ
+			// Hàm thêm số 0
+			function AddZero(i) {
+				if (i < 10) {
+					i = "0" + i;
+				}
+
+				return i;
+			}
+			
+			function GetTimeClient() {
+				// Thêm hàm setTimeout() để reset lại thời gian hiện tại
+				setInterval(function () {
+					d = timeClient.getDate();
+					m = timeClient.getMonth();
+					y = timeClient.getFullYear();
+					h = timeClient.getHours();
+					mi = timeClient.getMinutes();
+					s = timeClient.getSeconds();
+
+					// Thếm số 0 cho giờ, phút, giây
+					h = AddZero(h);
+					mi = AddZero(mi);
+					s = AddZero(s);
+
+					// Show time
+					showTime.innerHTML = h + " : " + mi + " : " + s + "   " + d + "/" + (m + 1) + "/" + y;
+				}, 500);
+			}
+			// =*= PHẦN XỬ LÝ SỰ KIỆN TRỰC TIẾP BẰNG HÀM THÔNG QUA ID
+			showButton.onclick = function() {
+				setInterval(function () {
+					d = timeClient.getDate();
+					m = timeClient.getMonth();
+					y = timeClient.getFullYear();
+					h = timeClient.getHours();
+					mi = timeClient.getMinutes();
+					s = timeClient.getSeconds();
+
+					// Thếm số 0 cho giờ, phút, giây
+					h = AddZero(h);
+					mi = AddZero(mi);
+					s = AddZero(s);
+
+					// Show time
+					showTime.innerHTML = h + " : " + mi + " : " + s + "   " + d + "/" + (m + 1) + "/" + y;
+				}, 500);
+			};					
+
+			// =*= PHẦN XỬ LÝ SỰ KIỆN BẰNG HÀM ADDEVENTLISTENER() THÔNG QUA ID
+		</script>
+	</body>
+</html>

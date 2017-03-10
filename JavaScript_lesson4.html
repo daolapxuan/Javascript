@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 4: Các toán tử toán học và toán tử gán</title>
+		<meta charset="utf-8" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				border-bottom: 2px solid blue; 
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Toán tử toán học trong javascript</h2>
+		<!-- Toán tử "+" -->
+		10 + 5 = <input type="button" onclick="alert('15')" value="View Result" />
+		<br>
+		<br>
+		<!-- Toán tử "-" -->
+		19 - 9 = <input type="button" id="click" value="View Result" />
+		<script language="javascript">
+			var button = document.getElementById('click');
+			button.addEventListener('click', function(){
+				alert('10');
+			});
+		</script>
+		<br>
+		<br>
+		<!-- Toán tử "*" -->
+		5 * 4 = <input type="button" onclick="alert('20')" value="View Result" />
+		<br>
+		<br>
+		<!-- Toán tử "/" -->
+		24 / 8 = <input type="button" id="click1" value="View Result" />
+		<script language="javascript">
+			var button1 = document.getElementById('click1');
+			button1.addEventListener('click', function(){
+				var a = 24;
+				var b = 8;
+				var c = a / b;
+				alert(c);
+			});
+		</script>
+		<br>
+		<br>
+		<!-- Toán tử "%" -->
+		<!-- Đây là phép chia lấy dư, xem ví dụ sẽ rõ -->
+		22 % 4 = <input type="button" id="click2" value="View Result">
+		<script language="javascript">
+			var button3 = document.getElementById('click2');
+			button3.addEventListener('click', function(){
+				var a = 22;
+				var b = 4;
+				var c = a % b;
+				alert(c);
+			});
+		</script>
+		<br>
+		<br>
+		<!-- Toán tử "++" và "--" -->
+		Cho c = 10, thì: <br>
+		alert(c++) = <input type="button" id="cplusplus" value="View Result" />
+		, alert(c) = <input type="button" id="cplusplus1" value="View Result" />
+		<script language="javascript">
+			var button4 = document.getElementById('cplusplus');
+			var button5 = document.getElementById('cplusplus1');
+			
+			button4.addEventListener('click', function(){
+				var c = 10;
+				alert(c++);
+			});
+			button5.addEventListener('click', function(){
+				var c = 10;
+				c++;
+				alert(c);
+			});
+		</script>
+		<br>
+		<br>
+		alert(++c) = <input type="button" id="plusplusc" value="View Result" />
+		, alert(c) = <input type="button" id="plusplusc1" value="View Result" />
+		<script language="javascript">
+			var button4 = document.getElementById('plusplusc');
+			var button5 = document.getElementById('plusplusc1');
+			
+			button4.addEventListener('click', function(){
+				var c = 10;
+				alert(++c);
+			});
+			button5.addEventListener('click', function(){
+				var c = 10;
+				++c;
+				alert(c);
+			});
+		</script>
+		<br><br>
+		alert(c--) = <input type="button" id="cdiminish" value="View Result" />
+		, alert(c) = <input type="button" id="cdiminish1" value="View Result" />
+		<script language="javascript">
+			var button4 = document.getElementById('cdiminish');
+			var button5 = document.getElementById('cdiminish1');
+			var c = 10;
+			
+			button4.addEventListener('click', function(){
+				alert(c--);
+			});
+			button5.addEventListener('click', function(){
+				alert(c);
+			});
+		</script>
+		<br>
+		<br>
+		alert(--c) = <input type="button" id="diminishc" value="View Result" />
+		, alert(c) = <input type="button" id="diminishc1" value="View Result" />
+		<script language="javascript">
+			var button4 = document.getElementById('diminishc');
+			var button5 = document.getElementById('diminishc1');
+			var c = 10;
+			
+			button4.addEventListener('click', function(){
+				alert(--c);
+			});
+			button5.addEventListener('click', function(){				
+				alert(c);
+			});
+		</script>
+		<hr>
+		<h2>Toán tử gán</h2>
+		Cho x = 12, y = x => y = <input type="button" id="equal" value="View Result" /><br><br>
+		Cho x = 10, y = 4 thì:<br><br>
+		^ x += y = <input type="button" id="equalsummation" value="View Result" /><br><br>
+		^ x -= y = <input type="button" id="equalsubtraction" value="View Result" /><br><br>
+		^ x *= y = <input type="button" id="equalmultiplication" value="View Result" /><br><br>
+		^ x /= y = <input type="button" id="equaldivision" value="View Result" /><br><br>
+		^ x %= y = <input type="button" id="equalbalance" value="View Result" /><br><br>
+		<script language="javascript">
+			var button = document.getElementById('equal');
+			var button1 = document.getElementById('equalsummation');
+			var button2 = document.getElementById('equalsubtraction');
+			var button3 = document.getElementById('equalmultiplication');
+			var button4 = document.getElementById('equaldivision');
+			var button5 = document.getElementById('equalbalance');
+			var x = 12;
+			var y;
+			
+			button.addEventListener('click', function(){
+				y = x;
+				alert(y);
+			});
+			
+			button1.addEventListener('click', function(){
+				var x1 = 10;
+				var y1 = 4;
+				alert(x1 += y1);
+			});
+			
+			button2.addEventListener('click', function(){
+				var x1 = 10;
+				var y1 = 4;
+				alert(x1 -= y1);
+			});
+			
+			button3.addEventListener('click', function(){
+				var x1 = 10;
+				var y1 = 4;
+				alert(x1 *= y1);
+			});
+			
+			button4.addEventListener('click', function(){
+				var x1 = 10;
+				var y1 = 4;
+				alert(x1 /= y1);
+			});
+			
+			button5.addEventListener('click', function(){
+				var x1 = 10;
+				var y1 = 4;
+				alert(x1 %= y1);
+			});
+		</script>
+		<hr>
+		<p>Nhập hai số x, y bất kỳ từ bàn phím</p>
+		x = <input type="button" id="x" value="Nhập" /><br>
+		y = <input type="button" id="y" value="Nhập" /><br><br>
+		Ta có: <br><br>
+		^ x += y = <input type="button" id="equalsummation1" value="View Result" /><br><br>
+		^ x -= y = <input type="button" id="equalsubtraction1" value="View Result" /><br><br>
+		^ x *= y = <input type="button" id="equalmultiplication1" value="View Result" /><br><br>
+		^ x /= y = <input type="button" id="equaldivision1" value="View Result" /><br><br>
+		^ x %= y = <input type="button" id="equalbalance1" value="View Result" /><br><br>
+		
+		<script language="javascript">
+			var x, y;
+			var button_x = document.getElementById('x');
+			var button_y = document.getElementById('y');
+			var button1 = document.getElementById('equalsummation1');
+			var button2 = document.getElementById('equalsubtraction1');
+			var button3 = document.getElementById('equalmultiplication1');
+			var button4 = document.getElementById('equaldivision1');
+			var button5 = document.getElementById('equalbalance1');
+			
+			button_x.addEventListener('click', function(){
+				x = prompt("Nhập x: ", '');
+			});
+			button_y.addEventListener('click', function(){
+				y = prompt("Nhập y: ", '');
+			});
+
+			button1.addEventListener('click', function(){
+				var x1 = x;
+				var y1 = y;
+				alert(x1 += y1);
+			});
+			
+			button2.addEventListener('click', function(){
+				var x1 = x;
+				var y1 = y;
+				alert(x1 -= y1);
+			});
+			
+			button3.addEventListener('click', function(){
+				var x1 = x;
+				var y1 = y;
+				alert(x1 *= y1);
+			});
+			
+			button4.addEventListener('click', function(){
+				var x1 = x;
+				var y1 = y;
+				alert(x1 /= y1);
+			});
+			
+			button5.addEventListener('click', function(){
+				var x1 = x;
+				var y1 = y;
+				alert(x1 %= y1);
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 32: Hàm xử lý Number</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			code {
+				color: grey;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+			<p>Các hàm xử lý có thể chia làm hai nhóm:</p>
+			<p><strong>Nhóm toàn cục:</strong> là những hàm ko nằm trong đối tượng Number</p>
+			<ul>
+				<li><strong>Number(type)</strong> trả về một number và định dạng cơ số type=(nhị phân, bát phân, thập phân, thập lục phân).</li>
+				<li><strong>parseFloat()</strong> chuyển sang một số Float.</li>
+				<li><strong>parseInt()</strong> chuyển sang một số Integer.</li>
+			</ul>
+			<p><strong>Nhóm toàn cục:</strong> là những hàm nằm trong đối tượng Number.</p>
+			<ul>
+				<li><strong>toString()</strong> chuyển sang một số Integer.</li>
+				<li><strong>toFixed(n)</strong> chuyển sang số có n số lẻ ở bằng nhau.</li>
+				<li><strong>toPrecision(n)</strong> chuyển sang số có chiểu dài là n.</li>
+				<li><strong>valueOf()</strong> là giá trị của biến hoặc một giá trị nào đó.</li>
+			</ul>
+				<!-- PHẦN 1 -->
+				<h2>1. Hàm xử lý Number toàn cục</h2>
+				<h3>Number</h3>
+				<p>Dùng để chuyển đổi một biến hoặc một giá trị nào đó sang kiểu number, nó chuyển tất cả các định dạng như Boolean, Date, String. Nếu trường hợp giá trị cần chuyển đổi ko thể chuyển sang Number được thì nó chuyển sang giá trị mặc định là <strong>NaN</strong>.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var booleanTrue = true;<br/>
+					Number(booleanTrue);	// return 1<br/>
+					<br/>
+					var booleanFalse = false;<br/>
+					Number(booleanFalse);	// return 0<br/>
+					<br/>
+					var stringString = 'Dao Lap Xuan';<br/>
+					Number(stringString); 	// return NaN<br/>
+					<br/>
+					var stringNumber = "20"; <br/>
+					Number(stringNumber); 	// return 20<br/>
+					<br/>
+					var date = new Date();<br/>
+					Number(date);		// return 1<br/>
+				</code>
+
+				<h3>parseInt()</h3>
+				<p>Hàm này chuyển dữ liệu sang định dạng Integer, có tác dụng như hàm Number(), nhưng có vài điểm khác biệt sau:</p>
+				<ul>
+					<li>Nếu chuỗi có các ký tự đầu tiên là các con số và đằng sau là chữ cái thì nó sẽ lấy <strong>các số đầu tiên</strong> đó và chuyển thành kiểu number. Nhưng nếu dùng hàm Number() nó sẽ trả về NaN.</li>
+					<li>Nếu dữ liệu ở các định dạng <strong>khác string</strong> thì nó chuyển thành NaN.</li>
+				</ul>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var booleanTrue = true;<br/>
+					Number(booleanTrue);	// return NaN<br/>
+					<br/>
+					var booleanFalse = false;<br/>
+					Number(booleanFalse);	// return NaN<br/>
+					<br/>
+					var stringString = '1234 Dao Lap Xuan';<br/>
+					Number(stringString); 	// return 1234<br/>
+					<br/>
+					var stringNumber = "20"; <br/>
+					Number(stringNumber); 	// return 20<br/>
+					<br/>
+					var date = new Date();<br/>
+					Number(date);		// return NaN<br/>
+				</code>
+
+				<h3>parseFloat()</h3>
+				<p>Hàm này chuyển dữ liệu sang định dạng float, về cách sử dụng y hệt hàm <strong>parseInt()</strong>.
+
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var booleanTrue = true;<br/>
+					Number(booleanTrue);	// return NaN<br/>
+					<br/>
+					var booleanFalse = false;<br/>
+					Number(booleanFalse);	// return NaN<br/>
+					<br/>
+					var stringString = '123.4 Dao Lap Xuan';<br/>
+					Number(stringString); 	// return 123.4<br/>
+					<br/>
+					var stringNumber = "-20.1"; <br/>
+					Number(stringNumber); 	// return -20.1<br/>
+					<br/>
+					var date = new Date();<br/>
+					Number(date);		// return NaN<br/>
+				</code>
+
+				<!-- PHẦN 2 -->
+				<h2>2. Hàm xử lý Number cục bộ</h2>
+				<p>Những hàm cục bộ phải gắn liền với đối tượng Number cụ thể, ví dụ bạn khởi tạo một biến <strong>var x = 10;</strong> thì lúc này <strong>x</strong> có tất cả các hàm cuc65 bộ. Ngoài ra ta có thể sử dụng cặp mở đóng () để bao quanh một biểu thức hoặc một giá trị thì vẫn sử dụng bình thường.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var x = 123;		// typeof x = number<br/>
+					x.toString(); 		// typeof x = string<br/>
+					(456).toString();<br/>
+					(1 + 2 * 3 / 4).toString();<br/>
+				</code>
+				<h3>toString()</h3>
+				<p>Hàm <strong>toString()</strong> có tác dụng chuyển đổi Number sang kiểu String.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var x = 123;<br/>		
+					typeof x = number	// number<br/>
+					<br/>
+					x.toString();<br/> 		 
+					typeof x = string // string<br/>
+					<br/>
+					typeof 456; // number<br/>
+					typeof (456).toString()	// string<br/>
+					<br/>	
+					typeof (1 + 2 * 3 / 4).toString();	// string<br/>
+				</code>
+
+				<h3>toFixed(n)</h3>
+				<p>Hàm này có tác dụng chuyển một số sang một số có <strong>n</strong> số lẻ ở sau nó và có làm tròn.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var x = 123.456;	<br/>
+					<br/>
+					x.toFixed(0); 		// return 123 <br/>
+					x.toFixed(1); 		// return 123.5 <br/>
+					x.toFixed(2); 		// return 123.46 <br/>
+					x.toFixed(3); 		// return 123.456 <br/>
+					x.toFixed(6); 		// return 123.456000 <br/>
+				</code>
+
+				<h3>toPrecision(n)</h3>
+				<p>Hàm này cũng gần giống hàm Fixed(n), nhưng khác ở chỗ nó chuyển 1 số thành số có chiều dài n (chiều dài gồm phần nguyên và phần thực).</p>
+				<code>
+					var x = 123.456;	<br/>
+					<br/>
+					x.toPrecision(); 		// return 123.456 <br/>
+					x.toPrecision(2); 		// return 12 <br/>
+					x.toPrecision(4); 		// return 123.5 <br/>
+					x.toPrecision(5); 		// return 123.46 <br/>
+					x.toPrecision(6); 		// return 123.456 <br/>
+					x.toPrecision(9); 		// return 123.456000 <br/>
+				</code>
+
+				<h3>Hàm valueOf()</h3>
+				<p>Hàm valueOf() có tác dụng lấy giá trị của một biến hoặc một giá trị khác - ý nghĩa là lấy giá trị của (cái gì đó).</p>
+				<p>Hàm này thực chất ko đc sử dụng nhiều, vì thông thường ta lấy giá trị trực tiếp luôn.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					var x = 123 + 123;<br/>
+					<br/>
+					x.valueOf();	// return 246<br/>
+					<br/>
+					(1 + 2 * 3).valueOf;	// return 7<br/>
+				</code>
+			</div>
+		</div>
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

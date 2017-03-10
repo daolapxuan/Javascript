@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 29: Các hàm xử lý chuỗi</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- HÀM 1 -->
+				<h2>Tìm chuỗi con</h2>
+				<p>Chúng ta có ba hàm thường dùng để tìm kiếm chuỗi con như sau:</p>
+				<ul>
+					<li>indexOf()</li>
+					<li>lastIndexOf()</li>
+					<li>search()</li>
+				</ul>
+				<h4>Hàm indexOf()</h4>
+				<p>Để tìm kiếm chuỗi con thì ta sử dụng hàm <span style="color: white; background-color: grey;">String.indexOf(str)</span>, strong đó str là chuỗi con và String là chuỗi cha. Hàm này sẽ trả về vị trí xuất hiện đầu tiên của chuỗi con (bắt đầu là 0), nếu không tìm thấy chuỗi con trong chuỗi cha, nó sẽ trả về -1.</p>
+				<p><strong>Ví dụ:</strong> Cho hai chuỗi sau đây, kiểm tra chuỗi 1 đã cho nằm ở đâu trong chuỗi 2 đã cho.</p>
+				<p>
+					Chuỗi 1: str1 = "Dao Lap Xuan";<br/>
+					Chuỗi 2: str2 = "My name is Dao Lap Xuan, I'm from VietNam, I'm Vietnamese.";
+				</p>
+				<p>Kiểm tra: <input type="button" value="Click to test" onclick="TestIndexOf()"</p>
+				
+				<h4>Hàm lastIndexOf()</h4>
+				<p>Giả sử chuỗi str1 xuất hiện nhiều hơn một lần trong chuỗi str2. Vậy làm sao ta lấy được ví trí của chuỗi str1 <strong>cuối cùng</strong> trong str2? Ta sẽ sử dụng hàm <span style="color: white; background-color: grey;">String.lastIndexOf(str)</span>.</p>
+				<p><strong>Ví dụ:</strong> Cho hai chuỗi sau đây, kiểm tra vị trí chuỗi 1 cuối cùng đã cho nằm ở đâu trong chuỗi 2 đã cho. Giả sử chuỗi 1 xuất hiện 3 lần trong chuỗi 2.</p>
+				<p>
+					Chuỗi 1: str1 = "I am";<br/>
+					Chuỗi 2: str2 = "My name is Dao Lap Xuan, I am from VietNam, I am Vietnamese. I am very handsome and lovely";
+				</p>
+				<p>Kiểm tra: <input type="button" value="Click to test" id="test-lastindexof"</p>
+				
+				<h4>Hàm search()</h4>
+				<p>Hàm này tương tự hàm <span style="color: white; background-color: grey;">String.indexOf(str)</span> ở trên.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<p>
+					Chuỗi 1: str1 = "Dao Lap Xuan";<br/>
+					Chuỗi 2: str2 = "My name is Dao Lap Xuan, I'm from VietNam, I'm Vietnamese.";
+				</p>
+				<p>Kiểm tra: <input type="button" value="Click to test" id="test-search"</p>
+				
+				<!-- HÀM 2 -->
+				<h2>Cắt chuỗi con</h2>
+				<p>Nếu bạn muốn cắt một chuỗi con từ chuỗi cha thì có thể sử dụng ba hàm sau:</p>
+				<ul>
+					<li>slice(start, end)</li>
+					<li>substring(start, end)</li>
+					<li>substr(start, lenght)</li>
+				</ul>
+				<p><strong>Note:</strong> Tất cả các hàm xử lý bắt đầu vị trí chuỗi từ 0, nên khi xử lý coi chừng nhầm lẫn.</p>
+				<h4>Hàm slice()</h4>
+				<p>Hai tham số: start (vị trí bắt đầu lấy) và end (vị trí kết thúc).</p>
+				<p><strong>Ví dụ:</strong> lấy chuỗi "Dao Lap Xuan" trong chuỗi dưới đây.</p>
+				<p>
+					Chuỗi: string = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.";
+				</p>
+				<p>Lấy chuỗi: <input type="button" value="Click to cut" onclick="TestSlice()"/></p>
+				<p>Nếu tham số truyền vào là số âm, thì nó sẽ tính ngược lại, nghĩa là đếm từ cuối chuỗi lên. Ví dụ ta sẽ lấy chuỗi "Dao Lap Xuan" với tham số truyền vào là số âm.</p>
+				<p>Lấy chuỗi: <input type="button" value="Click to cut" onclick="TestSlice1()"/></p>
+				<p>Nếu chỉ truyền tham số đầu tiên thì nó tự hiểu vị trí end là cuối chuỗi cha. Ví dụ ví trí bắt đầu từ chữ D trong chuỗi "Dao...", ta ko truyền vào vị trí kết thúc.</p>
+				<p>Lấy chuỗi: <input type="button" value="Click to cut" onclick="TestSlice2()"/></p>
+				
+				<h4>Hàm substring()</h4>
+				<p>Hàm này có cách sử dụng như hàm <span style="color: white; background-color: grey;">slice()</span>, nhưng tham số truyền vào phải luôn lớn hơn 0.</p>
+				<p><strong>Ví dụ:</strong> lấy chuỗi "February 4th" trong chuỗi dưới đây.</p>
+				<p>
+					Chuỗi: string = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.";
+				</p>
+				<p>Lấy chuỗi: <input type="button" value="Click to cut" id="test-substring"/></p>
+				
+				<h4>Hàm substr()</h4>
+				<p>Hai tham số truyền vào là: start (vị trí bắt đầu) và length(số kí tự muốn lấy từ vị trí strat). start có thể âm (như hàm slice()), nhưng tham số length phải luôn dương.</p>
+				<p><strong>Ví dụ:</strong> lấy chuỗi "VietNam" bằng hàm substr() trong chuỗi dưới đây.</p>
+				<p>
+					Chuỗi: string = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.";
+				</p>
+				<p>Lấy chuỗi: <input type="button" value="Click to cut" id="test-substr"/></p>
+				
+				<!-- HÀM 3 -->
+				<h2>Tìm kiếm và thay thế chuỗi</h2>
+				<p>Để tìm kiếm và thay thế một chuỗi con nào đó, thì ta sử dụng hàm <span style="color: white; background-color: grey;">replace(strFine, strReplace)</span>, trong đó strFind là chuỗi cần tìm và strReplace là chuỗi sẽ thay thế chuỗi strFind.</p>
+				<p><strong>Ví dụ:</strong> Thay thế chuỗi "Dao Lap Xuan" thành chuỗi "DLX" của chuỗi bên dưới.</p>
+				<div id="content-replace">
+					My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.
+				</div>
+				<p>Click để thay thế: <input type="button" value="Click to replace" id="test-replace"/></p>
+				
+				<!-- HÀM 4 -->
+				<h2>Chuyển thành chữ HOA và thường</h2>
+				<p>Để chuyển chữ hoa, ta dùng hàm <span style="color: white; background-color: grey;">toUpperCase()</span> và chuyển chữ thường, dùng hàm <span style="color: white; background-color: grey;">toLowerCase()</span>.</p>
+				<p><strong>Ví dụ:</strong> Chuyển chữ HOA hoặc chữ thường chuỗi dưới đây.</p>
+				<div id="content-upper-lower">
+					My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.
+				</div>
+				<p>Chữ HOA: <input type="button" value="Click to UPPER" id="test-upper"/></p>
+				<p>Chữ thường: <input type="button" value="Click to lower" id="test-lower"/></p>
+				
+				<!-- HÀM 5 -->
+				<h2>Nối thêm chuỗi</h2>
+				<p>Để nối chuỗi thông thường ta dùng toán tử + cho gọn, ngoài ra ta còn có thể dùng hàm <span style="color: white; background-color: grey;">concat()</span> để nối hai chuỗi lại với nhau.</p>
+				<p><strong>Ví dụ:</strong> Cho hai chuỗi sau đây, nối hai chuỗi đó lại bằng hàm concat().</p>
+				<div id="content-concat">
+					Chuỗi 1: str1 = "My name is Dao Lap Xuan, My Birthday is February 4th. ";<br/>
+					Chuỗi 2: str2 = "I am from VietNam, I am Vietnamese. I am very handsome and lovely";
+				</div>
+				<p>Nối chuỗi: <input type="button" value="Click to plus" id="test-concat"/></p>
+				
+				<!-- HÀM 6 -->
+				<h2>Tìm ký tự hoặc mã ASCII của một ký tự</h2>
+				<p>Để xem ký tự của một vị trí bất kỳ nào đó, ta dùng hàm <span style="color: white; background-color: grey;">charAt()</span>. Và xem mã ASCII thì dùng hàm <span style="color: white; background-color: grey;">charCodeAt()</span>. Cả hai hàm này đều có tham số truyền vào là vị trí muốn xem (một lần nữa nhắc lại, vị trí bắt đầu = 0).</p>
+				<p><strong>Ví dụ:</strong> Cho chuỗi sau đây, kiểm tra xem vị trí 11 là kí tự nào, và kiểm tra mã ASCII của ký tự đó.</p>
+				<p>
+					Chuỗi: str = "My name is Dao Lap Xuan, My Birthday is February 4th. ";
+				</p>
+				<p>Kiểm tra ký tự: <input type="button" value="Click to test" onclick="TestLetter()"/></p>
+				<p>Kiểm tra mã ASCII: <input type="button" value="Click to test" onclick="TestASCII()"/></p>
+				
+				<!-- HÀM 7 -->
+				<h2>Chuyển đổi chuỗi sang mảng</h2>
+				<p>Để chuyển đổi chuỗi sang mảng thì bạn dùng hàm <span style="color: white; background-color: grey;">split()</span>, với tham số truyền vào là ký tự ngăn cách giữa các phần tử.</p>
+				<p><strong>Ví dụ:</strong> Cho chuỗi sau đây, chuyển chuỗi này thành mảng với ký tự ngăn cách giữa các phần tử là " ".</p>
+				<div id="content-split">
+					Chuỗi: str = "My name is Dao Lap Xuan, My Birthday is February 4th.";
+				</div>
+				<p>Chuyển chuỗi thành mảng: <input type="button" value="Click to split" id="test-split"/></p>
+			</div>
+		</div>
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			// *Hàm tìm vị trí*
+			var testLastIndexOf = document.getElementById('test-lastindexof');
+			var testSearch = document.getElementById('test-search');
+			
+			// ----
+			// *Hàm cắt chuỗi*
+			var testSubstring = document.getElementById('test-substring');
+			var testSub = document.getElementById('test-substr');
+			
+			// ----
+			// *Hàm tìm kiếm và thay thế*
+			var testReplace = document.getElementById('test-replace');
+			var contentReplace = document.getElementById('content-replace');
+			
+			// ----
+			// *Hàm chữ HOA và thường*
+			var testUpper = document.getElementById('test-upper');
+			var testLower = document.getElementById('test-lower');
+			var contentUpperLower = document.getElementById('content-upper-lower');
+			
+			// ----
+			// *Hàm nối hai chuỗi*
+			var testConcat = document.getElementById('test-concat');
+			var contentConcat = document.getElementById('content-concat');
+			
+			// ----
+			// *Hàm chuyển chuỗi thành mảng*
+			var testSplit = document.getElementById('test-split');
+			var contentSplit = document.getElementById('content-split');
+			
+			
+			// =*= PHẦN HÀM =*=
+			// *Hàm tìm vị trí*
+			function TestIndexOf() {
+				var str1 = "Dao Lap Xuan";
+				var str2 = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese";
+				
+				alert('Chuỗi str1 nằm ở vị trí ' + str2.indexOf(str1) + ' trong chuỗi str2');
+			}
+			
+			// ----
+			// *Hàm cắt chuỗi con: slice()*
+			function TestSlice() {
+				var string = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.";
+				// Cắt
+				var str = string.slice(11, 23);
+				
+				alert("Chuỗi cắt được: " + str);
+			}
+			// Tham số truyền vào âm
+			function TestSlice1() {
+				var string = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.";
+				// Cắt
+				var str = string.slice(-78, 23);
+				
+				alert("Chuỗi cắt được: " + str);
+			}
+			// Tham số truyền vào chỉ có start
+			function TestSlice2() {
+				var string = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.";
+				// Cắt
+				var str = string.slice(-78);
+				
+				alert("Chuỗi cắt được: " + str);
+			}
+			
+			// ----
+			// *Hàm kiểm tra ký tự*
+			// Hàm kiểm tra tại vị trí nào đó là ký tự gì
+			function TestLetter() {
+				var str = "My name is Dao Lap Xuan, My Birthday is February 4th. ";
+				alert('Ký tự vị trí 11 là: ' + str.charAt(11));
+			}
+			// Kiểm tra mã ASCII
+			function TestASCII() {
+				var str = "My name is Dao Lap Xuan, My Birthday is February 4th. ";
+				alert('Mã ASCII của kí tự tại vị trí 11 là: ' + str.charCodeAt(11));
+			}
+			
+			
+			// =*= PHẦN DOM GỌI HÀM =*=
+			// *Hàm tìm vị trí: lastIndexOf()*
+			testLastIndexOf.onclick = function() {
+				var str1 = "I am";
+				var str2 = "My name is Dao Lap Xuan, I am from VietNam, I am Vietnamese. I am very handsome and lovely";
+				
+				alert('Chuỗi str1 nằm ở vị trí ' + str2.lastIndexOf(str1) + ' trong chuỗi str2');
+			};
+			
+			// ---
+			// *Hàm cắt chuỗi con: substring()*
+			testSubstring.onclick = function() {
+				var string = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.";
+				// Cắt
+				var str = string.substring(40, 52);
+				
+				alert("Chuỗi cắt được: " + str);
+			};
+			
+			// ----
+			// *Hàm chuyển chuỗi thành mảng*
+			testSplit.onclick = function() {
+				str = "My name is Dao Lap Xuan, My Birthday is February 4th.";
+				str = str.split(" ");
+				contentSplit.innerHTML = "Mảng đã chuyển: " + str + "<br/> Số phần tử mảng: " + str.length;
+			};
+			
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			// *Hàm tìm vị trí: search()*
+			testSearch.addEventListener('click', function() {
+				var str1 = "Dao Lap Xuan";
+				var str2 = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese";
+				
+				alert('Chuỗi str1 nằm ở vị trí ' + str2.search(str1) + ' trong chuỗi str2');
+			});
+			
+			// ---
+			// *Hàm cắt chuỗi con: substr()*
+			testSub.addEventListener('click', function() {
+				var string = "My name is Dao Lap Xuan, My birthday is February 4th. I'm from VietNam, I'm Vietnamese.";
+				// Cắt
+				var str = string.substr(-25, 8);
+				
+				alert("Chuỗi cắt được: " + str);
+			});
+			
+			// ----
+			// *Hàm cắt chuỗi*
+			testReplace.addEventListener('click', function() {
+				// Lấy chuỗi
+				var str = contentReplace.innerHTML;
+				// Tìm và thay thế
+				str = str.replace("Dao Lap Xuan", "DLX");
+				// Chuỗi sau khi thay thế:
+				contentReplace.innerHTML = str;	
+			});
+			
+			// ----
+			// *Hàm chữ HOA và thường*
+			// Chữ HOA
+			testUpper.addEventListener('click', function() {
+				// Lấy chuỗi
+				var str = contentUpperLower.innerHTML;
+				// Biến thành chữ hoa
+				contentUpperLower.innerHTML = str.toUpperCase();
+			});
+			// Chữ thường
+			testLower.addEventListener('click', function() {
+				// Lấy chuỗi
+				var str = contentUpperLower.innerHTML;
+				// Biến thành chữ hoa
+				contentUpperLower.innerHTML = str.toLowerCase();
+			});
+			
+			// ----
+			// *Hàm nối hai chuỗi*
+			testConcat.addEventListener('click', function() {
+				var str1 = "My name is Dao Lap Xuan, My Birthday is February 4th. ";
+				var str2 = "I am from VietNam, I am Vietnamese. I am very handsome and lovely";
+				
+				contentConcat.innerHTML = '<strong>Chuỗi đã nối: </strong> ' + str1.concat(str2);
+			});
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+Hàm alert() có nhiệm vụ in một thông báo popup, nó có một tham số truyền vào và ts này
+chính là nội dung ta muốn thông báo với user.
+Hàm confirm() sẽ xuất hiện một thông bào popup, nhưng nó có thêm hai lựa chọn "Yes" và "No",
+user chọn Yes -> trả về TRUE, chọn NO -> trả về FALSE. Nó có một ts truyền vào và ts này
+là nội dung thông báo.
+Hàm prompt() dùng lấy info từ user, gồm hai ts truyền vào là nội dung thông báo và giá trị
+ban đầu. Nếu user ko nhập vào thì giá trị trả về NULL.
+-->
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 3: Hàm alert() - confirm() - prompt()</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<!-- Example alert() function-->
+		<input type="button" onclick="alert('Hello My World')" value="Click!" />
+		<br>
+		<!-- Example confirm() function -->
+		<script language="javascript">
+			confirm("Do you like ME?");
+		</script>
+		<!-- Example prompt() function -->
+		<script language="javascript">
+			var name = prompt("Nhập tên của bạn",'Tôi tên là: ');
+			// Xuất tên ra màn hình
+			alert(name);
+		</script>
+	</body>
+</html>

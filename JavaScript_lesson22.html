@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 22: BOM - Window</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>	
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- Phần 1 -->
+				<h2>1. Xác định kích thước của trình duyệt</h2>
+				<p>Để lấy kích thước chiều cao và rộng của trình duyệt thì ta sử dụng đối tượng <strong>window</strong>:</p>
+				<code>
+					// Lấy chiều cao<br/>
+					var heightBrowser = window.innerHeight;<br/>
+					<br/>
+					// Lấy chiều rộng<br/>
+					var widthBrowser = window.innerWidth;<br/>
+				</code>
+				<!-- Phần 2 -->
+				<h2>2. Thao tác với một cửa sổ window</h2>
+				<p>Đối tượng <strong>window</strong> cung cấp một số phương thức giúp thao tác với trình duyệt dễ dàng hơn.</p>
+				<h3>Mở một cửa sổ với lệnh window.open()</h3>
+				<p><strong>Cú pháp:</strong> <span style="color: white; background-color: grey;">object = window.open(url, name, options)</span></p>
+				<p><strong>Trong đó:</strong></p>
+				<ul>
+					<li><strong>url: </strong>là đường dẫn website bạn muốn mở.</li>
+					<li><strong>name: </strong>là tên bạn đặt cho cửa sổ này.</li>
+					<li><strong>options: </strong>là một chuỗi các thông số được cách nhau bởi dấu phẩy, sau đây là các thông số thông dụng: 
+						<ul id="list-child">
+							<li><strong>height=pixels:</strong> chiều cao của cửa sổ.</li>
+							<li><strong>width=pixels:</strong> chiều rộng của cửa sổ.</li>
+							<li><strong>top=pixels:</strong> vị trí hiển thị cửa sổ so với lề trên.</li>
+							<li><strong>left=pixels:</strong> vị trí hiển thị cửa sổ so với lề trái.</li>
+							<li><strong>menubar=yes|no|1|0:</strong> có hiển thị thanh menu hay không?</li>
+							<li><strong>resizable=yes|no|1|0:</strong> có hiển thị biểu tượng resize window hay ko?</li>
+							<li><strong>scrollbars=yes|no|1|0:</strong> có hiển thị thanh trạng thái hay ko?</li>
+							<li><strong>status=yes|no|1|0:</strong> có hiển thị trạng thái hay ko?</li>
+							<li><strong>titlebar=yes|no|1|0:</strong> có hiển thị titlebar hay ko?</li>
+							<li><strong>toolbar=yes|no|1|0:</strong> có hiển thị toolbar hay ko?</li>
+							<li><strong>fullscreen=yes|no|1|0:</strong> có hiển thị biểu tượng fullscreen hay ko?</li>
+						</ul>
+					</li>
+				</ul>
+				<p>Mở cửa số Facebook mới: <input type="button" value="Open" onclick="return OpenWindow()"/></p>
+				<h3>Đóng một cửa sổ với lệnh window.close()</h3>
+				<p><strong>Cú pháp:</strong> <span style="color: white; background-color: grey;">windowObject.close()</span></p>
+				<p>Đóng cửa số Facebook mới: <input type="button" value="Close" onclick="return CloseWindow()"/></p>
+				<h3>Di chuyển một cửa sổ với lệnh window.moveTo()</h3>
+				<p><strong>Cú pháp:</strong> <span style="color: white; background-color: grey;">windowObject.moveTo(top, left)</span></p>
+				<p><strong>Trong đó:</strong></p>
+				<ul>
+					<li><strong>top:</strong> là số pixels so với lề trên.</li>
+					<li><strong>left:</strong> là số pixels so với lề trái.</li>
+				</ul>
+				<p>Di chuyển cửa số Facebook mới: <input type="button" value="Move" onclick="return MoveWindow()"/></p>
+				<h3>Thay đổi kích cỡ một cửa sổ với lệnh window.resizeTo()</h3>
+				<p><strong>Cú pháp:</strong> <span style="color: white; background-color: grey;">windowObject.resizeTo(width, height)</span></p>
+				<p><strong>Trong đó:</strong></p>
+				<ul>
+					<li><strong>width:</strong> là chiều rộng cửa sổ.</li>
+					<li><strong>height:</strong> là chiều cao cửa sổ.</li>
+				</ul>
+				<p>Thay đổi kích cỡ cửa số Facebook mới: <input type="button" value="Resize" onclick="return ResizeWindow()"/></p>
+				<div><strong>Node:</strong> Các phương thức moveTo() và resizeTo() không còn được trình duyệt hỗ trợ nữa. Chỉ test trên IDE được.</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			// Object new window:
+			var newWindowChild = null;
+			
+			// =*= PHẦN HÀM =*=
+			// Open new Window
+			function OpenWindow() {
+				newWindowChild = window.open('http://www.Facebook.com', 'Facebook windowChild', 'height=500px, width=500px');
+			}
+			// Close new Window
+			function CloseWindow() {
+				newWindowChild.close();
+			}
+			// Move new Window
+			function MoveWindow() {
+				newWindowChild.moveTo(200, 200);
+				newWindowChild.focus();
+				return false;
+			}
+			// Resoze new Window
+			function ResizeWindow() {
+				newWindowChild.resizeTo(300, 400);
+			}
+			// =*= PHẦN DOM GỌI SỰ KIỆN =*=
+			
+			// =*= PHẦN SỬ DỤNG ADDEVENTLISTENER ĐỂ XỬ LÝ DOM
+			// Open new Window
+			
+		</script>
+	</body>
+</html>

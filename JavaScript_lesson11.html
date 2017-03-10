@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 11: DOM và các loại DOM</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+		<style type="text/css">
+			body {
+				
+				margin: 20px;
+			}
+			h1 {
+				border-bottom: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h1>1. DOM là gì?</h1>
+		<p>DOM là viết tắt của chữ <strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel, có thể tạm hiểu là mô hình các đối tượng trong tài liệu HTML.</p>
+		<p>Trong mỗi thẻ HTML sẽ có những thuộc tính (Properties) và có phần cấp <strong>"Cha - Con"</strong> với các thẻ HTML khác. Sự phân cấp và các thuộc tính của thẻ HTML này goi là <span style="color: red">selector</span> và trong DOM có nhiệm vụ xử lý các vấn đề như đổi thuộc tính của thẻ, đổi cấu trúc HTML của thẻ,...</p>
+		<p>Trong Javascript, để thao tác với các thẻ HTML, ta thông qua đối tượng <strong>document</strong>.
+		<hr>
+		<h1>2. Các thể loại DOM trong Javascript</h1>
+		<p><strong>Danh sách chia nhóm DOM: </strong></p>
+		<ul>
+			<li>DOM document: có nv lưu trữ toàn bộ các thành phần trong tài liệu của website.</li>
+			<li>DOM element: có nv truy xuất tới các thẻ HTML nào đó thông qua các thuộc tính như id, class, tên thẻ HTML, selector,...</li>
+			<li>DOM HTML: có nv thay đổi giá trị nội dung và giá trị thuộc tính của các thẻ HTML.</li>
+			<li>DOM CSS: có nv thay đổi các định dạng CSS của thẻ HTML.</li>
+			<li>DOM Event: có nv gán các sự kiện như onclick(), onload() vào các thẻ HTML . </li>
+			<li>DOM Listener: có nv lắng nghe các sự kiện tác động lên thẻ HTML đó.</li>
+			<li>DOM Navigation dùng để quản lý, thao tác với các thẻ HTML, thể hiện mối qua hệ CHA - CON của các thẻ HTML.</li>
+			<li>DOM Node, Nodelist: có nhiệm vụ thao tác với HTML thông qua đối tượng (Object)</li>
+		</ul>
+		<hr>
+		<h1>3. Tìm hiểu DOM element</h1>
+		<h3>Tìm thẻ HTML theo ID</h3>
+		<p>
+			Cú pháp:<br>
+			<span style="font-family: courier; color: blue;">var element = document.getElementById('id');</span><br><br>
+			Lấy id thẻ input:<br>
+			<span style="font-family: courier; color: blue;">var element = document.getElementById('id-input');</span><br><br>
+			Lấy giá trị thẻ input:<br>
+			<span style="font-family: courier; color: blue;">document.write(element.value);</span><br>
+			<input type="button" id="id-input" class="class-input" value="Đây là value theo id thẻ input" />
+		</p>
+		<hr>
+		<h3>Tìm thẻ HTML theo tên thẻ HTML</h3>
+		<p>Tên thẻ HTML ở đây là các thẻ như p, h1..h6, div,...</p>
+		<p>
+			Cú pháp:<br>
+			<span style="font-family: courier; color: blue;">var element = document.getElementById('tagName');</span><br><br>
+			Lấy tagName thẻ input:<br>
+			<span style="font-family: courier; color: blue;">var element = document.getElementsByTagName('input');</span><br><br>
+			Lấy giá trị thẻ input:<br>
+			<span style="font-family: courier; color: blue;">document.write(element[0].value);</span><br>
+			<span style="font-family: courier; color: blue;">document.write(element[1].value);</span><br><br>
+			<strong>Note: </strong><i>Vì lấy theo tagName HTML thì sẽ bị trùng nhiều phần tử do một thẻ html đc sử dụng nhiều lần, nên giá trị trả về sẽ là một mảng object, ta phải đánh số thứ tự như mảng mới lấy đc value cần lấy.<br>
+			Ví dụ ở đây, element[0] sẽ trả về giá trị thẻ input 1 có id là id-input, và element[1] sẽ trả về value của thẻ input 2 có id là id-input1.</i><br>
+			<input type="button" id="id-input1" value="Đây là value theo tên thẻ input" />
+		</p>
+		<hr>
+		<h3>Tìm thẻ HTML theo class</h3>
+		<p>
+			Cú pháp:<br>
+			<span style="font-family: courier; color: blue;">var element = document.getElementsByClass('class');</span><br><br>
+			Lấy class thẻ input:<br>
+			<span style="font-family: courier; color: blue;">var element = document.getElementsByClass('class-input');</span><br><br>
+			Lấy giá trị thẻ input:<br>
+			<span style="font-family: courier; color: blue;">document.write(element[0].value);</span><br>
+			<span style="font-family: courier; color: blue;">document.write(element[1].value);</span><br><br>
+			<strong>Note: </strong><i>Tương tự lấy theo tagName HTML, lấy theo class cũng trả về mảng các object.<br>
+			Ví dụ ở đây là, trả về 2 value của 2 thẻ input có cùng class là class-input</i><br>
+			<input type="button" id="id-input2" class="class-input" value="Value theo tên class" />
+		</p>
+		<hr>
+		<h3>Tìm thẻ HTML theo cú pháp Selector CSS</h3>
+		<hr>
+		<!-- Phần Javascript -->
+		<script>
+			// Lấy giá trị thẻ
+			var button_input_id = document.getElementById('id-input');
+			
+			var element_tagName = document.getElementsByTagName('input');
+			var button_input_tagName = document.getElementById('id-input1');
+			
+			var element_class = document.getElementsByClassName('class-input');
+			var button_input_class = document.getElementById('id-input2');
+			
+			// Lấy giá trị thẻ input theo id
+			button_input_id.addEventListener('click', function(){
+				alert('Kết quả: ' + button_input_id.value);
+			});
+			// Lấy giá trị thẻ input theo tagName 
+			button_input_tagName.addEventListener('click', function(){
+				alert('Đây là value của thẻ input 1: ' + element_tagName[0].value);
+				alert('Đây là value của thẻ input 2: ' + element_tagName[1].value);
+			});
+			// Lấy giá trị thẻ input theo class name 
+			button_input_class.addEventListener('click', function(){
+				alert('Đây là value của thẻ input 1: ' + element_class[0].value);
+				alert('Đây là value của thẻ input 3: ' + element_class[1].value);
+			});
+				
+			
+		</script>
+	</body>
+</html>

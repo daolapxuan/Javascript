@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 6: Vòng lặp for</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h1>Vòng lặp For</h1>
+		<p>Cho vòng lặp for (i; ; )</p>
+		<p>Nhập n từ bàn phím và nhấn xem kết quả.</p>
+		<p>Nhập n = <input type="button" id="n" value="Click Nhập"/></p>
+		<hr>
+		<h2>Vòng lặp for với bước nhảy một đơn vị</h2>
+		<p>Tăng một đơn vị - <input type="button" id="result_increase" value="Click xem kết quả"/></p>
+		<p>Giảm một đơn vị - <input type="button" id="result_decrease" value="Click xem kết quả"/></p>
+		<hr>
+		<h2>Vòng lặp for với bước nhảy x đơn vị</h2>
+		<p>Tăng x đơn vị - <input type="button" id="result_increase_x" value="Click xem kết quả"/></p>
+		<p>Giảm x đơn vị - <input type="button" id="result_decrease_x" value="Click xem kết quả"/></p>
+		<hr>
+		<h2>Vòng lặp for kết hợp câu điều kiện If</h2>
+		<p>In ra các số chia hết cho 3 trong khoảng 0-100</p>
+		<input type="button" id="result_division_3" value="Click xem kết quả"/>
+		<hr>
+		<h2>Vòng lặp for lồng nhau</h2>
+		<p>In ra bảng cửu chương 9 x 9</p>
+		<input type="button" id="result_multiplication_table" value="Click xem kết quả"/>
+		<!-- Phần xử lý Javascript -->
+		<script language="javascript">
+			var i, n;
+			var button_n = document.getElementById('n');
+			var button_result_increase = document.getElementById('result_increase');
+			var button_result_decrease = document.getElementById('result_decrease');
+			var x = 3;
+			var button_result_increase_x = document.getElementById('result_increase_x');
+			var button_result_decrease_x = document.getElementById('result_decrease_x');
+			var button_result_division_3 = document.getElementById('result_division_3');
+			var button_result_multiplication_table = document.getElementById('result_multiplication_table'); 
+			
+			// Nhập n
+			button_n.addEventListener('click', function(){
+				n = prompt("Nhập n: ", '');
+			});
+			// Tăng từ 1 đến n, mỗi lần tăng 1
+			button_result_increase.addEventListener('click', function(){
+				for (i = 0; i < n; i++) {
+					document.write((i + 1) + ' ');
+				}
+			});
+			// Giảm n đến 1, mỗi lần giảm 1
+			button_result_decrease.addEventListener('click', function(){
+				for (i = n; i > 0; i--) {
+					document.write(i + ' ');
+				}
+			});
+			// Tăng 1 đến n, mỗi lần tăng x
+			button_result_increase_x.addEventListener('click', function(){
+				for (i = 1; i <= n; i += x) {
+					document.write(i + ' ');
+				}
+			});
+			// Giảm n đến 1, mỗi lần giảm x
+			button_result_decrease_x.addEventListener('click', function(){
+				for (i = n; i > 0; i -= x) {
+					document.write(i + ' ');
+				}
+			});
+			// In ra các số chia hết cho 3
+			button_result_division_3.addEventListener('click', function(){
+				for (i = 0; i <= 100; i ++) {
+					if (i % 3 == 0) {
+						document.write(i + ' ');
+					}
+				}
+			});
+			// In ra bảng cửu chương 9x9
+			button_result_multiplication_table.addEventListener('click', function(){
+				var j;
+				document.write('Bảng cửu chương: <br/>');
+				for (i = 1; i <= 9; i++) {
+					for (j = 1; j <= 9; j++) {
+						document.write(i + " x " + j + " = " + (i * j));
+						document.write("<br/>");
+					}
+					document.write("<br/>");
+				}
+			});
+		</script>
+	</body>
+</html>

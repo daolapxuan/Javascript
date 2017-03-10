@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 21: DOM Nodes</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>	
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 1px solid brown;
+			}
+			
+			code {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- document.createElement() -->
+				<h2>1. DOM Node - document.createElement()</h2>
+				<p><strong>Khái niệm</strong>: Khi ta sử dụng DOM Element để truy vấn tới một đối tượng HTML nào đó thì kết quả nó sẽ trả về một object và object đó gọi là DOM Node.</p>
+				<p><strong>Ví dụ</strong>:</p>
+				<code>var node = document.getElementById('some-id');</code>
+				<p>Với cách này bắt buộc tồn tại một đối tượng HTML đang hiển thị trên website thì mới khởi tạo thành công. Giả sử ta muốn tạo Node mới hoàn toàn và ko liên quan tới những thẻ HTML đang hiển thị trên website thì làm sao? <br>
+				Rất đơn giản, ta sẽ sử dụng phương thức document.createElement() với tham số truyền vào là <strong>tên thẻ HTML cần tạo</strong>.</p>
+				<code>var p = document.createElement("p");</code>
+				<p>Sau khi khởi tạo xong, ta hoàn toàn có thể sử dụng các phương thức, thuộc tính của DOM HTML, DOM CSS.</p>
+				<code>p.innerHTML = "Tự hoc Javascript tại website: Freetuts.net";</code>
+				<p>Để thêm Node này vào trang web, ta sẽ dùng phương thức appendChild(). Ví dụ ở đây ta thêm vào thẻ body thì làm như sau:</p>
+				<code>document.getElementsByTagName('body')[0].appendChild(p);</code>
+				<hr>
+				<h2>2. DOM Node - document.createTextNode()</h2>
+				<p><strong>Khái niệm:</strong> Text node là một node đặc biệt, nó không phải là một thẻ HTML thông thường, mà chỉ là ột chuỗi (string) nên thông thường chúng ta sử dụng nó để thay thế cách gán thông thường node.innerHTML.</p>
+				<hr>
+				<h2>3. DOM Node - các phương thức khác</h2>
+				<h3>Phương thức appendChild()</h3>
+				<p>Dùng để thêm (bổ sung) vào vị trí cuối cùng của đối tượng một thẻ HTML nào đó.</p>
+				<p><strong>Ví dụ 1:</strong> Thêm nội dung vào thẻ div có id là hello.</p>
+				<div id="hello">
+					Xìn chào mấy bạn.
+				</div>
+				<p><input type="button" value="Append" id="btn-append"/></p>
+				<h3>Phương thức insertBefore()</h3>
+				<p>Được dùng để thêm một Node vào đằng trước một node con nào đó. Phương thức này có hai tham số truyền vào là <i>insertBefore(nodeInsert, nodeChild)</i>, trong đó:</p>
+				<ul>
+					<li><strong>nodeInsert: </strong>là node ta muốn thêm vào.</li>
+					<li><strong>nodeChild:</strong> là node con mà ta muốn thêm vào đằng trước nó.</li>
+				</ul>
+				<p><strong>Ví dụ 2:</strong> thêm đoạn văn bản vào giữa hai đoạn văn bản dưới đây:</p>
+				<div id="content">
+					<h5>Hôm nay là một ngày tôi bắt đầu làm lại cuộc đời.</h5>
+					<h5>Tôi phải có trách nhiệm hơn với cuộc sống của mình, với người thân và với những người đã tin tưởng tôi.</h5>
+				</div>
+				<p><input type="button" value="Insert Before" id="btn-insert-before"/></p>
+				<h3>Phương thức removeChild()</h3>
+				<p>Được dùng để xóa một node con ra khỏi node hiện tại</p>
+				<p><strong>Ví dụ 3:</strong> Ta dựa vào ví dụ 2, ta sẽ xóa node con được tạo ra trước thẻ h5[1].</p>
+				<p><input type="button" value="Remove Child" id="btn-remove-child"/></p>
+				<h3>Phương thức replaceChild()</h3>
+				<p>Thay vì xóa một node con nào đó như phương thức removeChild(), ta sẽ dùng replaceChild() để thêm vào một node khác tại node đã xóa.</p>
+				<p><strong>Ví dụ 4:</strong> Dựa vào ví dụ 2, ta thay thế node con được tạo ra trước thẻ h5[1] bằng một node con khác có nội dung mới hoàn toàn.</p>
+				<p><input type="button" value="Replace Child" id="btn-replace-child"/></p>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*=KHAI BÁO BIẾN & KHỞI TẠO=*=
+			// Ví dụ 1.
+			var buttonAppend = document.getElementById('btn-append');
+			// Ví dụ 2.
+			var buttonInsertBefore = document.getElementById('btn-insert-before');
+			// Ví dụ 3.
+			var buttonRemoveChild = document.getElementById('btn-remove-child');
+			// Ví dụ 4.
+			var buttonReplaceChild = document.getElementById('btn-replace-child');
+			
+			// =*=HÀM()=*=
+			
+			// =*=DOM THÊM SỰ KIỆN=*=
+			
+			// =*=DOM XỬ LÝ BẰNG ADDEVENTLISTENER()=*=
+			// Thêm sự kiện click cho buttonAppend:
+			buttonAppend.addEventListener('click', function(){
+				// Tạo node h1
+				var h1 = document.createElement('h1');
+				// Tạo text cho h1		
+				var textH1 = document.createTextNode('Chào thế giới, tôi là thẻ H1!');
+				// Thêm text cho h1
+				h1.appendChild(textH1);
+				// Thêm h1 vào thẻ div có id="hello"
+				document.getElementById('hello').appendChild(h1);
+			});
+			// Ví dụ 2.
+			buttonInsertBefore.addEventListener('click', function(){
+				// Tạo node mới
+				var h5 = document.createElement('h5');
+				// Tạo text cho h5
+				var textH5 = document.createTextNode('Tôi đã đánh mất quá nhiều thứ trong quãng thời gian qua.');
+				// Gán text cho h5
+				h5.appendChild(textH5);
+				
+				// Lấy thẻ muốn chèn nội dung vào.
+				var element = document.getElementById('content');
+				
+				// Lấy vị trí thẻ cần insertBefore() vào trước nó.
+				var elementChild = document.getElementsByTagName('h5')[1];
+				
+				// Chèn node mới vào trước thẻ đã chỉ định:
+				element.insertBefore(h5, elementChild);
+			});
+			// Ví dụ 3.
+			buttonRemoveChild.addEventListener('click', function(){
+				// Chọn vị trí muốn xóa
+				var nodeRemove = document.getElementsByTagName('h5')[1];
+				
+				// Remove node con của thẻ cần muốn xóa
+				document.getElementById('content').removeChild(nodeRemove);
+			});
+			// Ví dụ 4.
+			buttonReplaceChild.addEventListener('click', function(){
+				// Tạo node muốn thêm vào.
+				var newNode = document.createElement('h5');
+				// Thêm text cho node mới.
+				newNode.innerHTML = "Tôi làm được, vì tôi là tôi!";
+				
+				// Lấy vị trí node cần replace.
+				var replace = document.getElementsByTagName('h5')[1];
+				
+				// Replace node con của thẻ cần muốn replace:
+				document.getElementById('content').replaceChild(newNode, replace);
+				
+			});
+		</script>
+	</body>
+</html>

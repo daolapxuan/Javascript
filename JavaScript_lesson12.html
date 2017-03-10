@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 12: Sự kiện (Event)</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+		<style type="text/css">
+			body{
+				margin: 20px;
+			}
+			h2 {
+				border-bottom: 1px solid #33ffff;
+			}
+			.container {
+				width: 60%;
+				margin: 0 auto;
+				display: table;
+			}
+			.row {
+				display: table-row;
+			}
+			.col {
+				display: table-cell;
+				border: 1px solid #ffb3b3;
+			}
+			#fields {
+				background-color: #ffff66;
+				color: #d633ff;
+				text-align: center;
+				font-family: arial;
+				font-weight: bold;
+				line-height: 1.1rem;
+			}
+			#return-content {
+				background-color: #ffb3b3;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h2>Các sự kiện trong Javascript.</h2>
+		<div class="container">
+			<div class="row" id="fields">
+				<div class="col">STT</div>
+				<div class="col">Event Name</div>
+				<div class="col">Description</div>
+			</div>
+			<div class="row">
+				<div class="col">1</div>
+				<div class="col">onclick</div>
+				<div class="col">Xảy ra khi click vào thẻ HTML</div>
+			</div>
+			<div class="row">
+				<div class="col">2</div>
+				<div class="col">ondbclick</div>
+				<div class="col">Xảy ra khi double click vào thẻ HTML</div>
+			</div>
+			<div class="row">
+				<div class="col">3</div>
+				<div class="col">onchange</div>
+				<div class="col">Xảy ra khi giá trị (value) của thẻ HTML đổi. Thường dùng trong các đối thẻ form input</div>
+			</div>
+			<div class="row">
+				<div class="col">4</div>
+				<div class="col">onmouseover</div>
+				<div class="col">Xảy ra khi con trỏ chuột bắt đầu đi vào thẻ HTML</div>
+			</div>
+			<div class="row">
+				<div class="col">5</div>
+				<div class="col">onmouseout</div>
+				<div class="col">Xảy ra khi con trỏ chuột bắt đầu rời khỏi thẻ HTML</div>
+			</div>
+			<div class="row">
+				<div class="col">6</div>
+				<div class="col">onmouseenter</div>
+				<div class="col">Tương tự như onmouseover</div>
+			</div>
+			<div class="row">
+				<div class="col">7</div>
+				<div class="col">onmouseleve</div>
+				<div class="col">Tương tự như onmouseout</div>
+			</div>
+			<div class="row">
+				<div class="col">8</div>
+				<div class="col">onmousemove</div>
+				<div class="col">Xảy ra khi con chuột di chuyển bên trong thẻ HTML</div>
+			</div>
+			<div class="row">
+				<div class="col">9</div>
+				<div class="col">onkeydown</div>
+				<div class="col">Xảy ra khi gõ một phím bất kì vào ô input</div>
+			</div>
+			<div class="row">
+				<div class="col">10</div>
+				<div class="col">onload</div>
+				<div class="col">Sảy ra khi thẻ HTML bắt đầu chạy, nó giống như hàm khởi tạo trong lập trình hướng đối tượng vậy đó.</div>
+			</div>
+			<div class="row">
+				<div class="col">11</div>
+				<div class="col">onkeyup</div>
+				<div class="col">Xảy ra khi bạn gõ phím nhưng lúc bạn nhã phím ra sẽ được kích hoạt</div>
+			</div>
+			<div class="row"> 
+				<div class="col">12</div>
+				<div class="col">onkeypress</div>
+				<div class="col">Xảy ra khi bạn nhấn môt phím vào ô input</div>
+			</div>
+			<div class="row">
+				<div class="col">13</div>
+				<div class="col">onblur</div>
+				<div class="col">Xảy ra khi con trỏ chuột rời khỏi ô input</div>
+			</div>
+			<div class="row">
+				<div class="col">14</div>
+				<div class="col">oncopy</div>
+				<div class="col">Xảy ra khi bạn copy nội dung của thẻ</div>
+			</div>
+			<div class="row">
+				<div class="col">15</div>
+				<div class="col">oncut</div>
+				<div class="col">Xảy ra khi bạn cắt nội dung của thẻ</div>
+			</div>
+			<div class="row">
+				<div class="col">16</div>
+				<div class="col">onpaste</div>
+				<div class="col">Xảy ra khi bạn dán nội dung vào thẻ</div>
+			</div>
+		</div><!-- .container -->
+		<h2>Các ví dụ về xử lý sự kiện trong Javascript</h2>
+		<h3>Ví dụ 1</h3>
+		<p><strong>Yêu cầu: </strong>Viết chương trình gồm 1 ô input nhập nội dung và 1 thẻ div dùng để hiển thị nội dung (value of input) khi người dùng gõ vào ô input</p>
+		<p><input type="text" id="content-input" value="" onkeyup="show_result()" /></p>
+		<div id="return-content"></div>
+		<hr>
+		<h3>Ví dụ 2</h3>
+		<p><strong>Yêu cầu: </strong>Viết chương trình khi người dùng copy nội dung website thì thông báo là "bạn đã copy thành công!"	</p>
+		<h4>Nội dung website:</h4>
+		<div oncopy="show_message()">Về định nghĩa dưới dạng nghe hiểu thì sự kiện là một hành động nào đó tác động lên đối tượng HTML mà ta có thể bắt được sự kiện này và thực hiện những hành động nào đó. </div>
+		<hr>
+		<h3>Ví dụ 3</h3>
+		<p><strong>Yêu cầu: </strong>Viết chương trình tự động tính tổng của hai số nhập vào.</p>
+		a: <input type="text" id="a" value="" onkeyup="sum()"/><br>
+		b: <input type="text" id="b" value="" onkeyup="sum()"/><br><br>
+		a + b = <input type="text" id="result" value=""/>
+		<HR>
+		<h3>Ví dụ 4</h3>
+		<p><strong>Yêu cầu: </strong>Viết chương trình tự động xuất ra nghiệm phương trình bậc nhất một ẩn: <i>ax + b = 0</i> khi user click vào button "Giải phương trình". Với a, b nhập từ bàn phím</p>
+		a: <input type="text" id="a-1" value="" onkeyup="show_pt()" onkeyup="solve()"/><br>
+		b: <input type="text" id="b-1" value="" onkeyup="show_pt()"/><br>
+		Phương trình bậc nhất đã nhập: <div id="return-pt"></div>
+		<p><input type="button" id="solve" value="Bấm giải phương trình"></p>
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			// Hàm gán giá trị cho thẻ div và trả về nội dung đó nhờ event onkeyup
+			function show_result() {
+				var text_input = document.getElementById('content-input');
+				var return_div = document.getElementById('return-content');
+				
+				return_div.innerHTML = text_input.value;
+			}
+			
+			// Hàm trả về thông báo khi sự kiện copy được thực hiện
+			function show_message() {
+				alert('Bạn đã copy thành công!');
+			}
+			
+			// Hàm tính tổng
+			function sum() {
+				var input_a = document.getElementById('a');
+				var input_b = document.getElementById('b');
+				var result = document.getElementById('result');
+				// Tính tổng hai giá trị a và b
+				var sum = parseInt(input_a.value) + parseInt(input_b.value); // Hàm parseInt() ép kiểu thành kiểu int
+				
+				// Gán giá trị sum cho thẻ input result
+				if (!isNaN(sum)) {
+					result.value = sum;
+				}
+			}
+			
+			var input_a_1 = document.getElementById('a-1');	
+			var input_b_1 = document.getElementById('b-1');
+			var return_pt = document.getElementById('return-pt');
+			var button_solve = document.getElementById('solve');
+			
+			// Hàm hiển thị phương trình đã nhập
+			function show_pt() {
+				return_pt.innerHTML = input_a_1.value + 'x + ' + input_b_1.value + ' = 0.';
+			}
+			// Hàm giải pt bậc nhất
+			button_solve.addEventListener('click', function(){
+				var a = parseFloat(input_a_1.value);
+				var b = parseFloat(input_b_1.value);
+				
+				if (a == 0 && b == 0) {
+					alert('a = 0 và b = 0 nên phương trình vô số nghiệm');
+				}
+				else if (a != 0 && b == 0) {
+					alert('a khác 0 và b = 0 nên phương trình có nghiệm x = 0');
+				}
+				else if (a == 0 && b != 0) {
+					alert('Thằng ngu, nhập thế thì vô nghiệm mẹ rồi, dốt toán à?');
+				}
+				else {
+					alert('Phương trình này có nghiệm x = ' + (-b / a));
+				}
+			});
+		</script>
+	</body>
+</html>

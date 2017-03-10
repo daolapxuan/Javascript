@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<meta charset="utf-8" />
+		<title>Lesson 18: Đối tượng THIS</title>
+		<meta name="author" content="DLX"/>
+		<meta name="description" content="THIS trong javascript" />
+		<style type="text/css">
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN HTML -->
+				<h3>Giới thiệu khái quát.</h3>
+				<p>Đối tượng <strong>this</strong> là đối tượng hiện tại đang được sử dụng hoặc đang truy cập tới. Ví dụ khi ta viết một hàm hành động cho sự kiện <strong>click</strong>, nếu trong hành động đó có sử dụng <strong>this</strong thì lúc này, <strong>this</strong> chính là thẻ HTML mà ta <strong>click</strong>.</p>
+				<p><strong>Ví dụ:</strong> Đối tượng this trong event.
+				<p><input type="button" id="btn" value="click vào"/></p>
+				<p><strong>Ví dụ:</strong> Đối tượng this làm tham số cho hàm được gọi bằng sự kiện trong thẻ HTML.</p>
+				<p><input type="button" id="btn1" onclick="Show(this)" value="click vào"/></p>
+				
+				<!-- PHẦN JAVASCRIPT -->
+				<script language="javascript">
+					var button = document.getElementById('btn');
+					
+					function Show(object) {
+						alert(object.type);
+					}
+					
+					button.addEventListener('click', function(){
+						alert(this.type);
+					});
+				</script>
+			</div>
+		</div>
+	</body>
+</html>

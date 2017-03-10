@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 13: Return TRUE/FALSE của Event</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h2>Bài tập validate form đơn giản với Event</h2>
+		<p><i>Thiết kế form đăng ký:</i></p>
+		<form method="post" action="">
+			Username: <input type="text" id="username" name="username" value=""/><br/><br/>
+			Email: <input type="email" id="email" name="email" value=""/><br/><br/>
+			Password: <input type="text" id="password" name="password" value=""/><br/><br/>
+			Re Password:<input type="text" id="re-password" name="re-password" value=""/><br/><br/>
+			<input type="submit" value="Register" onclick="return validate()" />
+		</form>
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			// Lấy giá trị theo id.
+			var ip_username = document.getElementById('username').value;
+			var ip_email = document.getElementById('email').value;
+			var ip_password = document.getElementById('password').value;
+			var ip_re_password = document.getElementById('re-password').value;
+			
+			function validate() {
+				// Kiểm tra tên đăng nhập: Không được để trống
+				if (ip_username == "") {
+					alert('Bạn chưa nhập tên đăng nhập!');
+					return false;
+				}
+				
+				// Kiểm tra email: Không được để trống
+				if (ip_email == "") {
+					alert('Bạn chưa nhập email!');
+					return false;
+				}
+				
+				if (ip_password == "") {
+					alert('Bạn chưa nhập mật khẩu!');
+					return false;
+				}
+				
+				if (ip_re_password != ip_password) {
+					alert('Mật khẩu lập lại không đúng!');
+					return false;
+				}
+				
+				return true;
+			}
+		</script>
+	</body>
+</html>

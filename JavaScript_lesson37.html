@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 37: JavaScript Object Prototypes</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			code {
+				color: grey;
+			}
+			
+			.code-style {
+				border: 1px solid red;
+				padding-left: 15px;
+			}
+			
+			.code-comment {
+				color: green;
+			}
+			
+			.code-name {
+				color: white;
+				background-color: grey;
+			}
+			
+			.tab-first {
+				padding-left: 20px;
+			}
+			
+			.tab-second {
+				padding-left: 40px;
+			}
+			
+			.tab-third {
+				padding-left: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>1. Prototypes trong JavaScript</h2>
+				<p><strong>Prototypes</strong> dịch ra là nguyên mẫu nhưng về phía lập trình JavaScript thì bạn có thể hiểu nó giống như các thành phần phương thức và thuộc tính của một đối tượng. Vì vậy tất cả các đối tượng trong JavaScript đều có một <strong>Prototype</strong> riêng để lưu trữ các thành phần đó. Lúc này, khi bạn tạo mới một đối tượng thì đối tượng đó sẽ kế thừa tất cả các phương thức và thuộc tính chứa trong Prototype của đối tượng đó.</p>
+				<p><strong>Ví dụ</strong> khi bạn tạo mới một đối tượng <span class="code-name">Number</span> thì nó sẽ có tất cả các <strong>hàm (hay gọi là phương thức)</strong> xử lý riêng của đối tượng Number.</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Khởi tạo một đối tượng Number</span><br/>
+						var myAge = new Number(23);<br/>
+						<br/>
+						<span class="code-comment">// Lúc này sẽ sử dụng được các phương thức</span><br/>
+						myAge.toString();<br/>
+						myAge.toFixed();<br/>
+						myAge.toPrecision();<br/>
+						myAge.valueOf();<br/>
+					</code>
+				</div>
+				<h3>Bổ sung dữ liệu vào đối tượng</h3>
+				<p>Chúng ta hoàn toàn có thể thêm vào các thuộc tính và phương thức vào Prototype của một đối tượng, bằng cách:</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Thêm thuộc tính</span><br/>
+						Object.prototype.thuoc_tinh = "Giá trị mặc định";<br/>
+						<span class="code-comment">// Thêm phương thức</span><br/>
+						Object.prototype.phuong_thuc = function() {<br>
+							<span class="tab-first"><span class="code-comment">// Do something</span></span><br/>
+						};<br/>
+					</code>
+				</div>
+				<p><strong>Ví dụ:</strong> Thêm một hàm <span class="code-name">plus()</span> cộng dồn vào giá trị hiện tại của đối tượng Number. Lưu ý, bạn cần sử dụng hàm <span class="code-comment">valueOf()</span> để lấy giá trị hiện tại của đối tượng.</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Thêm phương thức plus vào prototype của đối tượng Number</span><br/>
+						Number.prototype.plus = function(_number) {<br/>
+							<span class="tab-first">return valueOf(_number) + parseInt(_number);</span><br/> 
+						};<br/>
+						<br/>
+						<span class="code-comment">// Tạo đối tượng Number</span><br/>
+						var myAge = Number(23);<br/>
+						document.write("myAge = " + myAge.plus(23)); <span class="code-comment">// myAge = 56</span><br/>
+						<br/>
+						<span class="code-comment">// Tạo thêm đối tượng khác</span><br/>
+						var newNumber = 7;<br/>
+						document.write("newNumber = " + newNumber.plus(23)); <span class="code-comment">// newNumber = 56</span><br/>
+					</code>
+				</div>
+				<p>Trong ví dụ trên, ta dùng hai cách tạo mới một đối tượng <span class="code-name">Number</span> và cả hai đều sử dụng được hàm <span class="code-name">plus()</span>.</p>
+
+				<!-- PHẦN 2 -->
+				<h2>2. Tạo mới Object và thao tác với Prototype</h2>
+				<p>Ta đã biết để tạo mới một Object, ta dùng từ khóa <span class="code-name">new Object()</span> và <span class="code-name">{}</span>, nhưng khi tạo bằng hai cách này, ta không thể sử dụng từ khóa <strong>new</strong> để khởi tạo mới một đối tượng được.</p>
+				<div class="code-style">
+					<code>
+						var Person = {};<br/>
+						<br/>
+						<span class="code-comment">// Cách tạo bên dưới SAI, không hoạt động được</span><br/>
+						var newPerson = new Person();<br/>
+					</code>
+				</div>
+				<p>Để có thể giải quyết được điều này, ta dùng <strong>hàm trong Javascript</strong>.</p>
+				<p><strong>Ví dụ:</strong> Tạo một đối tượng Person gồm các thuộc tính (name, age, address) và phương thức xem thông tin <span class="code-name">showInfo()</span>.</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Dùng hàm trong Javascript</span><br/>
+						function Person() {<br/>
+							<span class="tab-first"><span class="code-comment">// Thuộc tính</span></span><br/>
+							<span class="tab-first">this.name = "";</span><br/>
+							<span class="tab-first">this.age = "";</span><br/>
+							<span class="tab-first">this.address = "";</span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Phương thức</span></span><br/>
+							<span class="tab-first">this.showInfo = function() {</span><br/>
+								<span class="tab-second">document.write("Họ tên: " + this.name);</span><br/>
+								<span class="tab-second">document.write("Tuổi: " + this.age);</span><br/>
+								<span class="tab-second">document.write("Địa chỉ: " + this.address);</span><br/>
+							<span class="tab-first">};</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Lúc này, muốn tạo mới đối tượng và sử dụng các thuộc tính và phương thức thì bạn làm như sau:</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Tạo mới</span><br/>
+						var dlx = new Person();<br/>
+						<br/>
+						<span class="code-comment">// Gán các thuộc tính</span><br/>
+						dlx.name = "Đào Lập Xuân";<br/>
+						dlx.age = 23;<br/>
+						dlx.address = "Q.Phú Nhuận, Tp.HCM";<br/>
+						<br/>
+						<span class="code-comment">// Gọi phương thức</span><br/>
+						dlx.showInfo();<br/>
+					</code>
+				</div>
+
+				<!-- PHẦN 3 -->
+				<h2>Thêm các thuộc tính và phương thức vào Prototype</h2>
+				<p>Để bổ sung các thuộc tính hoặc phương thức vào một đối tượng thông qua <strong>Prototype</strong> thì bạn sử dụng cú pháp như ở phần 1 bên trên.</p>
+				<p><strong>Ví dụ:</strong> bổ sung thuộc tính gender, phone và phương thức showNewInfo() như sau:</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Dùng hàm trong Javascript</span><br/>
+						function Person() {<br/>
+							<span class="tab-first"><span class="code-comment">// Thuộc tính</span></span><br/>
+							<span class="tab-first"><span class="code-comment">// ...</span></span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Phương thức</span></span><br/>
+							<span class="tab-first"><span class="code-comment">// ...</span></span><br/>
+						}<br/>
+						<br/>
+						<span class="code-comment">// Bổ sung thêm thuộc tính và phương thức</span><br/>
+						Person.prototype.gender = "";<br/>
+						Person.prototype.phone = "";<br/>
+						Person.prototype.showNewInfo = function() {<br/>
+							<span class="tab-first">document.write("Giới tính: " + this.gender);</span><br/>
+							<span class="tab-first">document.write("Số điện thoại: " + this.phone);</span><br/>
+						};<br/>
+						<br/>
+						<span class="code-comment">// Sử dụng bình thường các thuộc tính và phương thức vừa tạo</span><br/>
+						var vi = new Person();<br/>
+						vi.gender = "woman";<br/>
+						vi.address = "Bình Dương";<br/>
+						vi.showNewInfo();<br/>
+					</code>
+				</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

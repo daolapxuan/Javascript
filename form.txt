@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+		<head>
+		<title>Lesson</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<link rel="stylesheet" type="text/css" href="table-style-1.css">
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			code {
+				color: grey;
+			}
+			
+			.code-style {
+				border: 1px solid red;
+				padding-left: 15px;
+			}
+			
+			.code-comment {
+				color: green;
+			}
+			
+			.code-name {
+				color: #0066cc;
+				background-color: #ffffb3;
+				border: 1px solid #ffffb3;
+				border-radius: 2px;
+			}
+			
+			.tab-first {
+				padding-left: 20px;
+			}
+			
+			.tab-second {
+				padding-left: 40px;
+			}
+			
+			.tab-third {
+				padding-left: 60px;
+			}
+
+			.example {
+				border: 1px solid grey;
+				background: #ccff33;			
+				line-height: 2rem;
+				padding-left: 10px;
+			}
+
+			.result {
+				background: #66ff33;
+				border: 1px solid #66ff33;
+				border-radius: 3px;
+				color: #660066;
+				line-height: 1.5rem;
+				padding-left: 5px;
+			}
+
+			.btn {
+				background: #3399ff;
+				color: #cc0066;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+			
+			</div><!-- .row -->
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

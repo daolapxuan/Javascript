@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- 
+Các cách khai báo Javascript:
+- Internal: Viết trong file html hiện tại. Chèn Javascript vào cặp thẻ <script language="javascript"></script>
+và có thể đặt ở mọi vị trí trong file html, nhưng thường đặt trong thẻ <head></head>
+- External: Viết trong một file js khác rồi import vào. Giống như import file css, để import file javascript (js)
+ta nhập <script language="javascript" src="demo.js"></script>
+- Inline: Viết trực tiếp trong thẻ HTML. 
+-->
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 1: Giới thiệu về Javascript</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<input type="button" id="click" value="Click!" />
+		<script language="javascript">
+			// Lấy element có id="click" lưu vào biến button
+			var button = document.getElementById('click');
+			// Khi click vào element chứa trong button thì thực hiện gọi hàm,
+			// bên trong hàm là hàm thông báo lên Hello World!
+			button.addEventListener('click', function(){
+				alert('Hello World');
+			});
+		</script>
+	</body>
+</html>

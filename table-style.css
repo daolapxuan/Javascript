@@ -1,0 +1,28 @@
+.table {
+	width: 60%;
+	margin: 0 auto;
+	display: table;
+}
+
+.col-table {
+	display: table-cell;
+	border: 1px solid grey;
+}
+.col1 {
+	padding-left: 10px;
+}
+.col2 {
+	padding-left: 10px;
+}
+
+.row-table {
+	display: table-row;
+	height: 30px;
+	line-height: 2em;
+}
+
+#field-name {
+	font-weight: bold;
+	text-align: center;
+	background-color: orange;
+}

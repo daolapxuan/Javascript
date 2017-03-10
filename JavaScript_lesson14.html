@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 14: DOM HTML</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h1 {
+				text-align: center;
+				margin: 0 auto;
+			}
+			h2 {
+				border-bottom: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h1>DOM HTML</h1>
+		<div class="container">
+			<div class="row">
+			<!-- Thay đổi và lấy nội dung bên trong thẻ HTML -->
+				<h2>Thay đổi và lấy nội dung bên trong thẻ HTML</h2>
+				<p>Để lấy nội dung bên trong một thẻ HTML, ta dùng cú pháp:</p>
+				<p style="font-family: courier; color: blue;">var html = document.getElementById("content").innerHTML</p>
+				<p>Để thay đổi nội dung cho một thẻ HTML, ta dùng cú pháp:</p>
+				<p style="font-family: courier; color: blue;">var html = document.getElementById('content').innerHTML = "Nội dung"</p>
+				<p><strong>Ví dụ:</strong> Trong vd này, ta sẽ viết chương trình thay đổi nội dung HTML của một thẻ DIV và lấy nội dung bên trong của một thẻ DIV:</p>
+				<p>
+					<input type="button" id="get-content" value="Lấy Nội dung" onclick="get_content()"/>
+					<input type="button" id="set-content" value="Gán Nội dung" onclick="set_content()"/>
+				</p>
+				<div id="content">Nội dung sẽ bị thay đổi</div>
+				<hr>
+			<!-- Thay đổi và lấy giá trị thuộc tính thẻ HTML -->
+				<h2>Thay đổi và lấy giá trị thuộc tính thẻ HTML bằng Javascript</h2>
+				<p>Để thay đổi giá trị của một thuộc tính HTML bất kỳ, ta sử dụng cú pháp:</p>
+				<p style="font-family: courier; color: blue;">document.getElementById("element").attributeName = "new value"</p>
+				<p>Để lấy giá trị của một thuộc tính HTML, ta sử dụng cú pháp:</p>
+				<p style="font-family: courier; color: blue;">var value = document.getElementById("element").attributeName;
+				<p><strong>Ví dụ:</strong> Xây dựng chương trình khi click vào một button thì chuyển thành textbox, và tiếp tục click vào textbox thì đổi thành button</p>
+				<p><input type="button" id="object" value="Click vô đây" onclick="change()"/>
+			</div>
+		</div>
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			// Lấy content
+			function get_content() {
+				var get_button = document.getElementById('content').innerHTML;
+				alert('Nội dung cần lấy là: ' + get_button);
+			}
+			// Gán content
+			function set_content() {
+				var a = prompt("Nhập nội dung muốn gán: ", '');
+				document.getElementById('content').innerHTML = a;
+			}
+			
+			// Ví dụ 2
+			function change() {
+				var object_value = document.getElementById('object').attributeName;
+				var type = object.type;
+				
+				// Nếu là button thì đổi sang textbox
+				if (type == "button") {
+					object.type = "text";
+				}
+				else {
+					object.type = "button";	
+				}
+			}
+		</script>
+	</body>
+</html>

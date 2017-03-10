@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 8: Hàm và tạo hàm</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h2>Tạo hàm xử lý hai số a và b</h2>
+		<p><strong>Nhập a và b từ bàn phím và chọn chức năng tương ứng:</strong></p>
+		<p>Nhập a: <input type="button" id="a" value="Click nhập"/></p>
+		<p>Nhập b: <input type="button" id="b" value="Click nhập"/></p>
+		<p><strong>Chọn chức năng:</strong></p>
+		<p>Kiểm tra a là số chẵn hay lẻ: <input type="button" id="test-a" value="Click kiểm tra"/></p>
+		<p>Kiểm tra b là số chẵn hay lẻ: <input type="button" id="test-b" value="Click kiểm tra"/></p>
+		<p>Tổng hai số a và b: <input type="button" id="sum-a-b" value="Click xem kết quả"/>
+		<p>Hiệu hai số a và b: <input type="button" id="sub-a-b" value="Click xem kết quả"/>
+		<p>Tích hai số a và b: <input type="button" id="multi-a-b" value="Click xem kết quả"/>
+		<p>Thương hai số a và b: <input type="button" id="divi-a-b" value="Click xem kết quả"/>
+		<hr>
+		<h2>Tạo hàm tính năm nhuận</h2>
+		<p><strong>Nhập một năm từ bàn phím:</strong></p>
+		<p><i>Năm này phải lớn hơn năm 400, nếu nhập sai bắt nhập lại đến khi nhập đúng!</i></p>
+		<p>Nhập năm muốn biết: <input type="button" id="year" value="Click nhập năm"/></p>
+		<p>Kiểm tra năm nhuận: <input type="button" id="test-year" value="Click kiểm tra"/></p>
+		<p>
+			<strong>*Note: </strong><br>
+			<i>Năm nhuận là năm chia hết cho 4, hoặc là chia hết cho 100 và 400</i>
+		</p>
+		<!-- Phần xử lý Javascript -->
+		<script language="javascript">
+			// Khai báo cho bài đầu
+			var a, b, c;
+			var button_a = document.getElementById('a');
+			var button_b = document.getElementById('b');
+			var button_test_a = document.getElementById('test-a');
+			var button_test_b = document.getElementById('test-b');
+			var button_sum = document.getElementById('sum-a-b');
+			var button_sub = document.getElementById('sub-a-b');
+			var button_multi = document.getElementById('multi-a-b');
+			var button_divi = document.getElementById('divi-a-b');
+			// Khai báo cho bài hai
+			var year;
+			var button_year = document.getElementById('year');
+			var button_test_year = document.getElementById('test-year');
+			
+			//===== Các hàm xử lý ===== 
+			
+			// Hàm nhập ký tự từ bàn phím
+			function import_number(number) {
+				number = prompt("Nhập giá trị số: ", '');
+				return number; // Trả về giá trị số đã nhập 
+			}
+			// Hàm kiểm tra một số là chẵn hay lẻ.
+			function test_number(number) {
+				if (number % 2 == 0) {
+					alert(number + ' là số chẵn');
+				}
+				else
+					alert(number + ' là số lẻ');
+			}
+			// Hàm tính tổng hai số
+			function sum_number(number1, number2) {
+				return number1 + number2;
+			}
+			// Hàm tính hiệu hai số
+			function sub_number(number1, number2) {
+				return number1 - number2;
+			}
+			// Hàm tính tích hai số
+			function multi_number(number1, number2) {
+				return number1 * number2;
+			}
+			// Hàm tính thương hai số.
+			function divi_number(number1, number2) {
+				return number1 / number2;
+			}
+			// Hàm kiểm tra năm nhuận.
+			function test_year(_year) {
+				if (_year % 4 == 0) {
+					alert('Năm ' + _year + ' là năm nhuận');
+				}
+				else if (_year % 100 == 0) {
+					if (_year % 400 == 0) {
+						alert('Năm ' + _year + ' là năm nhuận');
+					}
+					else 
+						alert('Năm ' + _year + ' không phải là năm nhuận')
+				}
+				else {
+					alert('Năm ' + _year + ' là năm thường chứ nhuận cmm :))');
+				}
+			}
+			
+			
+			//===== Xử lý các button =====
+			
+			// Dùng một trong hai cách để nhập một số từ bàn phím
+			// Cách thông thường. Nhập a
+			button_a.addEventListener('click', function(){
+				c = prompt("Nhập a: ", '');
+				a = parseInt(c); // chuyển chuỗi c thành số int bằng hàm pareseInt
+			});
+			// Cách gọi hàm. Nhập b
+			button_b.addEventListener('click', function(){
+				b = parseInt(import_number(b));
+			});
+			// Gọi hàm. Test a
+			button_test_a.addEventListener('click', function(){	
+				test_number(a);
+			});
+			// Gọi hàm. Test b
+			button_test_b.addEventListener('click', function(){				
+				test_number(b);
+			});
+			// Tổng hai số.
+			button_sum.addEventListener('click', function(){
+				var sum = sum_number(a, b);
+				alert(a + ' + ' + b + ' = ' + sum);
+			});
+			// Hiệu hai số.
+			button_sub.addEventListener('click', function(){
+				var sub = sub_number(a, b);
+				alert(a + ' - ' + b + ' = ' + sub);
+			});
+			// Tích hai số.
+			button_multi.addEventListener('click', function(){
+				var multi = multi_number(a, b);
+				alert(a + ' * ' + b + ' = ' + multi);
+			});
+			// Thương hai số.
+			button_divi.addEventListener('click', function(){
+				var divi = divi_number(a, b);
+				alert(a + ' / ' + b + ' = ' + divi);
+			});
+			
+			// Nhập năm.
+			button_year.addEventListener('click', function(){
+				do {
+					alert('Nhập số phải lớn hơn 400 nhé, không thì phải nhập lại.');
+					year = parseInt(import_number(year));
+				} while(year < 400);
+				alert('Đê ma ma, nhập đúng rồi đó con! Giờ bấm kiểm tra đi :D');
+			});
+			// Kiểm tra năm nhuận.
+			button_test_year.addEventListener('click', function(){
+				test_year(year);
+			});
+		</script>
+	</body>
+</html>

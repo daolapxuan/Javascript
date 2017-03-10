@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 20: Hàm removeEventListener()</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>	
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 1px solid green;
+			}
+			
+			code {
+				color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<h2>1.Tìm hiểu hàm removeEventListener()</h2>
+				<p><strong>Ý nghĩa:</strong> Nếu như hàm addEventListenr() dùng để <strong>thêm một hành động cho một sự kiện</strong> thì hàm <strong>này</strong> có tác dụng ngược lại, nó sẽ xóa đi một hành động đã được gán cho một sự kiện.</p>
+				<p><strong>Cú pháp:</strong></p>
+				<code>object.removeEventListener('eventName', SomeAction);</code>
+				<p>Vì nó sẽ xóa một hành động cho nên bắt buộc phải biết tên hành động đó là gì. Vậy ta sẽ đặt hành động đó trong một <strong>hàm()</strong> để nhận diện.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<code>
+					// Lấy đối tượng<br/>
+					var object = document.getElementById('something');<br/>
+					<br/>
+					// Hành động validate<br/>
+					function DoValidate() {<br/>
+						// do something<br/>
+					}<br/>
+					<br/>
+					// Thêm hành động vào sự kiện 'click'<br/>
+					object.addEventListener('click', DoValidate);<br/>
+					// Xóa hành động DoValidate của sự kiện 'click'<br/>
+					object.removeEventListener('click', DoValidate);<br/>
+				</code>
+				<h2>2. Ví dụ về hàm removeEventListener()</h2>
+				<p><strong>Ví dụ:</strong> Xây dựng một ứng dụng khi di chuyển chuột thì sẽ xuất hiện một <strong>dãy số ngẫu nhiên</strong>, nếu user click vào button <strong>Stop Random</strong> thì sẽ dừng random dãy số đó.
+				<p><strong>Giải quyết:</strong></strong>
+				<p>Dãy số ngẫu nhiên khi rê chuột vào: <input type="text" value="" id="random-number"/></p>
+				<p>Nút dừng Random: <input type="button" value="Stop Random" id="stop-random"/></p>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// Lấy đối tượng
+			var randomNumber = document.getElementById('random-number');
+			var stopRandomNumber = document.getElementById('stop-random');
+			
+			// Hàm random dãy số
+			function RandomNumber() {
+				var random = Math.random();
+				randomNumber.value = random;
+			}
+			// Thêm hành động cho sự kiện
+			randomNumber.addEventListener('mouseover', RandomNumber);
+			// Thêm hành động xóa vào sự kiện click button Stop Random
+			stopRandomNumber.addEventListener('click', function(){
+				randomNumber.removeEventListener('mouseover', RandomNumber);
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 34: Tìm hiểu Hoisting và Use Strict</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+
+			code {
+				color: blue;
+			}
+
+			.border-code {
+				border: 1px solid red;
+				padding-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN MỘT -->
+				<h2>1. Hoisting</h2>
+				<h3>Hoisted trong JavaScript</h3>
+				<p>Trong JavaScript bạn có thể định nghĩa một biến sau khi sử dụng nó, hay có thể hiểu là xài rồi khai báo sau.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<div class="border-code"><code>
+					// Gán giá trị cho biến chưa khai báo<br/>
+					name = "Đào Lập Xuân"<br/>
+					<br/>
+					// Sử dụng: In ra màn hình<br/>
+					document.write("Họ tên: " + name); // Họ tên: Đào Lập Xuân<br/>
+					<br/>
+					// Khai báo <br/>
+					var name;<br/>
+					<br/>
+					// Sử dụng: In lại<br/>
+					document.write("Họ tên: " + name); // Họ tên: Đào Lập Xuân<br/>
+				</code></div>
+				<p>Nếu trong lúc hoặc sau khi khởi tạo, ta gán giá trị mới cho biến thì khi in lại, biến sẽ mang giá trị mới.</p>
+				<div class="border-code"><code>
+					// Gán giá trị cho biến chưa khai báo<br/>
+					name = "Đào Lập Xuân"<br/>
+					<br/>
+					// Sử dụng: In ra màn hình<br/>
+					document.write("Họ tên: " + name); // Họ tên: Đào Lập Xuân<br/>
+					<br/>
+					// Khai báo và gán giá trị mới <br/>
+					var name = "Cẩm Tú";<br/>
+					<br/>
+					// Sử dụng: In lại<br/>
+					document.write("Họ tên: " + name); // Họ tên: Cẩm Tú<br/>
+				</code></div>
+				<p>Còn nếu khai báo biến trước khi sử dụng, thì biến chỉ mang một giá trị khi ta in 2 lần (nếu không gán thêm giá trị mới giữa các lần sử dụng).</p>
+				<div class="border-code"><code>
+					// Khai báo và Gán giá trị cho biến<br/>
+					var name = "Đào Lập Xuân"<br/>
+					<br/>
+					// Sử dụng: In ra màn hình<br/>
+					document.write("Họ tên: " + name); // Họ tên: Đào Lập Xuân<br/>
+					<br/>
+					// Sử dụng: In lại<br/>
+					document.write("Họ tên: " + name); // Họ tên: Đào Lập Xuân<br/>
+				</code></div>
+				<p>Và cách này là cách chuẩn nhất nên viết và được gọi là <strong>Hoisting</strong>, tức là khai báo biến phải nằm trên cùng đoạn mã</p>
+
+				<h3>Không phải hoisted trong Javascript</h3>
+				<p>Trong Javascript, hoists chỉ tồn tại khi bạn khai báo biến chứ không tồn tại khi gán giá trị ban đầu cho biến, nghĩa là bạn có thể gán thoải mái và nó không liên quan đến việc dễ debug hay không, <strong>miễn là cứ khai báo ở trên top.</strong></p>
+				<p><strong>Ví dụ: </strong></p>
+				<div class="border-code"><code>
+					var name = "Đào Lập Xuân";<br/>
+					var email = "daolapxuan@gmail.com";<br/>
+					<br/>
+					document.write("Họ tên: " + name);	// Họ tên: Đào Lập Xuân<br/>
+					document.write("Email: " + email);	// Email: daolapxuan@gmail.com<br/>
+				</code></div>
+				<p>Ví dụ trên ta khai báo và gán giá trị khởi tạo cùng một lúc.</p>
+				<p><strong>Ví dụ: </strong></p>
+				<div class="border-code"><code>
+					var name = "Đào Lập Xuân";<br/>
+					<br/>
+					document.write("Họ tên: " + name);  // Họ tên: Đào Lập Xuân<br/>
+					document.write("Email: " + email);	// Email: underfined<br/>
+					<br/>
+					var email = "daolapxuan@gmail.com";<br/>
+				</code></div>
+				<p>Ví dụ trên biến email chưa được khởi tạo, nên biến email không mang giá trị. Khi ta sử dụng để in ra, kết quả trả về là underfined.<br/> <strong>Lưu ý</strong> là ví dụ này khác với ví dụ 1 nhé, ở ví dụ 1, mặc dù biến name chưa được khai báo, nhưng đã được khởi tạo trước đó. Nên biến name đã mang giá trị và khi sử dụng in ra màn hình sẽ có kết quả.</p>
+				<hr>
+
+				<!-- PHẦN 2 -->
+				<h2>2. Use Strict và Strict Mode trong JavaScript</h2>
+				<h3>Chế độ Strict Mode là gì?</h3>
+				<p>Khi bạn lam việc với JavaScript thì bạn có thể sử dụng biến mà chưa cần định nghĩa (hoisting), bạn có thể quên đặt dấu chấm phẩy ở cuối mỗi đoạn code và bạn có thể sử dụng tên những từ khóa để tạo tên biến. Điều này làm cho các lập trình viên có thói quen làm việc quá <strong>dễ dãi</strong> dẫn đến chương trình thiếu tính an toàn. Chính vì vậy JavaScript kể từ phiên bản 1.8.5 trở đi đã bổ sung một khái niệm gọi là <strong>Strict Mode</strong> nhằm giải quyết tính thiếu an toàn này.</p>
+				<p>Vậy làm thế nào để sử dụng chế độ <strong>Strict Mode</strong>?</p>
+
+				<h3>Use Strict là gì?</h3>
+				<p><strong>Use Strict</strong> là từ khóa khai báo sử dụng chế độ <strong>Strict Mode</strong>, nghĩa là nếu bạn muốn sử dụng chế độ <strong>Strict Mode</strong> ở đâu thì chỉ việc đặt từ khóa "use strict" ở đó. Chế độ<strong> Strict Mode</strong> có hai phạm vi sử dụng là <i>toàn cục</i> và <i>cục bộ</i>. Cái này giống như sử dụng biến <i>toàn cục</i> và <i>cục bộ</i> vậy.</p>
+				<h4>Phạm vi Strict Mode toàn cục</h4>
+				<p>Trong ví dụ dưới đây, chương trình sẽ bị sai khi chạy vì biến name chưa được khởi tạo. Nhưng nếu bỏ đi từ khóa <strong>use strict</strong> đi thì chương trình sẽ chạy bình thường.</p>
+				<div class="border-code"><code>
+					// Khai báo toàn cục: phía trên cùng của file<br/>
+					"use strict";<br/>
+					<br/>
+					// Đoạn code lỗi vì biến name chưa được khai báo đã đem sử dụng<br/>
+					name = "Đào Lập Xuân"; // error<br/>
+					<br/>
+					// In ra màn hình<br/>
+					document.write(name);<br/>
+				</code></div>
+				<p>Bây giờ ta thử gôm đoạn code trên vào một hàm:</p>
+				<div class="border-code"><code>
+					// Khai báo toàn cục: phía trên cùng của file<br/>
+					"use strict";<br/>
+					<br/>
+					function ShowName() {<br/>
+						// Đoạn code lỗi vì biến name chưa được khai báo đã đem sử dụng<br/>
+						name = "Đào Lập Xuân"; // error<br/>
+						<br/>
+						// In ra màn hình<br/>
+						document.write(name);<br/>
+					}<br/>
+					<br/>
+					ShowName()<br/>
+				</code></div>
+				<p>Chạy lên chương trình vẫn bị lỗi vì ta đã khai báo tính toàn cục cho chế độ <strong>Strict Mode</strong>.</p>
+				<h4>Phạm vi Strict Mode cục bộ</h4>
+				<p>Sử dụng ví dụ trên, nhưng lúc này ta sẽ đặt từ khóa "use strict" vào trong hàm, các lệnh còn lại nằm bên ngoài hàm.</p>
+				<div class="border-code"><code>
+					function ShowName() {<br/>
+						// Khai báo cục bộ: bên trong hàm<br/>
+						"use strict";<br/>
+					}<br/>
+					<br/>
+					// Đoạn code không lỗi dù biến name chưa được khai báo đã đem sử dụng<br/>
+					name = "Đào Lập Xuân";<br/>
+						<br/>
+					// In ra màn hình<br/>
+					document.write(name); // Đào Lập Xuân<br/>
+				</code></div>
+				<p>Chạy lên chương trình hoạt động bình thường (in ra name). Tuy nhiên, nếu đặt các dòng lệnh tương tự trên vào trong một hàm thì các dòng lệnh trong hàm không chạy được.</p>
+				<div class="border-code"><code>
+					function ShowName() {<br/>
+						// Khai báo cục bộ: bên trong hàm<br/>
+						"use strict";<br/>
+						// Đoạn code lỗi vì biến name chưa được khai báo đã đem sử dụng<br/>
+						name = "Bánh Bèo"; // error<br/>
+						<br/>
+						// In ra màn hình<br/>
+						document.write(name);<br/>
+					}<br/>
+					<br/>
+					ShowName()<br/>
+					<br/>
+					// Đoạn code không lỗi dù biến name chưa được khai báo đã đem sử dụng<br/>
+					name = "Đào Lập Xuân";<br/>
+						<br/>
+					// In ra màn hình<br/>
+					document.write(name); // Đào Lập Xuân<br/>
+				</code></div>
+
+				<h3>Ví dụ Use Strict</h3>
+				<p>Sau đây ta sẽ liệt kê một số trường hợp bị lỗi khi chạy chế độ <strong>Strict Mode</strong>.</p>
+				<p><strong>Sử dụng biến chưa được định nghĩa (khai báo):</strong> Ta không thể sử dụng một biến mà chưa được định nghĩa trước đó (như các ví dụ ở trên).</p>
+				<div class="border-code"><code>
+					"use strict";<br/>
+					<br/>
+					// Sai vì biến chưa được khai báo<br/>
+					name = "Đào Lập Xuân";<br/>
+				</code></div>
+				<p><strong>Không chấp nhận delete biến:</strong> Bạn không thể delete các hàm, các biến nếu chạy ở chế độ <strong>Strict Mode.</strong></p>
+				<div class="border-code"><code>
+					"use strict";<br/>
+					<br/>
+					var name = "Đào Lập Xuân"<br/>
+					<br/>
+					// Sai vì không được delete<br/>
+					delete name;<br/>
+				</code></div>
+				<p><strong>Định nghĩa thuộc tính hai lần:</strong> Nếu trong một <strong>Object</strong>, bạn định nghĩa tên key bị trùng thì sẽ bị lỗi.</p>
+				<div class="border-code"><code>
+					"use strict";<br/>
+					<br/>
+					var info = {<br/>
+						name : "Đào Lập Xuân",<br/>
+						// Sai vì key name bị trùng<br/>
+						name : "Mai Cẩm Tú"<br/>
+					};<br/>
+				</code></div>
+				<p><strong>Khai báo tham số bị trùng:</strong> Nếu bạn khai báo các tham số trùng tên sẽ bị lỗi luôn.</p>
+				<div class="border-code"><code>
+					"use strict";<br/>
+					<br/>
+					// Sai vì trùng tham số name<br/>
+					function ShowName(name, name) {<br/>
+					// Do something<br/>
+					}<br/>
+				</code></div>
+				<p><strong>Lỗi literals và escape với number:</strong> Ta không thể sử dụng <i>literals</i> và <i>escape</i> với biến kiểu <strong>number</strong>.</p>
+				<div class="border-code"><code>
+					"use strict";<br/>
+					<br/>
+					// Sai<br/>
+					var numberOne = 0123;<br/>
+					var numberTwo = \0123;<br/>
+				</code></div>
+				<p><strong>Khai báo tên biến trùng với key:</strong> Ta không thể khai báo tên biến trùng với key của JavaScript (key là tên hàm, từ khóa,...).</p>
+				<div class="border-code"><code>
+					"use strict";<br/>
+					<br/>
+					// Sai: trùng tên hàm eval()<br/>
+					var eval = 123;<br/>
+					<br/>
+					// Sai: trùng từ khóa arguments<br/>
+					var arguments = 123;<br/>
+					<br/>
+					// Sai: trùng từ khóa delete<br/>
+					var delete = 123; <br/>
+				</code></div>
+				<p>Ngoài ra còn một số từ khóa khác cần tránh đặt trùng tên biến: </p>
+				<ul>
+					<li>implements</li>
+					<li>interface</li>
+					<li>package</li>
+					<li>private</li>
+					<li>protected</li>
+					<li>public</li>
+					<li>static</li>
+					<li>yield</li>
+				</ul>
+			</div><!-- .row -->	
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

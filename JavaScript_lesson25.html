@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 25: BOM - Cookie</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>	
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			.code {
+				border: 1px solid grey;
+				color: blue;
+				font-family: courier;
+				font-size: 13px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>1.Cookie là gì?</h2>
+				<p><strong>Cookie</strong> là dữ liệu trong một file text và nằm trong máy tính, nên việc lưu trữ Cookie sẽ là vĩnh viễn hoặc một thời gian cụ thể do ta thiết lập. Tuy nhiên mỗi domain sẽ có một dung lượng Cookie tối đa có thể lưu trữ được nên hãy lưu ý trường hợp dữ liệu quá lớn.</p>
+				<p>Cookie được lưu trữ ở dạng <span style="color: white; background-color: grey;">name=value</span>.</p>
+				<p>Khi trình duyệt gửi thông tin lên Server thì cookies sẽ được load và gửi kèm theo trong request, chính vì vậy trong ngôn ngữ server (PHP, JSP,...) cũng sẽ nhận được thông tin đó. Đây cũng là thông tin để trả lời cho câu hỏi tại sao Cookie được lưu trữ ở Client mà trên Server vẫn đọc được, và ta cũng hay sử dụng Cookie để xây dựng chức năng Remember Me khi Login.</p>
+				
+				<!-- PHẦN 2 -->
+				<h2>2. Các thao tác với Cookie</h2>
+				<p>Javascript có thể đọc, thêm và xóa Cookie thông qua đối tượng BOM document.cookie.</p>
+				
+				<h3>Tạo Cookie</h3>
+				<p>Ở phần Cookie là gì, ta đã biết Cookie được lưu trữ ở dạng <span style="color: white; background-color: grey;">name=value</span> nên để tạo Cookie thì ta sử dụng chuỗi dữ liệu giống như vậy.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<div class="code">document.cookie = 'website=freetuts.net';</div>
+				<p>Để lưu trữ nhiều Cookie thì chỉ việc tạo hai lần:</p>
+				<div class="code">
+					document.cookie = 'website=dlxuan.wordpress.com';<br/>
+					document.cookie = 'gmail=daolapxuan@gmail.com';<br/>
+				</div>
+				<p>Để thiết lập thời gian sống cho Cookie, ta sử dụng từ khóa <strong>expires</strong>, cấu trúc của chuỗi này là thời gian ở dạng UTC.</p>
+				<p><strong>Ví dụ:</strong></p>
+				<div class="code">document.cookie = 'website=dlxuan.wordpress.com; expires=Sat, 0 Dec 2016 12:00:00 UTC';</div>
+				<p>Theo mặc định thì khi ta ở trang nào thì Cookie sẽ lưu với đường dẫn trang đó. Tuy nhiên nếu muốn thay đổi đường dẫn thì sử dụng từ khóa <strong>path</strong>.</p>
+				<p><strong>Ví dụ:</strong> Path là trang chủ.</p>
+				<div class="code">document.cookie = "website=dlxuan.wordpress.com; expires=Sat, 0 Dec 2016 12:00:00 UTC; path=\";</div>
+			
+				<h3>Lấy giá trị Cookie</h3>
+				<p><strong>Cú pháp:</strong></p>
+				<div class="code">var value = document.cookie;</div>
+				<p>Lúc này kết quả trả về một chuỗi Cookie có cấu trúc name=value, trường hợp ta lưu nhiều Cookie thì nó sẽ có dạng name1=value1; name2=value2.</p>
+				
+				<h3>Xóa Cookie</h3>
+				<p>Trong Javascript KHÔNG có hàm xóa Cookie mà ta phải sử dụng từ khóa <strong>expires</strong> để thiết lập thời gian sống cho Cookie là khoảng thời gian đã qua. Ví dụ hôm nay là ngày 2/9/2016 thì ta chỉ việc gán expires là 1/9/2016 là đã xóa được Cookie đó.</p>
+				
+				<!-- PHẦN 3 -->
+				<h2>3. Viết hàm xử lý Cookie</h2>
+				<p>Vì Cookie được lưu trữ ở dạng chuỗi các key=value và các chuỗi giá trị cách nhau bởi dấu chấm phẩy ";" nên để lấy một giá trị nào đó bạn phải xử lý chuỗi rất phức tạp, vì thông thường chúng ta phải viết hàm tạo và lấy Cookie để sử dụng đc nhiều lần.</p>
+				
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI SỰ KIỆN =*=
+			
+			// =*= PHẦN SỬ DỤNG ADDEVENTLISTENER ĐỂ XỬ LÝ DOM
+		</script>
+	</body>
+</html>

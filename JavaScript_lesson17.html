@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 17: Hàm addEventListener()</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 1px solid green;
+			}
+			
+			code {
+				color: white;
+			}
+			
+			.code {
+				background-color: grey;
+			}
+			
+			.show {
+				background-color: black;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<div class="container">
+			<div class="row">
+				<h2>Hàm addEventListener()</h2>
+				<p>Để thêm sự kiện cho đối tượng HTML, ta dùng cú pháp: </p>
+				<div class="code">
+					<code>
+						elementObject.eventName = function() {<br/>
+							// Do something <br/>
+						}; <br/>
+					</code>
+				</div>
+				<p>Nhưng ta còn có một cách khác, sử dụng hàm addEventListener(). Cú pháp: </p>
+				<div class="code">
+					<code>
+						elementObject.addEventListener('eventName', function() {<br/>
+							// Do something ...<br/>
+						});<br/>
+					</code>
+				</div>
+				<p><strong>Trong đó:</strong></p>
+				<ul>
+					<li><strong>eventName:</strong> là tên của sự kiện bỏ đi chữ <strong>"on"</strong>, ví dụ <span style="color: red">onclick</span> thành <span style="color: red">click</span>, <span style="color: red">onchange</span> thành <span style="color: red">change</span>,...</li>
+					<li>function() là hàm thực thi khi sự kiện eventName được kích hoạt.</li>
+				</ul>
+				<p><strong>Ví dụ 1:</strong> Xây dựng chức năng khi nhập dữ liệu vào ô input thì hiển thị giá trị của ô input ra bên ngoài.</p>
+				<p>Nhập: <input type="text" id="id-input1" value=""/></p>
+				<div id="show1" class="show"></div>
+				<p>Như đã biết, mỗi sự kiện có thể có nhiều hành động nên ta hoàn toàn có thể bổ sung hành động cho một sự kiện và cú pháp tương tự như trên.</p>
+				<p><strong>Ví dụ 2:</strong> Bổ sung thêm chức năng ở ví dụ 1: xuất thông báo nếu chuỗi nhập vào dài hơn 10 kí tự.</p>
+				<p>Nhập: <input type="text" id="id-input2" value=""/></p>
+				<div id="show2" class="show"></div>
+				<hr>
+				<h2>Thêm sự kiện cho đối tượng Window</h2>
+				<p>Đối tượng <strong>window</strong> có thể ví như cửa sổ trình duyệt browser nên nó sẽ có một số sự kiện riêng. Điển hình là sự kiện resize browser.</p>
+				<h4>Bạn hãy Zoom trình duyệt.</h4>
+				<div id="show3" class="show"></div>
+				<hr>
+				<h2>Truyền tham số vào Event trong hàm addEventListener</h2>
+				<p>Nếu muốn truyền tham số vào thì bắt buộc phải tạo một hàm nào đó rồi gọi nó từ hàm addEventListener().</p>
+				<p><strong>Ví dụ 3:</strong> tạo hàm nhập một số từ bàn phím, sau đó tạo một button tính các phép tính +, -, x, / cho 2 số a, b nhập từ bàn phím.</p>
+				<p>Nhập a: <input type="button" id="a" value="Click nhập" /></p>
+				<p>Nhập b: <input type="button" id="b" value="Click nhập" onmouseout="Show()"/></p>
+				Hai số đã nhập là: <div id="show4" class="show"></div>
+				<p>a + b = <input type="button" id="sum" value="Click xem kết quả"/></p>
+				<p>a - b = <input type="button" id="sub" value="Click xem kết quả"/></p>
+				<p>a x b = <input type="button" id="multi" value="Click xem kết quả"/></p>
+				<p>a / b = <input type="button" id="divi" value="Click xem kết quả"/></p>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			//=====Khai báo biến=====
+			// Ví dụ 1.
+			var inputText1 = document.getElementById('id-input1');
+			var show1 = document.getElementById('show1');
+			// Ví dụ 2.
+			var inputText2 = document.getElementById('id-input2');
+			var show2 = document.getElementById('show2');
+			// Ví dụ 3. Về truyền tham số
+			var inputA = document.getElementById('a');
+			var inputB = document.getElementById('b');
+			var show4 = document.getElementById('show4');
+			var sum = document.getElementById('sum');
+			var a, b;
+			
+			//=====Các hàm xử lý yêu cầu=====
+			// Nhập dữ liệu từ bàn phím
+			function Import(number) {
+				number = prompt("Nhập giá trị số:", '');
+				return number;
+			}	
+			// Toán cộng 
+			function Sum(number1, number2) {
+				return number1 + number2;
+			}
+			// Show a và b
+			function Show() {
+				show4.innerHTML = "a = " + inputA + ", b = " + inputB;
+			}
+			//=====Các sự kiện xử lý=====
+			// Ví dụ 1.
+			inputText1.addEventListener('keyup', function(){
+				show1.innerHTML = inputText1.value;
+			});	
+			// Ví dụ 2.
+			inputText2.addEventListener('keyup', function(){
+				show2.innerHTML = inputText2.value;
+			});
+			// Xuất thông báo nếu nhập hơn 10 kí tự
+			inputText2.addEventListener('keyup', function(){
+				if (inputText2.value.length > 10) {
+					alert('Bạn đã nhập hơn 10 kí tự');
+				}
+			});
+			// zoom trình duyệt với đối tượng window.
+			window.addEventListener('resize', function(){
+				document.getElementById('show3').innerHTML = 'Bạn vừa zoom trình duyệt!';
+			});
+			
+			// Nhập a.
+			inputA.addEventListener('click', function(){
+				inputA = Import(inputA);
+				a = parseFloat(inputA);
+			});
+			// Nhập b.
+			inputB.addEventListener('click', function(){
+				inputB = Import(inputB);
+				b = parseFloat(inputB);
+			});
+
+			// Toán cộng
+			sum.addEventListener('click', function(){
+				var result = Sum(a, b);
+				if(result != isNaN) {
+					alert(result);
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 27: setTimeout() và setInterval()</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>1. Hàm setTimeout()</h2>
+				<p>Hàm setTimeout() dùng để thiết lập một khoảng thời gian nào đó sẽ thực hiện một nhiệm vụ nào đó và nó chỉ thực hiện <strong>đúng một lần</strong>.</p>
+				<p><strong>Cú pháp:</strong> <span style="color: white; background-color: grey;">setTimeout(function, time);</span></p>
+				<p><strong>Trong đó:</strong></p>
+				<ul>
+					<li><strong>function:</strong> là nội dung cần thực hiện, đây là một <strong>hàm</strong>.</li>
+					<li><strong>time:</strong> là khoảng thời gian bao nhiêu (tính bằng <i>mili giây</i>) thì function đó sẽ thực hiện.</li>
+				</ul>
+				<p><strong>Ví dụ:</strong> Sau khi click vào button, sau 2s sẽ xuất hiện một thông báo.</p>
+				<input type="button" value="click me" id="set-timeout"/>
+				<p>Hoặc khi move chuột vào ô text sẽ hiện dòng chữ sau 3s:</p>
+				<p>Rê chuột vào đây: <input type="text" value="" id="test-timeout"/></p>
+				
+				<h3>Hàm clearTimeout()</h3>
+				<p>Như tên gọi của nó, hàm này dùng để hủy hành động của hàm setTimeout. Ví dụ khi ta xây dựng tính năng xuất ra thông báo sau 5 giây, trước khi thông báo xuất ra, nếu ta dùng hàm clearTimeout() thì hàm setTimeout() trước đó sẽ mất và thông báo sẽ không hiện ra nữa.</p>
+				<p><strong>Ví dụ:</strong> ta hủy hàm setTimeout ở ví dụ trên bằng cách click vào button bên dưới (Hãy chắc rằng bạn đã click vào button setTimeout trước đó nhé).</p>
+				<p>clearTimeout(): <input type="button" value="Click to stop" id="clear-timeout"/></p>
+				<p><strong>Note:</strong> <i>Khi đặt tên cho biến, cẩn thận trùng tên với hàm nhé, vì như thế sẽ bị lỗi ko sử dụng hàm đó được. Ví dụ ở đây là hàm setTimeout(), ta đặt tên biến là setTimeout thì hàm setTimeout() sẽ ko chạy được nữa khi ta gọi nó.</i></p>
+			
+				<!-- PHẦN 2 -->
+				<h2>2. Hàm setInterval()</h2>
+				<p>Hàm này chỉ khác hàm setTimeout() ở điểm, hàm này sẽ <strong>chạy mãi mãi</strong> thay vì chỉ chạy một lần.</p>
+				<p><strong>Ví dụ:</strong> Cứ mỗi 2s (sau khi ta click ok) xuất ra một thông báo.</p>
+				<p>setInterval(): <input type="button" value="Click Me" id="set-interval"/></p>
+			
+				<h3>Hàm clearInterval()</h2>
+				<p>Tương tự hàm clearTimeout() vậy</p>
+				<p><strong>Ví dụ:</strong> Ta sẽ hủy hàm setInterval() ở ví dụ trên để nó không tiếp túc xuất ra thông báo nữa.</p>
+				<p>Click Clear: <input type="button" value="Click to Clear" id="clear-interval"/></p>
+			</div>
+		</div>
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			// setTimeout()
+			var sTimeout = document.getElementById('set-timeout');
+			var testTimeout = document.getElementById('test-timeout');
+			var clTimeout = document.getElementById('clear-timeout');
+			var action;
+			// setInterval()
+			var sInterval = document.getElementById('set-interval');
+			var clInterval = document.getElementById('clear-interval');
+			var act;
+			
+			// =*= PHẦN HÀM =*=
+			function DoAlert() {
+				alert("HELLO WORLD!");
+			}
+			
+			
+			// =*= PHẦN DOM GỌI HÀM
+			testTimeout.onmouseover = function() {
+				setTimeout(function() {
+					testTimeout.value = "HELLO WORLD!";
+				}, 3000);
+			};
+			
+			sInterval.onclick = function() {
+				act = setInterval(DoAlert, 2000);
+			}
+			
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			sTimeout.addEventListener('click', function() {
+				action = setTimeout(DoAlert, 2000);
+			});
+			
+			clTimeout.addEventListener('click', function() {
+				clearTimeout(action);
+			});
+			
+			clInterval.addEventListener('click', function() {
+				clearInterval(act);
+			});
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

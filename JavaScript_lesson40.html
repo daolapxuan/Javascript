@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+		<head>
+		<title>Lesson 40: Các cách tạo Class trong JavaScript</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<link rel="stylesheet" type="text/css" href="table-style-1.css">
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			code {
+				color: #660033;
+				font-size: 14px;
+			}
+			
+			.code-style {
+				border: 1px solid #669900;
+				padding-left: 15px;
+			}
+			
+			.code-comment {
+				color: #66ccff;
+			}
+			
+			.code-name {
+				color: #0066cc;
+				background-color: #ffffb3;
+				border: 1px solid #ffffb3;
+				border-radius: 2px;
+			}
+			
+			.tab-first {
+				padding-left: 20px;
+			}
+			
+			.tab-second {
+				padding-left: 40px;
+			}
+			
+			.tab-third {
+				padding-left: 60px;
+			}
+
+			.example {
+				border: 1px solid grey;
+				background: #ccff33;			
+				line-height: 2rem;
+				padding-left: 10px;
+			}
+
+			.result {
+				background: #66ff33;
+				border: 1px solid #66ff33;
+				border-radius: 3px;
+				color: #660066;
+				line-height: 1.5rem;
+				padding-left: 5px;
+			}
+
+			.btn {
+				background: #3399ff;
+				color: #cc0066;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<p><strong>CLASS</strong></p>
+				<p>Trong JavaScript không tồn tại <strong>Class</strong>, mà thay vào đó ta có thể sử dụng đối tượng hoặc function để thể hiện. Trong bài này, chúng ta sẽ tìm hiểu về ba cách tạo <strong>Class</strong> trong JavaScript.</p>
+				<!-- PHẦN 1-->
+				<h2>1. Sử dụng Function</h2>
+				<p>Mỗi <strong>function</strong> trong JavaScript sẽ tồn tại một biến cục bộ <span class="code-name">this</span>, biến này sẽ đại diện cho chính function đó. Lúc này, bạn chỉ việc sử dụng biến <span class="code-name">this</span> để khai báo các thuộc tính và phương thức đối tượng, và cuối cùng là đừng quên <span class="code-name">return this</span> để có thể sử dụng từ khóa <span class="code-name">new</span> để khởi tạo mới một đối tượng nha.</p>
+				<p><strong>Ví dụ:</strong> Tạo hàm User như một Class.</p>
+				<div class="code-style">
+					<code>
+						function User() {<br/>
+						<br/>
+							<span class="tab-first"><span class="code-comment">// Thuộc tính</span></span><br/>
+							<span class="tab-first">this.username = '';</span><br/>
+							<span class="tab-first">this.password = '';</span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Phương thức</span></span><br/>
+							<span class="tab-first">this.SetInfo = function(_username, _password) {</span><br/>
+								<span class="tab-second">this.username = _username;</span><br/>
+								<span class="tab-second">this.password = _password;</span><br/>
+							<span class="tab-first">};</span><br/>
+							<br/>
+							<span class="tab-first">this.CheckLogin = function() {</span><br/>
+								<span class="tab-second">return (this.username === 'admin' && this.password === '@123');</span><br/>
+							<span class="tab-first">}</span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Phải return this thì mới tạo mới đối tượng được</span></span><br/>
+							<span class="tab-first">return this;</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p><strong>Cách sử dụng:</strong></p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Cách sử dụng</span><br/>
+						var user = new User();<br/>
+						<br/>
+						user.SetInfo('admin', '@123');<br/>
+						<br/>
+						if (user.CheckInfo()) {<br/>
+							<span class="tab-first">alert ('Đăng nhập thành công');</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">alert ('Đăng nhập thất bại');</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Ta có thể hoàn toàn thêm các thuộc tính hay phương thức mới vào <strong>Class</strong> bằng cách sử dụng <span class="code-name">Prototype</span>.</p>
+				<div class="code-style">
+					<code>
+						function User() {<br/>
+						<br/>
+							<span class="tab-first"><span class="code-comment">// Thuộc tính</span></span><br/>
+							<span class="tab-first"><span class="code-comment">// ...</span></span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Phương thức</span></span><br/>
+							<span class="tab-first"><span class="code-comment">// ...</span></span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Phải return this thì mới tạo mới đối tượng được</span></span><br/>
+							<span class="tab-first">return this;</span><br/>
+						}<br/>
+						<br/>
+						<span class="code-comment">// Bổ sung thuộc tính mới</span><br/>
+						User.prototype.email = '';<br/>
+						<br/>
+						<span class="code-comment">// Bổ sung phương thức mới</span><br/>
+						User.prototype.SetInfoUpdate = function(_username, _password, _email) {<br/>
+							<span class="tab-first"><span class="code-comment">// ...</span></span><br/>
+							<span class="tab-first">User.username = _username;</span><br/>
+							<span class="tab-first">User.password = _password;</span><br/>
+							<span class="tab-first">User.email = _email;</span><br/>
+						};<br/>
+					</code>
+				</div>
+				<p>Cách sử dụng tương tự như trên.</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Cách sử dụng</span><br/>
+						var user = new User();<br/>
+						<br/>
+						user.SetInfoUpdate('admin', '@123', 'dlx@gmail.com');<br/>
+						<br/>
+						if (user.CheckInfo()) {<br/>
+							<span class="tab-first">alert ('Đăng nhập thành công');</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">alert ('Đăng nhập thất bại');</span><br/>
+						}<br/>
+					</code>
+				</div>
+
+				<!-- PHẦN 2 -->
+				<h2>2. Sử dụng Object</h2>
+				<p>Với <span class="code-name">Object</span>, bạn dễ dàng khởi tạo các thuộc tính và phương thức, bạn có thể thêm ngay tại lúc khai báo đối tượng hoặc sau khi khởi tạo đều được.</p>
+				<p>Để khởi tạo đối tượng ta có hai cách.</p>
+				<div class="code-style">
+					<code>
+						var objectName = {};<br/>
+						<span class="code-comment">// Hoặc</span><br/>
+						var objectName = new Object();<br/>
+					</code>
+				</div>
+				<p>Ta sẽ tạo lại Class User ở trên thông qua sử dụng <span class="code-name">Object</span>.</p>
+				<strong>Ví dụ.</strong>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Tạo Object</span><br/>
+						var User = {<br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Thuộc tính</span></span><br/>
+							<span class="tab-first">username : '',</span><br/>
+							<span class="tab-first">password : '',</span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Phương thức</span></span><br/>
+							<span class="tab-first">SetInfo : function(_username, _password) {</span><br/>
+								<span class="tab-second">this.username = _username;</span><br/>
+								<span class="tab-second">this.password = _password;</span><br/>
+							<span class="tab-first">},</span><br/>
+							<br/>
+							<span class="tab-first">CheckLogin : function() {</span><br/>
+								<span class="tab-second">return (this.username === 'admin' && this.password === '@123');</span><br/>
+							<span class="tab-first">}</span><br/>
+						};<br/>
+					</code>
+				</div>
+				<p><strong>Cách sử dụng</strong>. Hãy để ý sự khác nhau với cách sử dụng 1 nhé.</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Cách sử dụng</span><br/>
+						User.SetInfo('admin', '@123');<br/>
+						<br/>
+						if (User.CheckInfo()) {<br/>
+							<span class="tab-first">alert ('Đăng nhập thành công');</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">alert ('Đăng nhập thất bại');</span><br/>
+						}<br/>
+					</code>
+				</div>
+
+				<!-- PHẦN 3 -->
+				<h2>3. Sử dụng Singleton Object</h2>
+				<p>Cách thứ 3 này, bạn có thể sử dụng một <strong>function</strong> để tạo một <span class="code-name">Singleton Object</span>, nghĩa là bạn sử dụng từ khóa <span class="code-name">new</span> để tạo mới một function.</p>
+				<strong>Ví dụ.</strong>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Tạo Singleton Object</span><br/>
+						var User = new function() {<br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Thuộc tính</span></span><br/>
+							<span class="tab-first">this.username = '';</span><br/>
+							<span class="tab-first">this.password = '';</span><br/>
+							<br/>
+							<span class="tab-first"><span class="code-comment">// Phương thức</span></span><br/>
+							<span class="tab-first">this.SetInfo = function(_username, _password) {</span><br/>
+								<span class="tab-second">this.username = _username;</span><br/>
+								<span class="tab-second">this.password = _password;</span><br/>
+							<span class="tab-first">},</span><br/>
+							<br/>
+							<span class="tab-first">this.CheckLogin = function() {</span><br/>
+								<span class="tab-second">return (this.username === 'admin' && this.password === '@123');</span><br/>
+							<span class="tab-first">}</span><br/>
+						};<br/>
+					</code>
+				</div>
+				<p><strong>Cách sử dụng</strong>. Tương tự với cách 2 nhé.</p>
+				<div class="code-style">
+					<code>
+						<span class="code-comment">// Cách sử dụng</span><br/>
+						User.SetInfo('admin', '@123');<br/>
+						<br/>
+						if (User.CheckInfo()) {<br/>
+							<span class="tab-first">alert ('Đăng nhập thành công');</span><br/>
+						}<br/>
+						else {<br/>
+							<span class="tab-first">alert ('Đăng nhập thất bại');</span><br/>
+						}<br/>
+					</code>
+				</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

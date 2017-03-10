@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+		<head>
+		<title>Lesson 41: Xử lý lỗi với Try - Catch trong JavaScript</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<link rel="stylesheet" type="text/css" href="table-style-1.css">
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+			
+			code {
+				color: #660033;
+				font-size: 14px;
+			}
+			
+			li { 
+				margin-bottom: 10px;
+			}
+			.code-style {
+				border: 1px solid #669900;
+				padding-left: 15px;
+			}
+			
+			.code-comment {
+				color: #66ccff;
+			}
+			
+			.code-name {
+				color: #0066cc;
+				background-color: #ffffb3;
+				border: 1px solid #ffffb3;
+				border-radius: 2px;
+			}
+			
+			.tab-first {
+				padding-left: 20px;
+			}
+			
+			.tab-second {
+				padding-left: 40px;
+			}
+			
+			.tab-third {
+				padding-left: 60px;
+			}
+
+			.example {
+				border: 1px solid grey;
+				background: #ccff33;			
+				line-height: 2rem;
+				padding-left: 10px;
+			}
+
+			.result {
+				background: #66ff33;
+				border: 1px solid #66ff33;
+				border-radius: 3px;
+				color: #660066;
+				line-height: 1.5rem;
+				padding-left: 5px;
+			}
+
+			.btn {
+				background: #3399ff;
+				color: #cc0066;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<!-- PHẦN 1 -->
+				<h2>1. Cách sử dụng Try Catch</h2>
+				<p>Try - Catch là cấu trúc không còn xa lạ gì trong các ngôn ngữ lập trình C#, và trong JavaScript cũng cung cấp cho chúng ta cú pháp này để xử lý và xuất ra thông báo lỗi.</p>
+				<p><strong>Cú pháp như sau:</strong></p>
+				<div class="code-style">
+					<code>
+						try {<br/>
+							<span class="tab-first"><span class="code-comment"> // Quăng lỗi ra</span></span><br/>
+							<span class="tab-first"> throw("Nội dung bị lỗi");</span><br/>
+						} catch (e) {<br/>
+							<span class="tab-first"><span class="code-comment"> // Đón nhận lỗi và in ra</span></span><br/>
+							<span class="tab-first"><span class="code-comment"> // Vị trí này chỉ thực hiện khi ở try CÓ quăng lỗi hoặc ở try sử dụng SAI cú pháp ...</span></span><br/>
+							<span class="tab-first"> console.log(e.message);</span><br/>
+						} finally {<br/>
+							<span class="tab-first"><span class="code-comment"> // Cuối cùng chạy cái này</span></span><br/>
+							<span class="tab-first"><span class="code-comment"> // Luôn luôn chạy sau cùng</span></span><br/>
+							<span class="tab-first"> console.log('End of try cache');</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Luồng chạy của chương trình như sau:</p>
+				<ul>
+					<li><strong>Bước 1:</strong> Thực hiện trong <span class="code-name">try</span></li>
+					<li><strong>Bước 2:</strong> Nếu trong <span class="code-name">try</span> xuất hiện lỗi thì nhảy sang <span class="code-name">catch</span></li>
+					<li><strong>Bước 3:</strong> Cuối cùng nhảy xuống <span class="code-name">finally</span></li>
+				</ul>
+				<p>Qua đó ta thấy vị trí <span class="code-name">finally</span> luôn được thực thi và sẽ thực thi cuối cùng. Với <span class="code-name">finally</span>, bạn có thể sử dụng hoặc KHÔNG đều được. Riêng trong <span class="code-name">catch</span> sẽ có một tham số truyền vào và tham số này sẽ chứa thông tin của lỗi và ta sử dụng biến này để lấy message.</p>
+				<p><strong>Ví dụ: </strong>Sử dụng biến chưa định nghĩa, nếu bình thường chương trình bị dừng lại, nhưng do ta sử dụng <span class="code-name">try - catch</span> nên chương trình vẫn hoạt động bình thường.</p>
+				<div class="code-style">
+					<code>
+						try {<br/>
+							<span class="tab-first"><span class="code-comment"> // Sử dụng biến message chưa đc khai báo</span></span><br/>
+							<span class="tab-first"> console.log(message);</span><br/>
+						} catch (e) {<br/>
+							<span class="tab-first"> console.log(e.message);</span><br/>
+						}
+					</code>
+				</div>
+				<p>Nếu chạy đoạn code này lên thì sẽ nhận được thông báo là biến message chưa được định nghĩa <i>(message is not defined)</i>.</p>
+				<p><strong>Ví dụ: </strong>Sử dụng sai cú pháp nhưng chương trình vẫn chạy.</p>
+				<div class="code-style">
+					<code>
+						try {<br/>
+							<span class="tab-first"> 1234</span><br/>
+							<span class="tab-first"> abcxyz</span><br/>
+							<span class="tab-first"> aaaa</span><br/>
+						} catch (e) {<br/>
+							<span class="tab-first"> cosole.log(e.message);</span><br/>
+						} finally {<br/>
+							<span class="tab-first"> console.log('End');</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Chương trình này nếu chạy lên thì xuất hiện dòng chữ <i>'1234 is not defined'</i> và đoạn code trong <span class="code-name">finally</span> vẫn hoạt động bình thường. Điều này chứng tỏ chương trình không bị dừng.</p>
+				<p><strong>Ví dụ:</strong> Sử dụng <span class="code-name">throw new Error('message')</span> để xuất thông báo lỗi.</p>
+				<p>Đây là cách dùng trong trường hợp bạn muốn kiểm tra điều kiện nào đó không thỏa mãn thì quăng lỗi ra, thay vì chờ đợi những lỗi thông thường như sai cú pháp.</p>
+				<div class="code-style">
+					<code>
+						var domain = 'qa.freetuts.net';<br/>
+						<br/>
+						try {<br/>
+							<span class="tab-first"> if (domain != 'freetuts.net') {</span><br/>
+								<span class="tab-second"> throw new Error('Domain trang chủ bị sai');</span><br/>
+							<span class="tab-first"> }</span><br/>
+						} catch (e) {<br/>
+							<span class="tab-first"> console.log(e.message);</span><br/>
+						} finally {<br/>
+							<span class="tab-first"> console.log('End');</span><br/>
+						}<br/>
+					</code>
+				</div>
+				<p>Chạy lên sẽ xuất hiện dòng chữ <i>'Domain trang chủ bị sai'</i>.</p>
+
+				<!-- PHẦN 2 -->
+				<h2>2. Viết một lớp xuất thông báo lỗi</h2>
+				<p>Để tiện cho việc quản lý lỗi thì thông thường chúng ta sẽ viết một lớp thông báo lỗi, ví dụ dưới đây dùng để quản lý việc thông báo lỗi cho người dùng.</p>
+				<div class="code-style">
+					<code>
+						function UserError() {<br/>
+							<br/>
+							<span class="tab-first"> this.ThrowLogin = function() {</span><br/>
+								<span class="tab-second"> throw new Error('Invalid username or password');</span><br/>
+							<span class="tab-first"> };</span><br/>
+							<br/>
+							<span class="tab-first"> this.ThrowSession = function() {</span><br/>
+								<span class="tab-second"> throw new Error('Your request is timeout');</span><br/>
+							<span class="tab-first"> };</span><br/>
+							<br/>
+							<span class="tab-first"> return this;</span><br/>
+						}
+					</code>
+				</div>
+				<p>Để sử dụng thì chúng ta làm như sau:</p>
+				<div class="code-style">
+					<code>
+						var username = 'thehalfheart';<br/>
+						var password = '@123';<br/>
+						<br/>
+						try {<br/>
+							<span class="tab-first"> if (username !== 'admin' || password !== '@321') {</span><br/>
+								<span class="tab-second"> var userError = new UserError();</span><br/>
+								<br/>
+								<span class="tab-second"> userError.ThrowLogin();</span><br/>
+							<span class="tab-first"> }</span><br/>
+						} catch (e) {<br/>
+							<span class="tab-first"> console.log(e.message);</span><br/>
+						}<br/>
+					</code>
+				</div>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			
+			// =*= PHẦN HÀM =*=
+			
+			// =*= PHẦN DOM GỌI HÀM
+			
+			// =*= PHẦN DOM BẰNG PHƯƠNG THỨC ADDEVENTLISTENER() =*=
+			
+			// =*= PHẦN TEST (NẾU CÓ) =*=
+		</script>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 19: Xây dưng Menu Dropdown bằng Javascript</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>	
+		<style type="text/css">
+			#dropdown {
+				width: 200px;
+			}
+			
+			#dropdown li {
+				list-style: none;
+				line-height: 30px;
+				background: Orange;
+				margin: 5px;
+			}
+			
+			#dropdown li a {
+				margin-left: 10px;
+				color: FFF;
+				text-decoration: none;
+			}
+			
+			#dropdown ul {
+				display: none;
+				padding: 0px;
+				background: green;
+			}
+			
+			#dropdown ul li {
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<ul id="dropdown">
+					<li><a href="#">Trang chủ</a></li>
+					<li>
+						<a href="#">Lập trình</a>
+						<ul>
+							<li><a href="#">Front End</a></li>
+							<li><a href="#">Back End</a></li>
+							<li><a href="#">Mobile</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Giải trí</a>
+						<ul>
+							<li><a href="#">Game</a></li>
+							<li><a href="#">Truyện Tranh</a></li>
+							<li><a href="#">Truyện Cười</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Thông tin</a>
+						<ul>
+							<li><a href="#">Đăng Kí</a></li>
+							<li><a href="#">Đăng Nhập</a></li>
+							<li><a href="#">About Me</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// Lấy danh sách menu
+			var menuDropdown = document.querySelectorAll('#dropdown > li');
+			
+			// Lặp qua từng menu để gán sự kiện click
+			for (var i = 0; i < menuDropdown.length; i++) {
+				menuDropdown[i].addEventListener('click', function(){
+					// Ẩn hết menu con.
+					var menuList = document.querySelectorAll('#dropdown > li > ul');
+					
+					for (var j = 0; j < menuList.length; j++) {
+						menuList[j].style.display = "none";
+					}
+					
+					this.children[1].style.display = "block";
+				});
+			}
+		</script>
+	</body>
+</html>

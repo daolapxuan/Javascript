@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 15: DOM CSS</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>
+		<style type="text/css">	
+			h2 {
+				margin: 0 auto;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<div class="container">
+			<div class="row">
+			<!-- Thay đổi CSS bằng Javascript -->
+				<h2>Thay đổi CSS bằng Javascript</h2>
+				<p>Cú pháp set CSS bằng Javascript:</p>
+				<p style="font-family: courier; color: brown;">document.getElementById('object').style.cssName = 'something';</p>
+				<p>Cú pháp get CSS bằng Javascript:</p>
+				<p style="font-family: courier; color: brown;">var value = document.getElementById('object').style.cssName;</p>
+				<p><strong>Note:</strong> <i>trường hợp thuộc tính css name có dấu gạch ngang như: font-family, line-height, margin-bottom,... thì thuộc tính đó trong style (javascript) có tên là fontFamily, lineHeight, marginBottom,...<br>
+				Nghĩa là sẽ bỏ dấu gạch ngang và viết hoa ký tự đầu tiên sau dấu gạch ngang.</i></p>
+				<p><strong>Ví dụ:</strong></p>
+				<p style="font-family: courier; color: blue;">document.getElementById('object').style.fontFamily = ('something');<p>
+				<p style="font-family: courier; color: blue;">document.getElementById('object').style.lineHeight = ('something');<p>
+				<p style="font-family: courier; color: blue;">document.getElementById('object').style.marginBottom = ('something');<p>
+				<hr>
+				<h2>Ví dụ thay đổi CSS bằng Javascript</h2>
+				<h3>Ví dụ 1.</h3>
+				<p>Viết một chương trình gồm 4 buttons và 1 thẻ div, khi click vào từng button thì sẽ thiết lập <strong>màu sắc, background, chiều cao, font-size</strong> của thẻ div.</p>
+				<div id="object">Đây là nội dung cần thay đổi bằng CSS</div>
+				<p><input type="button" value="Màu sắc" onclick="ChangeColor()" />
+				 <input type="button" value="Màu nền" onclick="ChangeBackGround()" />
+				 <input type="button" value="Chiều cao" onclick="ChangeHeight()" />
+				 <input type="button" value="Kích cỡ chữ" onclick="ChangeFontSize()" /></p>
+				<hr>
+				<h3>Ví dụ 2.</h3>
+				<p>Viết chương trình đăng nhập và validate thông báo username, password. Nếu user không nhập username hoặc mật khẩu thì hiển thị thông báo message trong một thẻ div và chữ <span style="color: red;">màu đỏ</span>, ngược lại thì thông báo validate thành công và chữ <span style="color: blue;">màu xanh</span>.</p>
+				<p>Username: <input type="text" id="username" /></p>
+				<p>Password: <input type="text" id="password" /></p>
+				<div id="message"></div>
+				<p><input type="button" value="Login" onclick="Validate()"</p>
+			</div>
+		</div>
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			// Ví dụ 1.
+			// Hàm thay đổi màu sắc
+			function ChangeColor() {
+				document.getElementById('object').style.color = 'pink';
+			}
+			// Hàm thay đổi màu nền
+			function ChangeBackGround() {
+				document.getElementById('object').style.backgroundColor = 'black';	
+			}
+			// Hàm thay đổi chiều cao
+			function ChangeHeight() {
+				document.getElementById('object').style.height = '1000px';
+			}
+			// Hàm thay đổi kích cỡ chữ
+			function ChangeFontSize() {
+				document.getElementById('object').style.fontSize = '50px';
+			}
+			
+			// Ví dụ 2.
+			// Hàm thông báo 
+			function Validate() {
+				var username = document.getElementById('username').value;
+				var password = document.getElementById('password').value;
+				
+				if (username == "" && password == "") {
+					document.getElementById('message').innerHTML = "Bạn chưa nhập gì hết!"
+					document.getElementById('message').style.color = 'red';
+				}
+				else if (username == "" || password == "") {
+					if (username == "") {
+						document.getElementById('message').innerHTML = "Bạn chưa nhập tên đăng nhập!"
+						document.getElementById('message').style.color = 'red';
+					}
+					if (password == "") {
+						document.getElementById('message').innerHTML = "Bạn chưa nhập mật khẩu!"
+						document.getElementById('message').style.color = 'red';
+					}
+				}
+				else {
+					document.getElementById('message').innerHTML = "Congratulation! Validate's true!"
+					document.getElementById('message').style.color = 'blue';
+				}
+			}
+		</script>
+	</body>
+</html>

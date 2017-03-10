@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 5: Lệnh kiểm tra điều kiện If Else</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h2>Lệnh kiểm tra điều kiện</h2>
+		<div>
+			<p>Nhập a, b từ bàn phím và nhấn xem kết quả</p>
+			Nhập a = <input type="button" id="a" value="Click nhập" /><br>
+			Nhập b = <input type="button" id="b" value="Click nhập" />
+			<hr>
+			<h3>Lệnh If đơn giản</h3>
+			<p>Kết quả sẽ hiện ra nếu a = b, ngược lại thì ko có gì cả.</p>
+			<p><input type="button" id="result" value="Xem kết quả" /></p>
+			<hr>
+			<h3>Lệnh If else đơn giản</h3>
+			<p>Kết quả sẽ in ra a = b, nếu a = b và ngược lại sẽ in ra a != b</p>
+			<p><input type="button" id="result1" value="Xem kết quả" /></p>
+			<hr>
+			<h3>Nhiều lệnh If else</h3>
+			<p>Kết quả sẽ in ra nhiều trường hợp khác nhau</p>
+			<p><input type="button" id="result2" value="Xem kết quả" /></p>
+			<hr>
+			<h3>Lệnh If else lồng nhau</h3>
+			<p>Ta so sánh a với 10, nếu a > 10 thì sẽ so sánh tiếp a với b và in ra các kết quả tương ứng</p>
+			<p><input type="button" id="result3" value="Xem kết quả" /></p>
+		<!-- Phần xử lý javascript -->
+		<script language="javascript">
+			var a, b;
+			var button_a = document.getElementById('a');
+			var button_b = document.getElementById('b');
+			var button_result = document.getElementById('result');
+			var button_result1 = document.getElementById('result1');
+			var button_result2 = document.getElementById('result2');
+			var button_result3 = document.getElementById('result3');
+			
+			button_a.addEventListener('click', function(){
+				a = prompt("Nhập a: ", '');
+			});
+			button_b.addEventListener('click', function(){
+				b = prompt("Nhập b: ", '');
+			});
+			
+			button_result.addEventListener('click', function(){
+				var a1 = a;
+				var b1 = b;
+				if (a1 == b1) {
+					alert('a và b bằng nhau nhé!');
+				}
+			});
+			
+			button_result1.addEventListener('click', function(){
+				var a1 = a;
+				var b1 = b;
+				if (a1 == b1) {
+					alert('a và b bằng nhau, a = b');
+				}
+				else {
+					alert('a và b KHÔNG bằng nhau, a != b');
+				}
+			});
+			
+			button_result2.addEventListener('click', function(){
+				var a1 = a;
+				var b1 = b;
+				if (a1 == b1) {
+					alert('a và b bằng nhau, a = b');
+				}
+				else if (a1 > b1) {
+					alert('a lớn hơn b, a > b');
+				}
+				else {
+					alert('a nhỏ hơn b, a < b');
+				}
+			});
+			
+			button_result3.addEventListener('click', function(){
+				var a1 = a;
+				var b1 = b;
+				if (a1 >= 10) {
+					if (a1 == b1) {
+						alert('a và b bằng nhau, a = b');
+					}
+					else if (a1 > b1) {
+						alert('a lớn hơn b, a > b');
+					}
+					else {
+						alert('a nhỏ hơn b, a < b');
+					}
+				}
+				else {
+					alert('a nhỏ hơn 10 nên kết thúc.');
+				}
+			});
+			
+		</script>
+		</div>
+	</body>
+</html>

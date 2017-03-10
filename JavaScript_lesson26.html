@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 26: BOM - Window Navigator</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX"/>	
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			
+			h2 {
+				border-bottom: 2px solid grey;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- PHẦN HTML -->
+		<div class="container">
+			<div class="row">
+				<p><strong>Giới thiệu:</strong> Đối tượng Window Navigator trong Javascript được dùng để kiểm tra thông tin về ng dùng như trình duyệt đang sử dụng là gì? Hệ điều hành đang sử dụng là gì? Trình duyệt có bật Cookie ko? Hay thậm chí có thể kiểm tra được tên và version của Browser.</p>
+				<!-- PHẦN 1 -->
+				<h2>1. Kiểm tra Cookie có được bật không?</h2>
+				<p>Để kiểm tra trình duyệt có bật Cookie hay ko, ta sử dụng thuộc tính <span style="color: white; background-color: grey;">navigator.cookieEnabled</span>.</p>
+				<p>Kiểm tra: <input type="button" value="Click to test" onclick="TestCookie()" /></p>
+				
+				<!-- PHẦN 2 -->
+				<h2>2. Kiểm tra tên trình duyệt đang sử dụng</h2>
+				<p>Để kiểm tra tên trình duyệt thì ta dùng thuộc tính <span style="color: white; background-color: grey;">navigator.appName</span> và thuộc tính <span style="color: white; background-color: grey;">navigator.appCodeName</span> dùng để kiểm tra tên mã code của trình duyệt.
+				<div id="test-browser" style="color: red; background-color: black;">Rê chuột vào kiểm tra.</div>
+				
+				<!-- PHẦN 3 -->
+				<h2>3. Kiểm tra Engine của trình duyệt</h2>
+				<p>Để kiểm tra Engine của trình duyệt, ta sử dụng thuộc tính <span style="color: white; background-color: grey;">navigator.product</span>.</p>
+				<p>Kiểm tra: <input type="text" id="test-engine" value="Rê chuột vào"/></p>
+				
+				<!-- PHẦN 4 -->
+				<h2>4. Kiểm tra Version của trình duyệt</h2>
+				<p>Để kiểm tra Version của trình duyệt, ta sử dụng thuộc tính <span style="color: white; background-color: grey;">navigator.appVersion</span> hoặc <span style="color: white; background-color: grey;">navigator.userAgent</span>.</p>
+				<div id="test-version" style="color: red; background-color: black;" >Rê chuột vào xem</div>
+				<p><strong>Note:</strong> Việc sử dụng JS để kiểm tra version sẽ có lúc trả về kết quả sai. Vì vậy ta ko nên sử dụng nó để kiểm tra Version của trình duyệt.</p>
+			
+				<!-- PHẦN 5 -->
+				<h2>5. Kiểm tra Hệ điều hành của Client</h2>
+				<p>Để kiểm tra HĐH của user, ta sử dụng thuộc tính <span style="color: white; background-color: grey;">navigator.platform</span>.</p>
+				<p>Kiểm tra: <button onclick="TestPlatform()">Click to Test</button></p>
+				
+				<!-- PHẦN 6 -->
+				<h2>6. Kiểm tra Ngôn ngữ của trình duyệt</h2>
+				<p>Để kiểm tra ngôn ngữ của browser, ta sử dụng thuộc tính <span style="color: white; background-color: grey;">navigator.language</span>.</p>
+				<p>Kiểm tra: <button id="test-language">Click to Test</button></p>
+			</div><!-- .row -->
+		</div><!-- .container -->
+		<!-- PHẦN JAVASCRIPT -->
+		<script language="javascript">
+			// =*= PHẦN KHAI BÁO & KHỞI TẠO =*=
+			var testBrowser = document.getElementById('test-browser');
+			var testEngine = document.getElementById('test-engine');
+			var testVersion = document.getElementById('test-version');
+			var testLanguage = document.getElementById('test-language');
+			
+			// =*= PHẦN HÀM =*=
+			function TestCookie() {
+				if (window.cookieEnabled) {
+					alert("Có bật Cookie");
+				}
+				else {
+					alert("Không bật Cookie");
+				}
+			}
+			
+			function TestPlatform() {
+				alert("Hệ điều hành đang sử dụng: " + navigator.platform);
+			}
+			
+			// =*= PHẦN DOM GỌI SỰ KIỆN =*=
+			testBrowser.onmouseover = function() {
+				testBrowser.innerHTML = "App Name: " + window.navigator.appName + "<br/> Code Name: " + window.navigator.appCodeName;
+			};
+			testVersion.onmouseout = function() {
+				testVersion.innerHTML = "Cách 1, appVersion: " + navigator.appVersion + "<br/> Cách 2, userAgent: " + navigator.userAgent;
+			}
+			
+			// =*= PHẦN SỬ DỤNG ADDEVENTLISTENER ĐỂ XỬ LÝ DOM
+			testEngine.addEventListener('mouseenter', function(){
+				testEngine.value = navigator.product;
+			});
+			testLanguage.addEventListener('click', function() {
+				alert('Ngôn ngữ trình duyệt: ' + navigator.language);
+			});
+			// =*= PHẦN KHÁC =*=
+		
+		</script>
+	</body>
+</html>

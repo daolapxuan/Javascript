@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Vòng lặp While - Do While</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h1>Vòng lặp While và Do-while</h1>
+		<hr>
+		<p>Nhập n từ bàn phím</p>
+		<p>n = <input type="button" id="n" value="Click nhập"/></p>
+		<h3>Vòng lặp while từ 1 đến n:</h3>
+		<p><span style="font-family: courier;">
+			var i = 1;<br>
+			while (i <= n) {<br>
+				document.write(i + ' ');<br>
+				i++;<br>
+			}<br>
+			</span>
+			<input type="button" id="result_while" value="Click xem kết quả">
+		</p>
+		<h3>Vòng lặp while từ n giảm tới 1:</h3>
+		<p><span style="font-family: courier;">
+			var i = n;<br>
+			while (i >= 1) {<br>
+				document.write(i + ' ');<br>
+				i--;<br>
+			}<br>
+			</span>
+			<input type="button" id="result_while1" value="Click xem kết quả">
+		</p>
+		<hr>
+		<h3>Do while</h3>
+		<p>Nhập m từ bàn phím, chỉ in ra số nằm trong khoảng 1..23</p>
+		<p>Nếu giá trị không đúng, yêu cầu nhập lại hoài luôn :))</p>
+		<p>Nhập m đi mày: <input type="button" id="m" value="Click vô mà nhập"></p>
+		<hr>
+		<h3>While - Do while lồng nhau</h3>
+		<p>Xuất bảng cửu chương bằng vòng lặp While - Do while</p>
+		<p><input type="button" id="result_multiplication_table" value="Click vào xem kết quả"/></p>
+		
+		<!-- Phần xử lý Javascript -->
+		<script language="javascript">
+			var i, n;
+			var button_n = document.getElementById('n');
+			var button_result_while = document.getElementById('result_while');
+			var button_result_while1 = document.getElementById('result_while1');
+			var button_m = document.getElementById('m');
+			var m;
+			var button_result_multiplication = document.getElementById('result_multiplication_table');
+			
+			// Nhập n
+			button_n.addEventListener('click', function(){
+				n = prompt("Nhập n: ", '');
+			});
+			// In ra kết quả từ 1 đến n, mỗi lần tăng 1
+			button_result_while.addEventListener('click', function(){
+				i = 1;
+				while (i <= n) {
+					document.write(i + '  ');
+					i++;
+				}
+			});
+			// In ra kết quả từ n giảm xuống 1, mỗi lần giảm 1
+			button_result_while1.addEventListener('click', function(){
+				i = n;
+				while (i >= 1) {
+					document.write(i + '  ');
+					i--;
+				}
+			});
+			// Nhập m bằng do while với yêu cầu 1..23
+			button_m.addEventListener('click', function(){
+				m = null;
+				do {
+					m = prompt("Nhập m: ", '');
+				}while (m < 1 || m > 23);
+				// Thông báo m ra màn hình, nếu m = {1, 2,..., 23}
+				alert('m thỏa điều kiện, m = ' + m);
+			});
+			// Bảng cửu chương While - Do while
+			button_result_multiplication.addEventListener('click', function(){
+				var j = 1;
+				i = 1;
+				
+				while (i <= 9) {
+					do {
+						document.write(i + ' x ' + j + ' = ' + (i * j));
+						document.write('<br/>');
+						j++;
+					}while (j <= 9);
+					document.write('<br/>');
+					i++;
+					j = 1; // Gán giá trị j về 1 để bắt đầu phép nhân lại
+				}
+			});
+		</script>
+	</body>
+</html>

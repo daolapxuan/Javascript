@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+	<head>
+		<title>Lesson 9: Một số bài tập</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="DLX" />
+		<style type="text/css">
+			body {
+				margin: 20px;
+			}
+			.title {
+				border-bottom: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Phần HTML -->
+		<h1 class="title">Một số bài tập trong Javascript</h1>
+		<h2>Bài 1: Tìm số lớn nhất - nhỏ nhất</h2>
+		<p>
+			<strong>Yêu cầu:</strong><br> 
+			<i>Người dùng nhập vào dãy số, dãy số chỉ dừng nhập khi người dùng ko nhập gì nữa (bấm Esc).<br>
+			Sau khi dừng nhập, màn hình sẽ đưa ra thông báo số lớn nhất và số nhỏ nhất trong dãy số đã nhập.</i>
+		</p>
+		<p><strong>Giải:</strong></p>
+		<p>Click vào button này để nhập dãy số và xem kết quả: <input type="button" id="import-number" value="Nhập dãy số" /></p>
+		<p><u>Note: Bài này vẫn còn sai, nhưng chả biết sửa ntn, nên thôi để đây</u></p>
+		<p><i>Đã giải được và test ok</i></p>
+		<hr>
+		<h2>Bài 2: Giải phương trình bậc 1</h2>
+		<p>
+			<strong>Yêu cầu:</strong><br>
+			<i>Người dùng nhập vào hai số a và b của phương trình bậc nhất: <strong>ax + b = 0</strong><br>
+			Sau đó chương trình sẽ xuất ra màn hình thông báo nghiệm của phương trình từ hai số a và b trên</i>
+		</p>
+		<p><strong>Giải:</strong></p>
+		<p>Nhập a: <input type="button" id="a" value="Click nhập" /><p>
+		<p>Nhập b: <input type="button" id="b" value="Click nhập" /><p>
+		<p>ax + b = 0. <input type="button" id="solve" value="Click giải phương trình" /><p>
+		<hr>
+		<h2>Bài 3: Giải phương trình bậc 2</h2>
+		<p>
+			<strong>Yêu cầu:</strong><br>
+			<i>Người dùng nhập vào ba số a, b và c của phương trình bậc hai:<strong> ax^2 + bx + c = 0 (a != 0)</strong><br>
+			Sau đó chương trình sẽ tự động tính nghiệm và xuất ra màn hình các kết quả phù hợp</i>
+		</p>
+		<p><strong>Giải:</strong></p>
+		<p>Nhập a: <input type="button" id="a1" value="Click nhập" /><p>
+		<p>Nhập b: <input type="button" id="b1" value="Click nhập" /><p>
+		<p>Nhập c: <input type="button" id="c1" value="Click nhập" /><p>
+		<p>ax^2 + bx + c = 0. <input type="button" id="solve1" value="Click giải phương trình" /><p>
+		<!-- Phần Javascript -->
+		<script language="javascript">
+			//===== Phần khai báo biến =====
+			// Kb biến bài 1
+			var min = null;
+			var max = null;
+			var value = 0;
+			var button_exercise1 = document.getElementById('import-number');
+			// Kb biến bài 2
+			var a, b;
+			var button_a = document.getElementById('a');
+			var button_b = document.getElementById('b');
+			var button_solve = document.getElementById('solve');
+			// Kb biến bài 3
+			var a1, b1, c1;
+			var button_a1 = document.getElementById('a1');
+			var button_b1 = document.getElementById('b1');
+			var button_c1 = document.getElementById('c1');
+			var button_solve1 = document.getElementById('solve1');
+			
+			//===== Phần các hàm xử lý =====
+			// Nhập giá trị từ bàn phím
+			function import_number(_number) {
+				_number = prompt("Nhập số: ", '');
+				return _number;
+			}
+			// Tìm min max từ dãy số đã nhập
+			function export_min_max() 
+			{
+				var temp;
+				// Nếu value bằng null thì dừng nhập
+				while (value != null) {
+					// Nhập value
+					value = import_number(value);
+					temp = parseInt(value);
+					// Nếu value khác null thì mới tiếp tục so sánh các số
+					if (temp != null) {
+						// Khởi tạo giá trị ban đầu cho min max
+						if (min == null && max == null) {
+							min = temp;
+							max = temp;
+						}
+						// Nếu min max đã có giá trị rồi.
+						// So sánh giá trị min max với value để tìm ra số min max tiếp theo.
+						else {
+							// Nếu value nhỏ hơn min thì gán min thành value (số nhỏ nhất mới) 
+							if (min > temp) {
+								min = temp;
+							}
+							// Tương tự gán số lớn nhất mới cho max
+							if (max < temp) {
+								max = temp;
+							}
+						}
+					}
+				}
+				alert('min = ' + min + ' , max = ' + max);
+			}
+			// Giải PT bậc nhất một ẩn
+			function solve(_a, _b) {
+				if (_a == 0 && _b == 0) {
+					alert('a = 0 và b = 0 nên phương trình vô số nghiệm');
+				}
+				else if (_a != 0 && b == 0) {
+					alert('a khác 0 và b = 0 nên phương trình có nghiệm x = 0');
+				}
+				else if (_a == 0 && _b != 0) {
+					alert('Thằng ngu, nhập thế thì vô nghiệm mẹ rồi, dốt toán à?');
+				}
+				else {
+					alert('Phương trình này có nghiệm x = ' + (-_b / _a));
+				}
+			}
+			// Giải PT bậc hai một ẩn.
+			function solve1(_a, _b, _c) {
+				var delta;
+				// Tính delta.
+				delta = _b * _b - 4 * _a * _c;
+				// Biện luận pt.
+				if (delta < 0) {
+					alert('Nhập ngu thế, vô nghiệm mẹ rồi :))');
+				}
+				else if (delta == 0) {
+					alert('Phương trình có nghiệm kép: x1 = x2 = x = ' + -_b / (2 * _a));
+				}
+				else {
+					alert('Phương trình có 2 nghiệm: x1 = ' + (-_b + Math.sqrt(delta)) / (2 * _a) + ' và x2 = ' + (-_b - Math.sqrt(delta)) / (2 * _a));
+				}
+			}
+			
+			//===== Phần xử lý buttons =====
+			// Bài 1.
+			button_exercise1.addEventListener('click', function(){
+				export_min_max();
+			});
+			
+			// Bài 2.
+			// Nhập a.
+			button_a.addEventListener('click', function(){
+				a = import_number(a);
+			});
+			// Nhập b.
+			button_b.addEventListener('click', function(){
+				b = import_number(b);
+			});
+			// Giải PT
+			button_solve.addEventListener('click', function(){
+				solve(a, b);
+			});
+			
+			// Bài 3.
+			// Nhập a != 0
+			button_a1.addEventListener('click', function(){
+				do {
+				a1 = import_number(a1);
+				} while (a1 == 0);
+			});
+			// Nhập b.
+			button_b1.addEventListener('click', function(){
+				b1 = import_number(b1);
+			});
+			button_c1.addEventListener('click', function(){
+				c1 = import_number(c1);
+			});
+			// Giải phương trình bậc 2.
+			button_solve1.addEventListener('click', function(){
+				solve1(a1, b1, c1);
+			});
+		</script>
+	</body>
+</html>
